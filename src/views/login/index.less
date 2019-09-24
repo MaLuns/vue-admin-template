@@ -1,0 +1,50 @@
+.login {
+    height                       : 100%;
+    overflow                     : hidden;
+    background-image             : url(https://file.iviewui.com/dev-dist/5825f033c6ff12cd1ed1f3c99dff5e4b.svg);
+    /*   background-repeat       : no-repeat;
+    background-position          : center; */
+    background-color             : #007eff;
+
+    >.content {
+        width     : 1200px;
+        height    : 600px;
+        position  : absolute;
+        left      : 0;
+        right     : 0;
+        bottom    : 100px;
+        top       : 0;
+        margin    : auto;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.082);
+        display   : flex;
+
+        >.left {
+            flex               : 1;
+            background-image   : url(../../assets/wlt-login.png);
+            background-repeat  : no-repeat;
+            background-position: -300px -40px;
+            background-color   : #007eff;
+
+        }
+
+        >.right {
+            width     : 400px;
+            background: #fff;
+
+            .wlt-title {
+                width           : 255px;
+                height          : 80px;
+                margin          : 10px auto 50px;
+                background-image: url(http://ys.wltrj.com:6868/Content/img/wlt-title.png)
+            }
+
+            .login-from {
+                margin: 40px;
+
+                .el-input__inner {
+                    border-radius: 0px !important;
+                }
+            }
+        }
+    }
+}
