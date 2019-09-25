@@ -11,7 +11,7 @@
                     <div class="wlt-title"></div>
                     <el-form :model="from">
                         <el-form-item>
-                            <el-select placeholder="请选择" style="width:100%">
+                            <el-select v-model='from.check' placeholder="请选择" style="width:100%">
                                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
                                 <i slot="prefix" class="el-input__icon el-icon-s-platform"></i>
                             </el-select>
@@ -38,6 +38,7 @@
             return {
                 labelPosition: "right",
                 from: {
+                    check: "选项1",
                     name: "",
                     loginName: "超级用户",
                     passWorld: ""
@@ -62,8 +63,9 @@
         },
         methods: {
             Submit() {
+                this.$store.dispatch("user/setjwt_token", "adasdadsasd");
                 this.$router.push({
-                    path:"/404/hggf"
+                    path: "/home"
                 });
             }
         }

@@ -2,7 +2,6 @@ const state = {
     sidebarOpen: localStorage.getItem("app_sidebarOpen") ? !!+localStorage.getItem("app_sidebarOpen") : true,
 }
 
-
 const mutations = {
     TOGGLE_SIDEBAR: state => {
         state.sidebarOpen = !state.sidebarOpen;
@@ -14,13 +13,11 @@ const mutations = {
     }
 }
 
-
 const actions = {
     toggleSideBar({ commit }) {
         commit('TOGGLE_SIDEBAR')
     },
 }
-
 
 export default {
     namespaced: true,

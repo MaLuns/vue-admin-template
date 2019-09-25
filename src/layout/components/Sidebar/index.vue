@@ -1,8 +1,13 @@
 <template>
     <div class="sidebar-menu">
+        <div class="sidebar-logo-container" :class="{'collapse':sidebarOpen}">
+            <div class='logo-text'>
+                <img src="http://ys.wltrj.com:6869/icon/logo.png" class="sidebar-logo">
+                <p>物联通系统</p>
+            </div>
+        </div>
         <el-scrollbar wrap-class="scrollbar-wrapper" class="scrollbar">
-            <el-menu router :default-active="activeMenu" :collapse="sidebarOpen" background-color="#304156" text-color="#bfcbd9" active-text-color="#409eff"
-                class="el-menu-vertical">
+            <el-menu router :default-active="activeMenu" :collapse="sidebarOpen" background-color="#fff" text-color="#515a6e" active-text-color="#409eff" class="el-menu-vertical">
                 <sidebar-items v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"></sidebar-items>
             </el-menu>
         </el-scrollbar>
@@ -42,41 +47,51 @@
     };
 </script>
 
-<style lang="less">
-    .sidebar-menu {
-        .el-scrollbar__wrap {
-            overflow-x: hidden;
-        }
-    }
-</style>
-<style lang="less" scoped>
+<style lang="less" >
     .sidebar-menu {
         height: 100vh;
         overflow: hidden;
 
         .scrollbar {
-            height: 100%;
+            height: calc(~"100% - 120px");
         }
 
         .el-menu {
             border-right: none;
         }
 
-        .el-menu-vertical:not(.el-menu--collapse) {
-            width: 210px;
-            min-height: 400px;
+        .el-scrollbar__wrap {
+            overflow-x: hidden;
         }
-        .el-submenu .el-menu-item {
-            background-color: #1f2d3d !important;
+        .el-scrollbar__thumb {
+            background: transparent !important;
         }
 
+        .el-menu-vertical:not(.el-menu--collapse) {
+            width: 250px;
+            min-height: 400px;
+        }
+        .el-submenu [class^="el-icon-"] {
+            /*  margin-right: 15px; */
+            /*  font-weight: bold; */
+            color: #515a6e;
+        }
+
+        .el-submenu .el-submenu__title,
+        .el-submenu .el-menu-item {
+            background-color: #fff !important;
+            font-weight: bold;
+        }
+
+        .el-submenu .el-submenu__title:hover,
         .el-submenu .el-menu-item:hover {
-            background-color: #263445 !important;
+            background-color: #f0faff !important;
         }
 
         .el-menu-item.is-active {
-            background-color: #263445 !important;
+            background-color: #f0faff !important;
         }
+
         .el-menu-item.is-active::before {
             content: " ";
             position: absolute;
@@ -86,8 +101,63 @@
             background: linear-gradient(#0081ff, #22ebff);
         }
 
-        .el-submenu [class^="el-icon-"] {
-            margin-right: 15px;
+        .sidebar-logo-container {
+            position: relative;
+            max-width: 250px;
+            height: 50px;
+            text-align: center;
+            transition: all 0.3s;
+            background: linear-gradient(-22deg, #eef2ff, #dbdbdb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .sidebar-logo {
+                max-width: 40px;
+            }
+
+            .logo-text {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                p {
+                    transition: all 0.3s;
+                    padding-left: 20px;
+                    width: 100px;
+                    font-size: 18px;
+                    font-weight: 900;
+                    color: #393b46;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+            }
+
+            &.collapse {
+                .logo-text > p {
+                    opacity: 0;
+                    width: 0;
+                    padding-left: 0px;
+                    height: 0;
+                    overflow: hidden;
+                }
+
+                .sidebar-logo {
+                    width: 40px;
+                    max-width: 40px;
+                }
+            }
+        }
+    }
+
+    .wlt-menu-vertical {
+        height: 50vh;
+        max-width: 8000px;
+
+        .el-submenu__title:hover,
+        .el-menu-item:focus,
+        .el-menu-item:hover {
+            background-color: #f0faff !important;
         }
     }
 </style>

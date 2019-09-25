@@ -37,7 +37,7 @@
                     (basePath == "/" ? "" : basePath) +
                     (path.indexOf("/") === 0 ? path : "/" + path);
 
-                console.log(urlPath);
+                /*  console.log(urlPath); */
 
                 if (!hidden) {
                     if (children.length > 0) {
@@ -45,7 +45,8 @@
                             "el-submenu",
                             {
                                 props: {
-                                    index: urlPath
+                                    index: urlPath,
+                                    "popper-class": "wlt-menu-vertical"
                                 }
                             },
                             [
@@ -65,8 +66,8 @@
                             ]
                         );
                     } /* else if (children.length == 1) {
-                        return h("el-menu-item",);
-                    } */ else {
+                            return h("el-menu-item",);
+                        } */ else {
                         return h(
                             "el-menu-item",
                             {

@@ -6,13 +6,13 @@
                     d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 0 0 0-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0 0 14.4 7z" />
             </svg>
         </div>
-        <div class="breadcrumb-container">
+        <!--   <div class="breadcrumb-container">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>Dashboard</el-breadcrumb-item>
                 <el-breadcrumb-item>Example</el-breadcrumb-item>
                 <el-breadcrumb-item>Tree</el-breadcrumb-item>
             </el-breadcrumb>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -38,7 +38,7 @@
         display: flex;
         position: relative;
         background: #fff;
-        box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+        box-shadow: 0 0 4px 0 #d0d0d0;
 
         .hamburger-container,
         .breadcrumb-container {
