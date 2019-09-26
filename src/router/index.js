@@ -23,7 +23,6 @@ const LOGIN_NAME = 'login';
 
 router.beforeEach((to, from, next) => {
     const token = store.getters.jwtToken;
-    console.log(token)
     NProgress.start()
     if (to.name === LOGIN_NAME) {
         next();

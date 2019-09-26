@@ -107,7 +107,7 @@
             height: 50px;
             text-align: center;
             transition: all 0.3s;
-            background: linear-gradient(-22deg, #eef2ff, #dbdbdb);
+          /*   background: linear-gradient(-22deg, #eef2ff, #dbdbdb); */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -151,8 +151,20 @@
     }
 
     .wlt-menu-vertical {
-        height: 50vh;
-        max-width: 8000px;
+        .el-menu--popup {
+            max-height: 50vh;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: #ffffff00;
+                border-radius: 20px;
+            }
+            &::-webkit-scrollbar-track-piece {
+                background: #ffffff00;
+            }
+        }
 
         .el-submenu__title:hover,
         .el-menu-item:focus,

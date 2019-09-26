@@ -1,9 +1,14 @@
 import Layout from '@/layout'
-import WltManage from './modules/wlt-manage'
+import WltManage from './modules/wlt-management'
+import FieldManage from './modules/field-management'
+import WltDispatch from './modules/wlt-dispatch'
+
 
 
 export default [
     WltManage,
+    FieldManage,
+    WltDispatch,
     {
         path: '/home',
         hidden: true,

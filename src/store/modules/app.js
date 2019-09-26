@@ -1,8 +1,12 @@
 const state = {
     sidebarOpen: localStorage.getItem("app_sidebarOpen") ? !!+localStorage.getItem("app_sidebarOpen") : true,
+    errorList: []
 }
 
 const mutations = {
+    AddError(state, error) {
+        state.errorList.push(error)
+    },
     TOGGLE_SIDEBAR: state => {
         state.sidebarOpen = !state.sidebarOpen;
         if (state.sidebarOpen) {

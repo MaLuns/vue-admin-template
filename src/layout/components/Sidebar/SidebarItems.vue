@@ -46,6 +46,7 @@
                             {
                                 props: {
                                     index: urlPath,
+                                    "popper-append-to-body": true,
                                     "popper-class": "wlt-menu-vertical"
                                 }
                             },
@@ -66,8 +67,8 @@
                             ]
                         );
                     } /* else if (children.length == 1) {
-                            return h("el-menu-item",);
-                        } */ else {
+                                return h("el-menu-item",);
+                            } */ else {
                         return h(
                             "el-menu-item",
                             {
