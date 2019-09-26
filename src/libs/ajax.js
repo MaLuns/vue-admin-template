@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '@/store'
-const baseUrl = process.env.NODE_ENV === 'production' ? "" : "";
+const baseURL = process.env.NODE_ENV === 'production' ? "" : "http://127.0.0.1:1122";
 
 const addErrorLog = errorInfo => {
     const { statusText, status, request: { responseURL } } = errorInfo
@@ -33,7 +33,7 @@ const interceptors = (instance) => {
 
 const getAxiosConfig = () => {
     return {
-        baseUrl,
+        baseURL,
         headers: {
 
         }
@@ -42,7 +42,14 @@ const getAxiosConfig = () => {
 
 const ajax = (options) => {
     const instance = axios.create()
+    let { method = undefined, data = undefined } = options;
+
+    if (data !== undefined && method === undefined) {
+        options.method = "post";
+    }
+
     options = Object.assign(getAxiosConfig(), options);
+
     interceptors(instance);
     return instance(options)
 }

@@ -3,7 +3,7 @@
         <div class="sidebar-logo-container" :class="{'collapse':sidebarOpen}">
             <div class='logo-text'>
                 <img src="http://ys.wltrj.com:6869/icon/logo.png" class="sidebar-logo">
-                <p>物联通系统</p>
+             <!--    <p>物联通系统</p> -->
             </div>
         </div>
         <el-scrollbar wrap-class="scrollbar-wrapper" class="scrollbar">
@@ -107,7 +107,7 @@
             height: 50px;
             text-align: center;
             transition: all 0.3s;
-          /*   background: linear-gradient(-22deg, #eef2ff, #dbdbdb); */
+            /*   background: linear-gradient(-22deg, #eef2ff, #dbdbdb); */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -151,9 +151,16 @@
     }
 
     .wlt-menu-vertical {
+        background: #fff;
+        margin: 0 12px;
+        box-shadow: 0 0 1px 0 #d0d0d0;
+
         .el-menu--popup {
             max-height: 50vh;
             overflow-y: auto;
+            box-shadow: none;
+            margin: 0;
+
             &::-webkit-scrollbar {
                 width: 4px;
             }

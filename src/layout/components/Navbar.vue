@@ -38,7 +38,7 @@
         display: flex;
         position: relative;
         background: #fff;
-        box-shadow: 0 0 4px 0 #d0d0d0;
+        box-shadow: 0 0 1px 0 #d0d0d0;
 
         .hamburger-container,
         .breadcrumb-container {
