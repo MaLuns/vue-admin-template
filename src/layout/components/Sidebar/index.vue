@@ -3,7 +3,7 @@
         <div class="sidebar-logo-container" :class="{'collapse':sidebarOpen}">
             <div class='logo-text'>
                 <img src="http://ys.wltrj.com:6869/icon/logo.png" class="sidebar-logo">
-             <!--    <p>物联通系统</p> -->
+                <!--    <p>物联通系统</p> -->
             </div>
         </div>
         <el-scrollbar wrap-class="scrollbar-wrapper" class="scrollbar">
@@ -19,11 +19,9 @@
     import SidebarItems from "./SidebarItems";
 
     export default {
+        name: "Sidebar",
         data() {
-            return {
-                onlyOneChild: null,
-                isNest: false
-            };
+            return {};
         },
         components: {
             SidebarItems
@@ -68,7 +66,7 @@
         }
 
         .el-menu-vertical:not(.el-menu--collapse) {
-            width: 250px;
+            width: 220px;
             min-height: 400px;
         }
         .el-submenu [class^="el-icon-"] {
@@ -103,7 +101,7 @@
 
         .sidebar-logo-container {
             position: relative;
-            max-width: 250px;
+            max-width: 220px;
             height: 50px;
             text-align: center;
             transition: all 0.3s;
@@ -149,7 +147,7 @@
             }
         }
     }
-
+/* 
     .wlt-menu-vertical {
         background: #fff;
         margin: 0 12px;
@@ -178,5 +176,5 @@
         .el-menu-item:hover {
             background-color: #f0faff !important;
         }
-    }
+    } */
 </style>

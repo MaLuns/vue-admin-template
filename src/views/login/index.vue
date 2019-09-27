@@ -33,8 +33,8 @@
 </template>
 <script>
     import ajax from "@/libs/ajax";
-    window.ajax = ajax;
-
+/*     window.ajax = ajax;
+ */
     export default {
         name: "Login",
         data() {
