@@ -5,36 +5,34 @@
 <template>
     <div class="login">
         <div class="content">
-            <div class="left"></div>
-            <div class="right">
-                <div class="login-from">
-                    <div class="wlt-title"></div>
-                    <el-form :model="from">
-                        <el-form-item>
-                            <el-select v-model='from.ztCode' placeholder="请选择" style="width:100%">
-                                <el-option v-for="item in options" :key="item.ZTCode" :label="item.ZTname" :value="item.ZTCode"> </el-option>
-                                <i slot="prefix" class="el-input__icon el-icon-s-platform"></i>
-                            </el-select>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-input prefix-icon="el-icon-s-custom" v-model="from.loginName"></el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-input show-password prefix-icon="el-icon-lock" v-model="from.type"></el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button style="width:100%;" type="primary" @click="SubmitLogin">登录</el-button>
-                        </el-form-item>
-                    </el-form>
-                </div>
-            </div>
+            <div class="wlt-title"></div>
+            <el-form :model="from">
+                <el-form-item>
+                    <el-select v-model='from.ztCode' placeholder="请选择" style="width:100%">
+                        <el-option v-for="item in options" :key="item.ZTCode" :label="item.ZTname" :value="item.ZTCode"> </el-option>
+                        <i slot="prefix" class="el-input__icon el-icon-s-platform"></i>
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <el-input prefix-icon="el-icon-s-custom" placeholder="用户名" v-model="from.loginName"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-input show-password prefix-icon="el-icon-lock" placeholder="密码" v-model="from.type"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button style="width:100%;" type="primary" @click="SubmitLogin">登录</el-button>
+                </el-form-item>
+            </el-form>
         </div>
+        <footer class="footer">
+            <div>Copyright &copy; 2019 杭州致梦科技出品</div>
+        </footer>
+
     </div>
 </template>
 <script>
     import ajax from "@/libs/ajax";
-/*     window.ajax = ajax;
- */
+
     export default {
         name: "Login",
         data() {
@@ -69,7 +67,7 @@
             SubmitLogin() {
                 this.$store.dispatch("user/setjwt_token", "adasdadsasd");
                 this.$router.push({
-                    path: "/home"
+                    name: "Home"
                 });
             }
         }

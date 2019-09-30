@@ -1,52 +1,34 @@
 .login {
-    height             : 100%;
-    overflow           : hidden;
-    background-image   : url(https://file.iviewui.com/dev-dist/5825f033c6ff12cd1ed1f3c99dff5e4b.svg);
-    /*background-repeat: no-repeat;
-    background-position: center; */
-    background-color   : #007eff;
-
-    background: radial-gradient(#4fa7ff, #0056a5);
+    height          : 100%;
+    overflow        : auto;
+    background-image: url(https://file.iviewui.com/dev-dist/5825f033c6ff12cd1ed1f3c99dff5e4b.svg);
+    background-color: #f0f2f5;
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
 
     >.content {
-        width     : 1200px;
-        height    : 600px;
-        position  : absolute;
-        left      : 0;
-        right     : 0;
-        bottom    : 100px;
-        top       : 0;
-        margin    : auto;
-        box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.295);
-        display   : flex;
+        flex      : 1;
+        width     : 345px;
+        min-height: 600px;
+        margin-top: 120px;
 
-        >.left {
-            flex               : 1;
-            background-image   : url(../../assets/wlt-login.png);
+        .wlt-title {
+            height             : 80px;
+            width              : 100%;
+            margin-bottom      : 40px;
             background-repeat  : no-repeat;
-            background-position: -300px -40px;
-            /*background-color : #007eff; */
-
+            background-position: center;
+            background-image   : url(http://ys.wltrj.com:6868/Content/img/wlt-title.png)
         }
+    }
 
-        >.right {
-            width     : 400px;
-            background: #fff;
-
-            .wlt-title {
-                width           : 255px;
-                height          : 80px;
-                margin          : 10px auto 50px;
-                background-image: url(http://ys.wltrj.com:6868/Content/img/wlt-title.png)
-            }
-
-            .login-from {
-                margin: 40px;
-
-                .el-input__inner {
-                    border-radius: 0px !important;
-                }
-            }
-        }
+    >.footer {
+        min-height     : 80px;
+        color          : #00000073;
+        font-size      : 14px;
+        display        : flex;
+        flex-direction : column;
+        justify-content: center;
     }
 }
