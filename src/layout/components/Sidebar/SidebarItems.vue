@@ -1,7 +1,4 @@
 <script>
-    import { isExternal } from "@/libs/validate";
-    import path from "path";
-
     export default {
         data() {
             return {};
@@ -36,9 +33,6 @@
                 let urlPath =
                     (basePath == "/" ? "" : basePath) +
                     (path.indexOf("/") === 0 ? path : "/" + path);
-
-                /*  console.log(urlPath); */
-
                 if (!hidden) {
                     if (children.length > 0) {
                         return h(
@@ -46,6 +40,7 @@
                             {
                                 props: {
                                     index: urlPath,
+                                    /* "popper-append-to-body": true, */
                                     "popper-class": "wlt-menu-vertical"
                                 }
                             },
@@ -65,9 +60,7 @@
                                 })
                             ]
                         );
-                    } /* else if (children.length == 1) {
-                            return h("el-menu-item",);
-                        } */ else {
+                    } else {
                         return h(
                             "el-menu-item",
                             {
@@ -88,15 +81,6 @@
                         );
                     }
                 }
-            },
-            resolvePath(routePath, basePath = "") {
-                if (isExternal(routePath)) {
-                    return routePath;
-                }
-                if (isExternal(basePath)) {
-                    return basePath;
-                }
-                return path.resolve(basePath, routePath);
             }
         }
     };

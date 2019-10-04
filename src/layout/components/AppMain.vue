@@ -18,6 +18,9 @@
 </script>
 
 <style lang="less">
+    .app-main {
+        padding: 20px;
+    }
     .el-popup-parent--hidden {
         .fixed-header {
             padding-right: 15px;
