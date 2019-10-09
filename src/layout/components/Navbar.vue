@@ -24,8 +24,8 @@
         },
         watch: {
             /*   $route() {
-                                                                this.getBreadcrumb();
-                                                            } */
+                                                                        this.getBreadcrumb();
+                                                                    } */
         },
         computed: {
             ...mapGetters(["sidebarOpen"])
@@ -60,6 +60,7 @@
 
 <style lang="less" scoped>
     .navbar {
+        width: 100%;
         height: 64px;
         overflow: hidden;
         display: flex;

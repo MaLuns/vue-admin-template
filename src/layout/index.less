@@ -5,14 +5,35 @@
 
     .sidebar-container {
         height    : 100%;
+        overflow  : hidden;
         width     : auto !important;
         background: #fff;
         box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
-        z-index   : 10;
+        z-index   : 991;
+        position  : fixed;
+        left      : 0;
+        top       : 0;
     }
 
     .main-container {
-        width     : 100%;
-        background: #f0f2f5;
+        width         : 100%;
+        margin-left   : 220px;
+        display       : flex;
+        flex-direction: row;
+        transition    : all 0.3s;
+
+        &.collapse {
+            margin-left: 64px;
+        }
+
+        >.navbar {
+            position: fixed;
+            width   : 100%;
+            z-index : 990;
+        }
+
+        >.app-main {
+            margin: 84px 20px 20px;
+        }
     }
 }

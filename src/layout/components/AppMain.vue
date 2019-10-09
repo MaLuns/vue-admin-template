@@ -19,7 +19,8 @@
 
 <style lang="less">
     .app-main {
-        padding: 20px;
+       /*  padding: 20px; */
+        width: 100%;
     }
     .el-popup-parent--hidden {
         .fixed-header {
