@@ -1,5 +1,5 @@
 <template>
-    <div id="mountNode"></div>
+    <div ref="dddd"></div>
 </template>
 <script>
     import G2 from "@antv/g2";
@@ -49,11 +49,20 @@
         },
         mounted() {
             var chart = new G2.Chart({
-                container: "mountNode",
+                container: this.$refs.dddd,
                 forceFit: true,
-                height: window.innerHeight
+                padding: 50,
+                background: {
+                    fill: "#FFF", // 图表背景色
+                    fillOpacity: 1, // 图表背景透明度
+                    stroke: "#FFF", // 图表边框颜色
+                    strokeOpacity: 1, // 图表边框透明度
+                    opacity: 1, // 图表整体透明度
+                    lineWidth: 1, // 图表边框粗度
+                    radius: 6 // 图表圆角大小
+                },
             });
-            chart.source(data);
+            chart.source(this.data);
             chart.scale("value", {
                 min: 0
             });
