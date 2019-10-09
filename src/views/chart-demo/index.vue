@@ -3,9 +3,11 @@
         <!--    <el-row type="flex" class="row-bg" justify="space-around">
             <el-col :span="11"> -->
         <line-chart></line-chart>
-        <br>
+        <br />
         <!--  </el-col>
             <el-col :span="11"> -->
+        <line-chart></line-chart>
+        <br />
         <line-chart></line-chart>
         <!--  </el-col>
         </el-row> -->
