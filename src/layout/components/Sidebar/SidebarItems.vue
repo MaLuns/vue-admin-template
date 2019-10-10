@@ -1,4 +1,5 @@
 <script>
+    import { mapGetters } from "vuex";
     export default {
         data() {
             return {};
@@ -21,6 +22,9 @@
         render(h) {
             return this.renderItem(h, this.item);
         },
+        computed: {
+            ...mapGetters(["navTheme"])
+        },
         methods: {
             renderItem(h, item, basePath = "") {
                 let {
@@ -41,7 +45,7 @@
                                 props: {
                                     index: urlPath,
                                     /* "popper-append-to-body": true, */
-                                    "popper-class": "wlt-menu-vertical"
+                                    "popper-class": `wlt-menu-vertical ${this.navTheme}`
                                 }
                             },
                             [

@@ -55,20 +55,34 @@ export default [
         ]
     },
     {
-        path: '/chart',
-        name: 'chart',
+        path: '/dashboard',
+        name: 'dashboard',
         component: Layout,
         meta: {
-            title: '图表',
+            title: 'Dashboard',
             icon: 'el-icon-s-marketing'
         },
         children: [
             {
-                path: 'basic-chart',
+                path: 'analysis',
                 meta: {
-                    title: '标准列表',
+                    title: '分析页',
                 },
-                component: () => import('@/views/chart-demo')
+                component: () => import('@/views/dashboard/analysis')
+            },
+            {
+                path: 'monitor',
+                meta: {
+                    title: '监控页',
+                },
+                component: () => import('@/views/dashboard/monitor')
+            },
+            {
+                path: 'workplace',
+                meta: {
+                    title: '工作台',
+                },
+                component: () => import('@/views/dashboard/workplace')
             }
         ]
     },

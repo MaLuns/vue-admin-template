@@ -2,6 +2,7 @@
 const state = {
     jwt_token: localStorage.getItem("jwt_token"),
 }
+
 const mutations = {
     SETJWT_TOKEN: (state, jwt_token) => {
         state.jwt_token = jwt_token;
