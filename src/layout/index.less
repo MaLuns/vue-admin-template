@@ -1,3 +1,5 @@
+@sidebarWidth: 240px;
+
 .app-wrapper {
     position: relative;
     height  : 100%;
@@ -6,8 +8,7 @@
     >.sidebar-container {
         height    : 100%;
         overflow  : hidden;
-        width     : 220px !important;
-        box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
+        width     : @sidebarWidth !important;
         z-index   : 991;
         position  : fixed;
         left      : 0;
@@ -21,14 +22,14 @@
 
     >.main-container {
         width         : 100%;
-        margin-left   : 220px;
+        margin-left   : @sidebarWidth;
         display       : flex;
         flex-direction: row;
         transition    : margin-left 0.3s;
 
         >.navbar {
             position  : fixed;
-            width     : ~'calc(100% - 220px)';
+            width     : ~'calc(100% - @{sidebarWidth})';
             transition: all 0.3s;
             right     : 0;
             z-index   : 990;
