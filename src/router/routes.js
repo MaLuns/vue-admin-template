@@ -87,6 +87,38 @@ export default [
         ]
     },
     {
+        path: '/form',
+        name: 'form',
+        component: Layout,
+        meta: {
+            title: '表单页面',
+            icon: 'el-icon-tickets'
+        },
+        children: [
+            {
+                path: 'basic-form',
+                meta: {
+                    title: '基础表单',
+                },
+                component: () => import('@/views/form/basic-form')
+            },
+            {
+                path: 'step-form',
+                meta: {
+                    title: '分步表单',
+                },
+                component: () => import('@/views/form/step-form')
+            },
+            {
+                path: 'advanced-form',
+                meta: {
+                    title: '高级表单',
+                },
+                component: () => import('@/views/form/advanced-form')
+            }
+        ]
+    },
+    {
         path: '/list',
         name: 'list',
         component: Layout,

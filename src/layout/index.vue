@@ -8,7 +8,8 @@
         </el-aside>
         <el-container :class="{'main-container':true,'collapse':sidebarOpen}">
             <navbar />
-            <appMain />
+            <app-main />
+            <app-footer />
         </el-container>
         <PageConfig />
     </el-container>
@@ -16,6 +17,7 @@
 <script>
     import Navbar from "./components/Navbar";
     import AppMain from "./components/AppMain";
+    import AppFooter from "./components/AppFooter";
     import Sidebar from "./components/Sidebar";
     import PageConfig from "./components/PageConfig";
     import { mapGetters } from "vuex";
@@ -44,7 +46,8 @@
             AppMain,
             Navbar,
             Sidebar,
-            PageConfig
+            PageConfig,
+            AppFooter
         }
     };
 </script>

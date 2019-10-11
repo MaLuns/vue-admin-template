@@ -8,7 +8,7 @@
     >.sidebar-container {
         height    : 100%;
         overflow  : hidden;
-        width     : @sidebarWidth !important;
+        width     : @sidebarWidth  !important;
         z-index   : 991;
         position  : fixed;
         left      : 0;
@@ -24,12 +24,12 @@
         width         : 100%;
         margin-left   : @sidebarWidth;
         display       : flex;
-        flex-direction: row;
+        flex-direction: column;
         transition    : margin-left 0.3s;
 
         >.navbar {
             position  : fixed;
-            width     : ~'calc(100% - @{sidebarWidth})';
+            width     :~'calc(100% - @{sidebarWidth})';
             transition: all 0.3s;
             right     : 0;
             z-index   : 990;
@@ -38,7 +38,7 @@
         >.app-main {
             width : ~'calc(100% - 40px)';
             margin: 84px 20px 20px;
-
+            flex  : auto
         }
 
         &.collapse {

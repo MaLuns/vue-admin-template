@@ -63,14 +63,23 @@
             open: function(val) {
                 if (val) {
                     document.body.style.overflow = "hidden";
+                    if (this.hasScrollbar())
+                        document.body.style.width = "calc(100% - 17px)";
                 } else {
                     document.body.style.overflow = "auto";
+                    if (this.hasScrollbar()) document.body.style.width = "100%";
                 }
             }
         },
         methods: {
             changeNavTheme(theme) {
                 this.$store.dispatch("app/changeNavTheme", theme);
+            },
+            hasScrollbar() {
+                return (
+                    document.body.scrollHeight >
+                    (window.innerHeight || document.documentElement.clientHeight)
+                );
             }
         }
     };
