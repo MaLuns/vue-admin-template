@@ -39,7 +39,12 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+     
+    },
+    "globals": {
+      "G2": true
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

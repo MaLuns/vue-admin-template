@@ -49,7 +49,7 @@
                                 }
                             },
                             [
-                                h("div", { slot: "title" }, [
+                                h("div", { slot: "title", class: "wlt-menu-text" }, [
                                     icon !== ""
                                         ? h("i", {
                                               attrs: {

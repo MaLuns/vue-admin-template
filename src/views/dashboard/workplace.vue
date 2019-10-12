@@ -112,7 +112,8 @@
                                         <el-avatar :size="40" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);"
                                             src="https://thirdqq.qlogo.cn/g?b=oidb&k=rFwZsJfkEcl3nC9RAeo81g&s=0">
                                         </el-avatar>
-                                        <span style="font-size:14px;color:#515a6e;margin-left: 20px;">
+                                        <span
+                                            style="font-size:14px;color:#515a6e;margin-left: 20px;flex: 1;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;word-break: break-all;">
                                             <strong>白云苍狗{{item}}</strong>
                                         </span>
                                     </div>
@@ -130,7 +131,7 @@
     import PageHeader from "@/components/page-header";
     import itemIma from "@/assets/middle.jpg";
     export default {
-        name: "",
+        name: "Workplace",
         data() {
             return {
                 cardBodyStyle: {
@@ -180,7 +181,7 @@
 </script>
 
 <style lang="less">
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1000px) {
         .workplace-row {
             display: block !important;
         }

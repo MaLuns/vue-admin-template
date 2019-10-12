@@ -29,7 +29,7 @@
                     <div class="setting-checbox-item"><img :src="icon.lightIcon" alt=""></div>
                 </div>
             </div>
-            <div class="open-btn" @click="open=!open">
+            <div class="open-btn" @click="open=!open" v-dragY :style="setBtnStyle">
                 <i class="el-icon-close" v-if="open"></i>
                 <i class="el-icon-setting" v-else></i>
             </div>
@@ -47,7 +47,9 @@
         name: "PageConfig",
         data() {
             return {
-                test: 1,
+                setBtnStyle: {
+                    top: localStorage.getItem("setBtnTop")
+                },
                 icon: {
                     darkIcon,
                     lightIcon,
@@ -81,6 +83,35 @@
                     (window.innerHeight || document.documentElement.clientHeight)
                 );
             }
+        },
+        directives: {
+            dragY: {
+                bind: function(el) {
+                    let odiv = el;
+                    let winY = document.body.clientHeight;
+                    odiv.onmousedown = e => {
+                        e = e || window.event;
+                        e.preventDefault
+                            ? e.preventDefault()
+                            : (e.returnValue = false);
+
+                        let disY = e.clientY - odiv.offsetTop;
+
+                        document.onmousemove = e => {
+                            let height = e.clientY - disY;
+                            height = height < 100 ? 100 : height;
+                            height = height > winY - 100 ? winY - 100 : height;
+                            odiv.style.top = height + "px";
+                            localStorage.setItem("setBtnTop", height + "px");
+                        };
+
+                        document.onmouseup = () => {
+                            document.onmousemove = null;
+                            document.onmouseup = null;
+                        };
+                    };
+                }
+            }
         }
     };
 </script>
@@ -108,7 +139,7 @@
         .config-content {
             position: fixed;
             width: 252px;
-            height: 100%;
+            height: ~"calc(100% - 48px)";
             background: #fff;
             z-index: 2001;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -116,11 +147,11 @@
             transform-origin: 0 0;
             transform: translateX(100%);
             transition: all 0.3s;
-            padding: 24px 24px 0;
+            padding: 24px;
 
             .open-btn {
                 position: absolute;
-                bottom: 100px;
+                top: 25%;
                 width: 48px;
                 height: 48px;
                 left: -48px;

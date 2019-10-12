@@ -7,6 +7,7 @@
             <sidebar />
         </el-aside>
         <el-container :class="{'main-container':true,'collapse':sidebarOpen}">
+            <top-menu v-show="false"></top-menu>
             <navbar />
             <app-main />
             <app-footer />
@@ -15,11 +16,12 @@
     </el-container>
 </template>
 <script>
-    import Navbar from "./components/Navbar";
-    import AppMain from "./components/AppMain";
-    import AppFooter from "./components/AppFooter";
-    import Sidebar from "./components/Sidebar";
-    import PageConfig from "./components/PageConfig";
+    import Navbar from "./components/nav-bar";
+    import AppMain from "./components/app-main";
+    import AppFooter from "./components/app-footer";
+    import Sidebar from "./components/sidebar/side-menu/index";
+    import TopMenu from "./components/sidebar/top-menu/index";
+    import PageConfig from "./components/page-config";
     import { mapGetters } from "vuex";
 
     export default {
@@ -46,6 +48,7 @@
             AppMain,
             Navbar,
             Sidebar,
+            TopMenu,
             PageConfig,
             AppFooter
         }

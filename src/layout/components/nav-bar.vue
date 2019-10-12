@@ -8,7 +8,36 @@
         </div>
 
         <div class="header-index-right">
+            <div class="item">
+                <!--  <el-popover trigger="click" placement='bottom-end' width='350'> -->
+                <el-badge :value="99" slot="reference">
+                    <i class="el-icon-bell" style="padding: 2px;"></i>
+                </el-badge>
+                <!--  <el-tabs v-model="activeName">
+                        <el-tab-pane label="通知" name="notice">
 
+                        </el-tab-pane>
+                        <el-tab-pane label="消息" name="message">
+
+                        </el-tab-pane>
+                        <el-tab-pane label="待办" name="todo">
+
+                        </el-tab-pane>
+                    </el-tabs> -->
+                <!-- </el-popover> -->
+            </div>
+            <div class="item">
+                <el-dropdown :hide-on-click="false">
+                    <span class="avatar-link">
+                        <el-avatar size="small">白</el-avatar> 白云苍狗
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>个人中心</el-dropdown-item>
+                        <el-dropdown-item>个人设置</el-dropdown-item>
+                        <el-dropdown-item divided>退出登录</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </div>
         </div>
     </div>
 </template>
@@ -19,14 +48,11 @@
         name: "Navbar",
         data() {
             return {
-                levelList: null
+                levelList: null,
+                activeName: "notice"
             };
         },
-        watch: {
-            /*   $route() {
-                                                                        this.getBreadcrumb();
-                                                                    } */
-        },
+        watch: {},
         computed: {
             ...mapGetters(["sidebarOpen"])
         },
@@ -89,6 +115,22 @@
             width: 200px;
             height: 100%;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .item {
+                margin: 0 15px;
+                cursor: pointer;
+            }
+
+            .avatar-link {
+                display: flex;
+                align-items: center;
+                span {
+                    margin-right: 5px;
+                }
+            }
         }
     }
 </style>

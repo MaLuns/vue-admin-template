@@ -16,7 +16,6 @@
             </a>
         </div>
         <el-scrollbar wrap-class="scrollbar-wrapper" class="scrollbar">
-            <!-- background-color="#fff" text-color="#000000a6" active-text-color="#409eff" -->
             <el-menu unique-opened router :default-active="activeMenu" :collapse="sidebarOpen" class="el-menu-vertical">
                 <sidebar-items v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"></sidebar-items>
             </el-menu>
@@ -26,7 +25,7 @@
 
 <script>
     import { mapGetters } from "vuex";
-    import SidebarItems from "./SidebarItems";
+    import SidebarItems from "../sidebar-items";
 
     export default {
         name: "Sidebar",
