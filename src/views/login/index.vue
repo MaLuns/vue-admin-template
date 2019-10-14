@@ -1,4 +1,4 @@
-<style lang="less">
+<style lang="less" scoped>
     @import "index.less";
 </style>
 
@@ -25,7 +25,7 @@
             </el-form>
         </div>
         <footer class="footer">
-            <div>Copyright &copy; 2019 杭州致梦科技出品</div>
+            <div>Copyright &copy; 2019 白云苍狗</div>
         </footer>
 
     </div>

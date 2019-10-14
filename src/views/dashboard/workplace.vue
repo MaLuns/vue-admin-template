@@ -180,7 +180,7 @@
     };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
     @media screen and (max-width: 1000px) {
         .workplace-row {
             display: block !important;
@@ -282,7 +282,7 @@
             border: none;
             margin-bottom: 16px;
 
-            .el-card__header {
+            /deep/ .el-card__header {
                 padding: 12px 20px;
 
                 .clearfix {
@@ -305,6 +305,7 @@
                 }
             }
         }
+
         .apps-con {
             height: 100%;
             border-radius: 3px;
@@ -329,6 +330,7 @@
                 padding: 4px 0 0 8px;
             }
         }
+        
 
         .list-item {
             list-style: none;
