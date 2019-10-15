@@ -1,31 +1,50 @@
 .login {
-    height          : 100%;
-    overflow        : auto;
-    background-image: url(https://file.iviewui.com/dev-dist/5825f033c6ff12cd1ed1f3c99dff5e4b.svg);
-    background-color: #f0f2f5;
-    display         : flex;
-    flex-direction  : column;
-    align-items     : center;
+    height                : 100%;
+    overflow              : auto;
+    background-image   : url(https://file.iviewui.com/dev-dist/5825f033c6ff12cd1ed1f3c99dff5e4b.svg);
+   /*  background-image      : url(../../assets/login-bg.jpg); */
+    background-attachment : fixed;
+    background-color      : #f1f1f1;
+    background-repeat     : no-repeat;
+    background-size       : cover;
+    display               : flex;
+    flex-direction        : column;
+    align-items           : center;
+    justify-content       : space-between;
 
     >.content {
-        flex      : 1;
-        width     : 345px;
-        min-height: 600px;
-        margin-top: 120px;
+        padding       : 20px;
+        margin-top    : 120px;
+        display       : flex;
+        align-items   : center;
+        flex-direction: column;
 
         .wlt-title {
-            height             : 80px;
-            width              : 100%;
-            margin-bottom      : 40px;
-            background-repeat  : no-repeat;
-            background-position: center;
-           /*  background-image   : url(http://ys.wltrj.com:6868/Content/img/wlt-title.png) */
+            height       : 80px;
+            width        : 100%;
+            margin-bottom: 40px;
+            text-align   : center;
+
+            h1 {
+                color: #272121cc;
+            }
+
+            .user-layout-desc {
+                margin-top   : 12px;
+                margin-bottom: 40px;
+                color        : #00000073;
+                font-size    : 14px;
+            }
+        }
+
+        .login-main {
+            width: 330px;
         }
     }
 
     >.footer {
         min-height     : 80px;
-        color          : #00000073;
+        color          : #ffffff9c;
         font-size      : 14px;
         display        : flex;
         flex-direction : column;
