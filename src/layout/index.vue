@@ -3,12 +3,12 @@
 </style>
 <template>
     <el-container class="app-wrapper">
-        <el-aside :class="classObject">
+        <el-aside :class="classObject" v-show="ShowSidemenu">
             <sidebar />
         </el-aside>
         <el-container :class="{'main-container':true,'collapse':sidebarOpen}">
-            <top-menu v-show="false"></top-menu>
-            <navbar />
+            <top-menu v-show="!ShowSidemenu"></top-menu>
+            <navbar v-show="ShowSidemenu" />
             <app-main />
             <app-footer />
         </el-container>
@@ -27,7 +27,7 @@
     export default {
         name: "Home",
         computed: {
-            ...mapGetters(["sidebarOpen", "navTheme"]),
+            ...mapGetters(["sidebarOpen", "navTheme", "layout"]),
             classObject: function() {
                 if (this.navTheme === "dark") {
                     return {
@@ -42,6 +42,9 @@
                         "sidebar-container-light": true
                     };
                 }
+            },
+            ShowSidemenu: function() {
+                return this.layout == "sidemenu";
             }
         },
         components: {

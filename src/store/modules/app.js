@@ -16,13 +16,17 @@ const mutations = {
         state.navTheme = theme;
         localStorage.setItem("app_navTheme", theme)
     },
-    TOGGLE_SIDEBAR: state => {
+    TOGGLE_SIDEBAR(state) {
         state.sidebarOpen = !state.sidebarOpen;
         if (state.sidebarOpen) {
             localStorage.setItem("app_sidebarOpen", 1)
         } else {
             localStorage.setItem("app_sidebarOpen", 0)
         }
+    },
+    CHANGE_LAYOUT(state, layout) {
+        state.layout = layout;
+        localStorage.setItem("app_layout", layout)
     }
 }
 
@@ -32,6 +36,9 @@ const actions = {
     },
     changeNavTheme({ commit }, theme) {
         commit('CHANGE_NAVTHEME', theme)
+    },
+    changeLayout({ commit }, layout) {
+        commit('CHANGE_LAYOUT', layout)
     },
 }
 

@@ -25,13 +25,14 @@
             <div>
                 <p class="config-title">导航模式</p>
                 <div class="setting-checbox">
-                    <div class="setting-checbox-item"><img :src="icon.darkIcon" alt=""></div>
-                    <div class="setting-checbox-item"><img :src="icon.lightIcon" alt=""></div>
+                    <div @click="changeLayout('sidemenu')" :class="{'setting-checbox-item':true,'is-check':layout=='sidemenu'}"><img :src="icon.darkIcon" alt=""></div>
+                    <div @click="changeLayout('topmenu')" :class="{'setting-checbox-item':true,'is-check':layout=='topmenu'}"><img :src="icon.lightIcon" alt=""></div>
                 </div>
             </div>
-            <div class="open-btn" @click="open=!open" v-dragY :style="setBtnStyle">
-                <i class="el-icon-close" v-if="open"></i>
-                <i class="el-icon-setting" v-else></i>
+            <div class="open-btn" @click="open=!open" :style="setBtnStyle">
+               <!--  <i class="el-icon-close" v-if="open"></i>
+                <i class="el-icon-setting" v-else></i> -->
+                <i class="el-icon-setting"></i>
             </div>
         </div>
     </div>
@@ -48,7 +49,8 @@
         data() {
             return {
                 setBtnStyle: {
-                    top: localStorage.getItem("setBtnTop")
+                    top: localStorage.getItem("setBtnTop"),
+                    transition: "all 0s ease 0.3s"
                 },
                 icon: {
                     darkIcon,
@@ -59,7 +61,7 @@
             };
         },
         computed: {
-            ...mapGetters(["navTheme"])
+            ...mapGetters(["navTheme", "layout"])
         },
         watch: {
             open: function(val) {
@@ -76,6 +78,9 @@
         methods: {
             changeNavTheme(theme) {
                 this.$store.dispatch("app/changeNavTheme", theme);
+            },
+            changeLayout(layout) {
+                this.$store.dispatch("app/changeLayout", layout);
             },
             hasScrollbar() {
                 return (

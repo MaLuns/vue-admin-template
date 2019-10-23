@@ -1,29 +1,38 @@
 <template>
     <el-card shadow="never" class="user-config">
-        <el-tabs tab-position="left">
-            <el-tab-pane label="系统全局配置">用户管理</el-tab-pane>
-            <el-tab-pane label="业务录单">配置管理</el-tab-pane>
-            <el-tab-pane label="外勤业务">角色管理</el-tab-pane>
-            <el-tab-pane label="配送业务">定时任务补偿</el-tab-pane>
-            <el-tab-pane label="价格优先级别">定时任务补偿</el-tab-pane>
-            <el-tab-pane label="报表单据">定时任务补偿</el-tab-pane>
-            <el-tab-pane label="客户字段">定时任务补偿</el-tab-pane>
-            <el-tab-pane label="拍照水印配置">定时任务补偿</el-tab-pane>
-            <el-tab-pane label="自定义表头字段">定时任务补偿</el-tab-pane>
-        </el-tabs>
+        <div class="box" ref="box"></div>
     </el-card>
 </template>
 
 <script>
     export default {
+        name: "Home",
         data() {
-            return {};
+            return {
+                value: 0
+            };
+        },
+        mounted() {
+           /*  requestAnimationFrame(this.add); */
+        },
+        methods: {
+            add() {
+                requestAnimationFrame(this.add); // 下一帧渲染之前继续执行 add 方法
+                this.value += 5; // 每帧加数值增加5
+                console.log( this.$refs.box)
+                this.$refs.box.style.transform = `translateX(${this.value}px)`; // 将数值设置给 方块 的 css 属性 transform 属性可以控制元素在水平方向上的位移
+            }
         }
     };
 </script>
 
 <style lang="less">
     .user-config {
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
         .el-tabs__item {
             text-align: left !important;
             margin: 4px 0;

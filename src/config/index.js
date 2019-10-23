@@ -6,3 +6,5 @@ module.exports = {
     "primaryColor": "#1890FF",
     "layout": "sidemenu",
 }
+
+
