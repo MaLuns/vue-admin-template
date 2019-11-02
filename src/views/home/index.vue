@@ -1,7 +1,5 @@
 <template>
-    <el-card shadow="never" class="user-config">
-        <div class="box" ref="box"></div>
-    </el-card>
+    <canvas></canvas>
 </template>
 
 <script>
@@ -12,17 +10,8 @@
                 value: 0
             };
         },
-        mounted() {
-           /*  requestAnimationFrame(this.add); */
-        },
-        methods: {
-            add() {
-                requestAnimationFrame(this.add); // 下一帧渲染之前继续执行 add 方法
-                this.value += 5; // 每帧加数值增加5
-                console.log( this.$refs.box)
-                this.$refs.box.style.transform = `translateX(${this.value}px)`; // 将数值设置给 方块 的 css 属性 transform 属性可以控制元素在水平方向上的位移
-            }
-        }
+        mounted() {},
+        methods: {}
     };
 </script>
 
