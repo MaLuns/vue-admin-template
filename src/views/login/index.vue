@@ -4,23 +4,43 @@
 
 <template>
     <div style="height: 100%;">
-        <canvas id="bgcanvas"></canvas>
         <div class="login">
             <div class="content">
                 <div class="wlt-title">
-                    <h1>Admin Template</h1>
-                    <!--<div class="user-layout-desc">西湖区最好用的Vue Admin Template</div> -->
+                    <div>
+                        <img :src="logSvg" alt="">
+                        <h1>Admin Pro</h1>
+                    </div>
+                    <div class="user-layout-desc">基于 vue 和 element-ui 中后台前端模板</div>
                 </div>
                 <div class="login-main">
+                    <el-tabs v-model="from.type" class="dddd">
+                        <el-tab-pane label="账户密码登录" name="0">
+                            <el-form :model="from">
+                                <el-form-item>
+                                    <el-input prefix-icon="el-icon-s-custom" placeholder="用户名" v-model="from.loginName"></el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-input show-password prefix-icon="el-icon-lock" placeholder="密码" v-model="from.passWorld"></el-input>
+                                </el-form-item>
+                            </el-form>
+                        </el-tab-pane>
+                        <el-tab-pane label="手机号登录" name="1">
+                            <el-form :model="from">
+                                <el-form-item>
+                                    <el-input prefix-icon="el-icon-mobile-phone" placeholder="手机号" v-model="from.mobile"></el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-input class="captcha-input" prefix-icon="el-icon-message" placeholder="验证码" v-model="from.captcha"></el-input>
+                                    <el-button plain style="float: right;">获取验证码</el-button>
+                                </el-form-item>
+                            </el-form>
+                        </el-tab-pane>
+                    </el-tabs> 
                     <el-form :model="from">
-                        <el-form-item>
-                            <el-input prefix-icon="el-icon-s-custom" placeholder="用户名" v-model="from.loginName"></el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-input show-password prefix-icon="el-icon-lock" placeholder="密码" v-model="from.passWorld"></el-input>
-                        </el-form-item>
-                        <el-form-item>
+                        <el-form-item class="">
                             <el-checkbox v-model="from.autologin">自动登录</el-checkbox>
+                            <el-button type="text" style="float: right;">忘记密码</el-button>
                         </el-form-item>
                         <el-form-item>
                             <el-button style="width:100%;" type="primary" @click="SubmitLogin">登录</el-button>
@@ -35,7 +55,6 @@
     </div>
 </template>
 <script>
-    import ajax from "@/libs/ajax";
     import logSvg from "@/assets/log.svg";
 
     export default {
@@ -45,95 +64,19 @@
                 logSvg,
                 labelPosition: "right",
                 from: {
+                    type:0,
                     autologin: true,
-                    loginName: "超级用户",
-                    passWorld: ""
-                },
-                options: []
+                    loginName: "",
+                    passWorld: "",
+                    mobile:"",
+                    captcha:""
+                }
             };
         },
-        mounted() {
-            this.GetZTList();
-            this.InitCanvas("bgcanvas");
-        },
         methods: {
-            GetZTList() {
-                ajax({
-                    url: "/WebApi/Login/GetZtData",
-                    method: "post"
-                }).then(({ data }) => {
-                    let { ReCode = 1, ResponseData = [] } = data;
-                    if (ReCode == 0) {
-                        this.options = ResponseData;
-                        if (ResponseData.length > 0) {
-                            this.from.ztCode = ResponseData[0].ZTCode;
-                        }
-                    }
-                });
-            },
             SubmitLogin() {
-                this.$store.dispatch("user/setjwt_token", "adasdadsasd");
-                this.$router.push({
-                    name: "Home"
-                });
-            },
-            InitCanvas(id) {
-                if (document.getElementById(id)) {
-                    var canvas = document.getElementById(id),
-                        ctx = canvas.getContext("2d"),
-                        pr = window.devicePixelRatio || 1,
-                        w = window.innerWidth,
-                        h = 300, //window.innerHeight,
-                        f = 90,
-                        q,
-                        m = Math,
-                        r = 0,
-                        u = m.PI * 2,
-                        cos = m.cos,
-                        random = m.random;
-                    canvas.width = w * pr;
-                    canvas.height = h * pr;
-                    canvas.style.position = "absolute";
-                    canvas.style.bottom = 0;
-                    ctx.scale(pr, pr);
-                    ctx.globalAlpha = 0.6;
-
-                    canvas.init = () => {
-                        ctx.clearRect(0, 0, w, h);
-                        q = [{ x: 0, y: h * 0.7 + f }, { x: 0, y: h * 0.7 - f }];
-                        while (q[1].x < w + f) canvas.draw(q[0], q[1]);
-                    };
-
-                    canvas.newPointsY = p => {
-                        var t = p + (random() * 2 - 1.1) * f;
-                        return t > h || t < 0 ? canvas.newPointsY(p) : t;
-                    };
-
-                    canvas.draw = (i, j) => {
-                        ctx.beginPath();
-                        ctx.moveTo(i.x, i.y);
-                        ctx.lineTo(j.x, j.y);
-                        var k = j.x + (random() * 2 - 0.25) * f,
-                            n = canvas.newPointsY(j.y);
-                        ctx.lineTo(k, n);
-                        ctx.closePath();
-                        r -= u / -50;
-                        ctx.fillStyle =
-                            "#" +
-                            (
-                                ((cos(r) * 127 + 128) << 16) |
-                                ((cos(r + u / 3) * 127 + 128) << 8) |
-                                (cos(r + (u / 3) * 2) * 127 + 128)
-                            ).toString(16);
-                        ctx.fill();
-                        q[0] = q[1];
-                        q[1] = { x: k, y: n };
-                    };
-
-                    document.onclick = canvas.init;
-                    document.ontouchstart = canvas.init;
-                    canvas.init();
-                }
+                this.$store.dispatch("user/setjwt_token", "admin");
+                this.$router.push({name: "Home"});
             }
         }
     };

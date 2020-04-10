@@ -5,7 +5,8 @@ const state = {
     navTheme: localStorage.getItem("app_navTheme") ? localStorage.getItem("app_navTheme") : navTheme,
     primaryColor: localStorage.getItem("app_primaryColor") ? localStorage.getItem("app_primaryColor") : primaryColor,
     layout: localStorage.getItem("app_layout") ? localStorage.getItem("app_layout") : layout,
-    errorList: []
+    errorList: [],
+    tagNavList: []
 }
 
 const mutations = {
@@ -27,6 +28,12 @@ const mutations = {
     CHANGE_LAYOUT(state, layout) {
         state.layout = layout;
         localStorage.setItem("app_layout", layout)
+    },
+    SetTagNavList(state, list) {
+        let tagList = [];
+        if (list) tagList = [...list];
+        else tagList = localStorage.tagNaveList ? JSON.parse(localStorage.tagNaveList) : []
+        state.tagNavList = tagList;
     }
 }
 

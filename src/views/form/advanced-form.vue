@@ -5,7 +5,7 @@
 <script>
     import PageHeader from "@/components/page-header";
     export default {
-        name: "AdvancedForm",
+        name: "advanced_form",
         components: {
             PageHeader
         }

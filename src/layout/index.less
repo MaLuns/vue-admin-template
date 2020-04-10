@@ -27,7 +27,8 @@
         flex-direction: column;
         transition    : margin-left 0.3s;
 
-        >.navbar {
+        >.navbar,
+        >.tags-nav {
             position  : fixed;
             width     :~'calc(100% - @{sidebarWidth})';
             transition: all 0.3s;
@@ -37,14 +38,15 @@
 
         >.app-main {
             width : ~'calc(100% - 40px)';
-            margin: 84px 20px 20px;
+            margin: 150px 20px 20px;
             flex  : auto
         }
 
         &.collapse {
             margin-left: 64px;
 
-            >.navbar {
+            >.navbar,
+            >.tags-nav {
                 width: ~'calc(100% - 64px)';
             }
         }

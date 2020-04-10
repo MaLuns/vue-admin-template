@@ -24,7 +24,7 @@
 <style lang="less" scoped>
     .page-header {
         background: #fff;
-        margin: -20px -20px 20px;
+        margin: 0px -20px 20px;
         padding: 24px;
 
         .desc {

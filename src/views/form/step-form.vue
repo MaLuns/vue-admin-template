@@ -90,7 +90,7 @@
 <script>
     import PageHeader from "@/components/page-header";
     export default {
-        name: "StepForm",
+        name: "step_form",
         data() {
             return {
                 active: 0,

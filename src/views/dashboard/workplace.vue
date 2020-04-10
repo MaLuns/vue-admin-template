@@ -131,7 +131,7 @@
     import PageHeader from "@/components/page-header";
     import itemIma from "@/assets/middle.jpg";
     export default {
-        name: "Workplace",
+        name: "workplace",
         data() {
             return {
                 cardBodyStyle: {

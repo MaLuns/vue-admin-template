@@ -1,3 +1,4 @@
+/* 配置页 */
 <template>
     <div :class="{'config-page':true,'config-page-open':open}">
         <div class="config-mask" @click="open=false;"></div>
@@ -5,8 +6,18 @@
             <div>
                 <p class="config-title">整体风格设置</p>
                 <div class="setting-checbox">
-                    <div @click="changeNavTheme('dark')" :class="{'setting-checbox-item':true,'is-check':navTheme=='dark'}"><img :src="icon.darkIcon" alt=""></div>
-                    <div @click="changeNavTheme('light')" :class="{'setting-checbox-item':true,'is-check':navTheme=='light'}"><img :src="icon.lightIcon" alt=""></div>
+                    <div
+                        @click="changeNavTheme('dark')"
+                        :class="{'setting-checbox-item':true,'is-check':navTheme=='dark'}"
+                    >
+                        <img :src="icon.darkIcon" alt />
+                    </div>
+                    <div
+                        @click="changeNavTheme('light')"
+                        :class="{'setting-checbox-item':true,'is-check':navTheme=='light'}"
+                    >
+                        <img :src="icon.lightIcon" alt />
+                    </div>
                 </div>
             </div>
             <div class="theme-color">
@@ -22,17 +33,34 @@
                     <div class="theme-color-block" style="background-color: rgb(114, 46, 209);"></div>
                 </div>
             </div>
-            <div>
+            <div class="theme-color">
                 <p class="config-title">导航模式</p>
                 <div class="setting-checbox">
-                    <div @click="changeLayout('sidemenu')" :class="{'setting-checbox-item':true,'is-check':layout=='sidemenu'}"><img :src="icon.darkIcon" alt=""></div>
-                    <div @click="changeLayout('topmenu')" :class="{'setting-checbox-item':true,'is-check':layout=='topmenu'}"><img :src="icon.lightIcon" alt=""></div>
+                    <div
+                        @click="changeLayout('sidemenu')"
+                        :class="{'setting-checbox-item':true,'is-check':layout=='sidemenu'}"
+                    >
+                        <img :src="icon.darkIcon" alt />
+                    </div>
+                    <div
+                        @click="changeLayout('topmenu')"
+                        :class="{'setting-checbox-item':true,'is-check':layout=='topmenu'}"
+                    >
+                        <img :src="icon.lightIcon" alt />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="config-title">其他配置</p>
+                <div>
+                    色弱模式
+                    <el-switch v-model="value"></el-switch>
                 </div>
             </div>
             <div class="open-btn" @click="open=!open" :style="setBtnStyle">
-               <!--  <i class="el-icon-close" v-if="open"></i>
-                <i class="el-icon-setting" v-else></i> -->
-                <i class="el-icon-setting"></i>
+                <i class="el-icon-close" v-if="open"></i>
+                <i class="el-icon-setting" v-else></i>
+                <!-- <i class="el-icon-setting"></i> -->
             </div>
         </div>
     </div>
@@ -57,7 +85,8 @@
                     lightIcon,
                     topIcon
                 },
-                open: false
+                open: false,
+                value: true
             };
         },
         computed: {
@@ -149,9 +178,10 @@
             z-index: 2001;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             right: 0;
+            top: 0;
             transform-origin: 0 0;
             transform: translateX(100%);
-            transition: all 0.3s;
+            transition: transform 0.3s;
             padding: 24px;
 
             .open-btn {
@@ -159,7 +189,8 @@
                 top: 25%;
                 width: 48px;
                 height: 48px;
-                left: -48px;
+
+                transform: translateX(-72px);
                 background: #409eff;
                 border-radius: 5px 0 0 5px;
                 color: #fff;
@@ -177,7 +208,6 @@
             }
 
             .config-content {
-                transform-origin: 0 0;
                 transform: translateX(0);
             }
         }

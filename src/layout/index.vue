@@ -2,18 +2,21 @@
     @import "index.less";
 </style>
 <template>
-    <el-container class="app-wrapper">
-        <el-aside :class="classObject" v-show="ShowSidemenu">
-            <sidebar />
-        </el-aside>
-        <el-container :class="{'main-container':true,'collapse':sidebarOpen}">
-            <top-menu v-show="!ShowSidemenu"></top-menu>
-            <navbar v-show="ShowSidemenu" />
-            <app-main />
-            <app-footer />
+    <div>
+        <el-container class="app-wrapper">
+            <el-aside :class="classObject" v-show="ShowSidemenu">
+                <Sidebar />
+            </el-aside>
+            <el-container :class="{'main-container':true,'collapse':sidebarOpen}">
+                <top-menu v-show="!ShowSidemenu"></top-menu>
+                <Navbar v-show="ShowSidemenu" />
+                <TagNav />
+                <AppMain />
+                <AppFooter />
+            </el-container>
         </el-container>
         <PageConfig />
-    </el-container>
+    </div>
 </template>
 <script>
     import Navbar from "./components/nav-bar";
@@ -21,13 +24,15 @@
     import AppFooter from "./components/app-footer";
     import Sidebar from "./components/sidebar/side-menu/index";
     import TopMenu from "./components/sidebar/top-menu/index";
+    import TagNav from "./components/tag-nav";
     import PageConfig from "./components/page-config";
-    import { mapGetters } from "vuex";
+    import { mapGetters, mapMutations } from "vuex";
+    import { getNewTagList } from "@/libs/util";
 
     export default {
         name: "Home",
         computed: {
-            ...mapGetters(["sidebarOpen", "navTheme", "layout"]),
+            ...mapGetters(["sidebarOpen", "navTheme", "layout", "tagNavList"]),
             classObject: function() {
                 if (this.navTheme === "dark") {
                     return {
@@ -53,7 +58,21 @@
             Sidebar,
             TopMenu,
             PageConfig,
-            AppFooter
+            AppFooter,
+            TagNav
+        },
+        methods: {
+            ...mapMutations("app", ["SetTagNavList"])
+        },
+        watch: {
+            $route(newRoute) {
+                /* const { name, query, params, meta } = newRoute; */
+                this.SetTagNavList(getNewTagList(this.tagNavList, newRoute));
+                console.log(this.tagNavList.map(item => item.name));
+            }
+        },
+        mounted() {
+            console.log(1);
         }
     };
 </script>

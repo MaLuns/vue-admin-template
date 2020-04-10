@@ -50,7 +50,7 @@
 <script>
     import PageHeader from "@/components/page-header";
     export default {
-        name: "BasicForm",
+        name: "basic_form",
         components: {
             PageHeader
         },

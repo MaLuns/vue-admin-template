@@ -65,6 +65,7 @@ export default [
         children: [
             {
                 path: 'analysis',
+                name: 'analysis',
                 meta: {
                     title: '分析页',
                 },
@@ -72,6 +73,7 @@ export default [
             },
             {
                 path: 'monitor',
+                name: 'monitor',
                 meta: {
                     title: '监控页',
                 },
@@ -79,6 +81,7 @@ export default [
             },
             {
                 path: 'workplace',
+                name: 'workplace',
                 meta: {
                     title: '工作台',
                 },
@@ -97,6 +100,7 @@ export default [
         children: [
             {
                 path: 'basic-form',
+                name: 'basic_form',
                 meta: {
                     title: '基础表单',
                 },
@@ -104,6 +108,7 @@ export default [
             },
             {
                 path: 'step-form',
+                name: 'step_form',
                 meta: {
                     title: '分步表单',
                 },
@@ -111,6 +116,7 @@ export default [
             },
             {
                 path: 'advanced-form',
+                name: 'advanced_form',
                 meta: {
                     title: '高级表单',
                 },

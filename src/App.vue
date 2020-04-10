@@ -18,16 +18,20 @@
     #app,
     body,
     html {
-        height: 100%;
-        background: #f1f1f1;
+        background: #f0f2f5;
+    }
+    body {
+        min-height: 100vh;
     }
 
     #nprogress .bar {
         background-color: #589cff !important;
         height: 4px !important;
-	}
-	
+    }
+
     #nprogress .peg {
         box-shadow: 0 0 10px #589cff, 0 0 5px #589cff;
     }
+
+    /* html {  filter: invert(100%);} */
 </style>

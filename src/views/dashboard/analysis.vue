@@ -28,7 +28,7 @@
 <script>
     import G2Line from "@/components/charts/line";
     export default {
-        name: "Analysis",
+        name: "analysis",
         components: {
             G2Line
         },

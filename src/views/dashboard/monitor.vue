@@ -8,6 +8,7 @@
 <script>
     import marked from "marked";
     export default {
+        name:"monitor",
         data() {
             return {
                 input: "# hello"
