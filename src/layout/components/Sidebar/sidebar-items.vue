@@ -6,7 +6,7 @@
         },
         name: "SidebarItem",
         props: {
-            item: {
+            route: {
                 type: Object,
                 required: true
             },
@@ -20,24 +20,28 @@
             }
         },
         render(h) {
-            return this.renderItem(h, this.item);
+            return this.renderItem(h, this.route);
         },
         computed: {
             ...mapGetters(["navTheme"])
         },
         methods: {
-            renderItem(h, item, basePath = "") {
+            renderItem(h, route, basePath = "") {
                 let {
                     children = [],
                     path,
-                    hidden = false,
-                    meta: { title, icon = "" } = { title: path }
-                } = item;
+                    meta: { title, icon = "", hideInMenu = false } = {
+                        title: path,
+                        icon: "",
+                        hideInMenu: false
+                    }
+                } = route;
 
                 let urlPath =
                     (basePath == "/" ? "" : basePath) +
                     (path.indexOf("/") === 0 ? path : "/" + path);
-                if (!hidden) {
+
+                if (!hideInMenu) {
                     if (children.length > 0) {
                         return h(
                             "el-submenu",
@@ -49,19 +53,19 @@
                                 }
                             },
                             [
-                                h("div", { slot: "title", class: "wlt-menu-text" }, [
-                                    icon !== ""
-                                        ? h("i", {
-                                              attrs: {
-                                                  class: icon
-                                              }
-                                          })
-                                        : null,
-                                    h("span", title)
-                                ]),
-                                ...children.map(element => {
-                                    return this.renderItem(h, element, urlPath);
-                                })
+                                h(
+                                    "div",
+                                    { slot: "title", class: "wlt-menu-text" },
+                                    [
+                                        icon !== ""
+                                            ? h("i", { attrs: { class: icon } })
+                                            : null,
+                                        h("span", title)
+                                    ]
+                                ),
+                                ...children.map(element =>
+                                    this.renderItem(h, element, urlPath)
+                                )
                             ]
                         );
                     } else {
@@ -74,11 +78,7 @@
                             },
                             [
                                 icon !== ""
-                                    ? h("i", {
-                                          attrs: {
-                                              class: icon
-                                          }
-                                      })
+                                    ? h("i", { attrs: { class: icon } })
                                     : null,
                                 h("span", { slot: "title" }, title)
                             ]

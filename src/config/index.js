@@ -5,6 +5,7 @@ module.exports = {
     "navTheme": "dark",
     "primaryColor": "#1890FF",
     "layout": "sidemenu",
+    "homeName": "home"
 }
 
 

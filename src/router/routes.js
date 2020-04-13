@@ -1,55 +1,31 @@
 import Layout from '@/layout'
-/* import WltManage from './modules/wlt-management'
-import FieldManage from './modules/field-management'
-import WltDispatch from './modules/wlt-dispatch'
 
-
-
-export default [
-    WltManage,
-    FieldManage,
-    WltDispatch,
-    {
-        path: '/',
-        name: "Home",
-        hidden: true,
-        component: Layout,
-        children: [
-            {
-                path: '/',
-                component: () => import('@/views/home')
-            }
-        ]
-    },
-    {
-        path: '/login',
-        name: 'login',
-        hidden: true,
-        component: () => import('@/views/login'),
-    },
-    {
-        path: '/404',
-        hidden: true,
-        component: () => import('@/views/404')
-    },
-    {
-        path: '*',
-        redirect: '/404',
-        hidden: true
-    }
-] */
-
-
+/**
+ * meta: {
+ *   title:String 显示在侧边栏、面包屑和标签栏的文字
+ *   hideInMenu: (false) 设为true后在左侧菜单不会显示该页面选项
+ *   icon: 左侧菜单、面包屑和标签导航处显示的图标
+ *   notCache: (false) 设为true后对页面不进行缓存, 如果需要缓存,需要设置页面组件name属性和路由配置的name一致
+ * }
+ */
 
 export default [
     {
         path: '/',
-        name: "Home",
-        hidden: true,
+        name: "_Layout",
         component: Layout,
+        redirect: '/home',
+        meta: {
+            hideInMenu: true,
+        },
         children: [
             {
-                path: '/',
+                path: 'home',
+                name: "home",
+                meta: {
+                    hideInMenu: true,
+                    title: '首页',
+                },
                 component: () => import('@/views/home')
             }
         ]
@@ -76,6 +52,7 @@ export default [
                 name: 'monitor',
                 meta: {
                     title: '监控页',
+                    notCache: true
                 },
                 component: () => import('@/views/dashboard/monitor')
             },
@@ -100,7 +77,7 @@ export default [
         children: [
             {
                 path: 'basic-form',
-                name: 'basic_form',
+                name: 'basic-form',
                 meta: {
                     title: '基础表单',
                 },
@@ -108,7 +85,7 @@ export default [
             },
             {
                 path: 'step-form',
-                name: 'step_form',
+                name: 'step-form',
                 meta: {
                     title: '分步表单',
                 },
@@ -116,7 +93,7 @@ export default [
             },
             {
                 path: 'advanced-form',
-                name: 'advanced_form',
+                name: 'advanced-form',
                 meta: {
                     title: '高级表单',
                 },
@@ -135,6 +112,7 @@ export default [
         children: [
             {
                 path: 'basic-list',
+                name: 'basic-list',
                 meta: {
                     title: '标准列表',
                 },
@@ -142,6 +120,7 @@ export default [
             },
             {
                 path: 'table-list',
+                name: 'table-list',
                 meta: {
                     title: '查询表格',
                 },
@@ -149,6 +128,7 @@ export default [
             },
             {
                 path: 'card-list',
+                name: 'card-list',
                 meta: {
                     title: '卡片列表',
                 },
@@ -167,13 +147,15 @@ export default [
         children: [
             {
                 path: '403',
+                name: 'error-403',
                 meta: {
-                    title: '无权限页面(403)',
+                    title: '无权限页面(403)'
                 },
                 component: () => import('@/views/exception/403')
             },
             {
                 path: '404',
+                name: 'error-404',
                 meta: {
                     title: '未找到页面(404)',
                 },
@@ -181,6 +163,7 @@ export default [
             },
             {
                 path: '500',
+                name: 'error-500',
                 meta: {
                     title: '服务器异常(500)',
                 },
@@ -191,17 +174,25 @@ export default [
     {
         path: '/login',
         name: 'login',
-        hidden: true,
+        meta: {
+            hideInMenu: true
+        },
         component: () => import('@/views/login'),
     },
     {
         path: '/404',
         hidden: true,
+        meta: {
+            hideInMenu: true
+        },
         component: () => import('@/views/exception/404')
     },
     {
         path: '*',
-        redirect: '/404',
-        hidden: true
+        name: "error_404",
+        meta: {
+            hideInMenu: true
+        },
+        component: () => import('@/views/exception/404')
     }
 ]

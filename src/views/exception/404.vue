@@ -6,7 +6,7 @@
     import error404 from "@/assets/error_images/404.svg";
     import errorPage from "./error-page.vue";
     export default {
-        name: "error_404",
+        name: "error-404",
         components: {
             errorPage
         },

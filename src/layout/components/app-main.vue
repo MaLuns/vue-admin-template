@@ -19,7 +19,11 @@
                 return this.$route.path;
             },
             include() {
-                return this.tagNavList.map(item => item.name);
+                return this.tagNavList.length
+                    ? this.tagNavList
+                          .filter(item => !(item.meta && item.meta.notCache))
+                          .map(item => item.name)
+                    : [];
             }
         }
     };
@@ -27,7 +31,6 @@
 
 <style lang="less">
     .app-main {
-        /*  padding: 20px; */
         width: 100%;
     }
     .el-popup-parent--hidden {

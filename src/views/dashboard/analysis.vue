@@ -36,9 +36,7 @@
             return {
                 serverData: []
             };
-        },
-
-        mounted() {}
+        }
     };
 </script>
 

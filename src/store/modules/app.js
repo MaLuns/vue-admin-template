@@ -1,4 +1,6 @@
-import { sidebarOpen, navTheme, primaryColor, layout } from '@/config'
+import { sidebarOpen, navTheme, primaryColor, layout, homeName } from '@/config'
+import { routeHasExist } from "@/libs/util"
+import router from '@/router'
 
 const state = {
     sidebarOpen: localStorage.getItem("app_sidebarOpen") ? !!+localStorage.getItem("app_sidebarOpen") : sidebarOpen,
@@ -29,12 +31,33 @@ const mutations = {
         state.layout = layout;
         localStorage.setItem("app_layout", layout)
     },
-    SetTagNavList(state, list) {
-        let tagList = [];
-        if (list) tagList = [...list];
-        else tagList = localStorage.tagNaveList ? JSON.parse(localStorage.tagNaveList) : []
+    SetCacheTagNavList(state) {
+        let tagList = localStorage.tagNaveList ? JSON.parse(localStorage.tagNaveList) : []
         state.tagNavList = tagList;
-    }
+    },
+    AddTagNav(state, { path, name, params, query, meta }) {
+        let route = { path, name, params, query, meta }
+        if (!routeHasExist(state.tagNavList, route)) {
+            state.tagNavList.push(route);
+            let homeTagIndex = state.tagNavList.findIndex(item => item.name === homeName);
+            if (homeTagIndex > 0) {
+                let homeTag = state.tagNavList.splice(homeTagIndex, 1)[0]
+                state.tagNavList.unshift(homeTag)
+            }
+            localStorage.setItem("tagNaveList", JSON.stringify(state.tagNavList))
+        }
+    },
+    closeTag(state, { route, checked }) {
+        let index = state.tagNavList.findIndex(item => item.name === route.name);
+        if (checked) {
+            let nextRoute;
+            if (index === state.tagNavList.length - 1) nextRoute = state.tagNavList[state.tagNavList.length - 2]
+            else nextRoute = state.tagNavList[index + 1]
+            router.push(nextRoute);
+        }
+        state.tagNavList.splice(index, 1);
+        localStorage.setItem("tagNaveList", JSON.stringify(state.tagNavList))
+    },
 }
 
 const actions = {

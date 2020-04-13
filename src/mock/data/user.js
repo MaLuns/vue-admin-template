@@ -1,6 +1,4 @@
 import Mock from 'mockjs'
-/* import { doCustomTimes } from '@/libs/util' */
-
 
 Mock.mock(/\/WebApi\/Login\/GetZtData/, () => {
     return {

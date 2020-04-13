@@ -8,7 +8,7 @@
             <div class="content">
                 <div class="wlt-title">
                     <div>
-                        <img :src="logSvg" alt="">
+                        <img :src="logSvg" alt />
                         <h1>Admin Pro</h1>
                     </div>
                     <div class="user-layout-desc">基于 vue 和 element-ui 中后台前端模板</div>
@@ -36,9 +36,9 @@
                                 </el-form-item>
                             </el-form>
                         </el-tab-pane>
-                    </el-tabs> 
+                    </el-tabs>
                     <el-form :model="from">
-                        <el-form-item class="">
+                        <el-form-item class>
                             <el-checkbox v-model="from.autologin">自动登录</el-checkbox>
                             <el-button type="text" style="float: right;">忘记密码</el-button>
                         </el-form-item>
@@ -64,19 +64,19 @@
                 logSvg,
                 labelPosition: "right",
                 from: {
-                    type:0,
+                    type: 0,
                     autologin: true,
                     loginName: "",
                     passWorld: "",
-                    mobile:"",
-                    captcha:""
+                    mobile: "",
+                    captcha: ""
                 }
             };
         },
         methods: {
             SubmitLogin() {
                 this.$store.dispatch("user/setjwt_token", "admin");
-                this.$router.push({name: "Home"});
+                this.$router.push({ path: "/" });
             }
         }
     };

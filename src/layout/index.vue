@@ -4,12 +4,12 @@
 <template>
     <div>
         <el-container class="app-wrapper">
-            <el-aside :class="classObject" v-show="ShowSidemenu">
+            <el-aside :class="classObject" v-if="ShowSidemenu">
                 <Sidebar />
             </el-aside>
             <el-container :class="{'main-container':true,'collapse':sidebarOpen}">
-                <top-menu v-show="!ShowSidemenu"></top-menu>
-                <Navbar v-show="ShowSidemenu" />
+                <TopMenu v-if="!ShowSidemenu" />
+                <Navbar v-if="ShowSidemenu" />
                 <TagNav />
                 <AppMain />
                 <AppFooter />
@@ -27,7 +27,6 @@
     import TagNav from "./components/tag-nav";
     import PageConfig from "./components/page-config";
     import { mapGetters, mapMutations } from "vuex";
-    import { getNewTagList } from "@/libs/util";
 
     export default {
         name: "Home",
@@ -62,17 +61,16 @@
             TagNav
         },
         methods: {
-            ...mapMutations("app", ["SetTagNavList"])
+            ...mapMutations("app", ["SetCacheTagNavList", "AddTagNav"])
         },
         watch: {
             $route(newRoute) {
-                /* const { name, query, params, meta } = newRoute; */
-                this.SetTagNavList(getNewTagList(this.tagNavList, newRoute));
-                console.log(this.tagNavList.map(item => item.name));
+                this.AddTagNav(newRoute);
             }
         },
         mounted() {
-            console.log(1);
+            this.SetCacheTagNavList();
+            this.AddTagNav(this.$route);
         }
     };
 </script>

@@ -5,7 +5,7 @@
 <template>
     <div class="sidebar-menu-horizontal">
         <el-menu mode="horizontal" unique-opened router :default-active="activeMenu" :collapse="sidebarOpen">
-            <sidebar-items v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"></sidebar-items>
+            <sidebar-items v-for="route in routes" :key="route.path" :route="route" :base-path="route.path"></sidebar-items>
         </el-menu>
     </div>
 </template>
