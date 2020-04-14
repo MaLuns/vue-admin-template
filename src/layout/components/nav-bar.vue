@@ -59,6 +59,9 @@
         computed: {
             ...mapGetters(["sidebarOpen", "fixedHeader"])
         },
+        mounted() {
+            this.setLayout();
+        },
         methods: {
             setLayout() {
                 let navbar = this.$refs.navbar;

@@ -53,6 +53,8 @@
             this.$on("hook:beforeDestroy", () => {
                 window.removeEventListener("resize", resizeFn);
             });
+
+            this.setLayout();
         },
         methods: {
             setLayout() {
@@ -194,7 +196,7 @@
     .tags-nav {
         height: 46px;
         /* top: 64px; */
-        
+
         background: #f0f2f5;
         overflow: hidden;
         z-index: 989 !important;

@@ -31,17 +31,23 @@
                     fixedHeader,
                     showTagNav
                 };
-            }
-        },
-        watch: {
-            obj({ fixedHeader, showTagNav }) {
-                if (fixedHeader) {
-                    this.$refs.appMain.style.marginTop = showTagNav
+            },
+            setLayout() {
+                if (this.fixedHeader) {
+                    this.$refs.appMain.style.marginTop = this.showTagNav
                         ? "110px"
                         : "64px";
                 } else {
                     this.$refs.appMain.style.marginTop = 0;
                 }
+            }
+        },
+        mounted() {
+            this.setLayout();
+        },
+        watch: {
+            obj() {
+                this.setLayout();
             }
         }
     };
