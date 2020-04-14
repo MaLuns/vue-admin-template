@@ -17,7 +17,7 @@
         transition: all 0.3s;
 
         &.sidebar-collapse {
-            width: @sidebarMinWidth !important;
+            width: @sidebarMinWidth  !important;
         }
     }
 
@@ -30,25 +30,40 @@
 
         >.navbar,
         >.tags-nav {
-            position  : fixed;
-            width     :~'calc(100% - @{sidebarWidth})';
-            transition: all 0.3s;
-            right     : 0;
+            transition: width 0.3s;
+            position  : relative;
+            width     : 100%;
             z-index   : 990;
+
+            &.fixed {
+                width   :~'calc(100% - @{sidebarWidth})';
+                position: fixed;
+                left    : sidebarWidth;
+            }
+        }
+
+        >.tags-nav {
+            top    : 0;
+            z-index: 999;
+
+            &.fixed {
+                top: 64px;
+            }
         }
 
         >.app-main {
             width : ~'calc(100% - 40px)';
-            margin: 150px 20px 20px;
+            margin: 110px 20px 20px;
             flex  : auto
         }
 
         &.collapse {
             margin-left: @sidebarMinWidth;
 
-            >.navbar,
-            >.tags-nav {
-                width: ~'calc(100% - @{sidebarMinWidth})';
+            >.navbar.fixed,
+            >.tags-nav.fixed {
+                width:~'calc(100% - @{sidebarMinWidth})';
+                left : sidebarWidth;
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <section class="app-main">
+    <section class="app-main" ref="appMain">
         <transition name="fade-transform" mode="out-in">
             <keep-alive :include="include">
                 <router-view :key="key" />
@@ -14,7 +14,7 @@
     export default {
         name: "AppMain",
         computed: {
-            ...mapGetters(["tagNavList"]),
+            ...mapGetters(["tagNavList", "fixedHeader", "showTagNav"]),
             key() {
                 return this.$route.path;
             },
@@ -24,6 +24,24 @@
                           .filter(item => !(item.meta && item.meta.notCache))
                           .map(item => item.name)
                     : [];
+            },
+            obj() {
+                let { fixedHeader, showTagNav } = this;
+                return {
+                    fixedHeader,
+                    showTagNav
+                };
+            }
+        },
+        watch: {
+            obj({ fixedHeader, showTagNav }) {
+                if (fixedHeader) {
+                    this.$refs.appMain.style.marginTop = showTagNav
+                        ? "110px"
+                        : "64px";
+                } else {
+                    this.$refs.appMain.style.marginTop = 0;
+                }
             }
         }
     };

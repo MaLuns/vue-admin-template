@@ -32,6 +32,4 @@
     #nprogress .peg {
         box-shadow: 0 0 10px #589cff, 0 0 5px #589cff;
     }
-
-    /* html {  filter: invert(100%);} */
 </style>

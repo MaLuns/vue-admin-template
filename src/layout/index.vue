@@ -10,7 +10,7 @@
             <el-container :class="{'main-container':true,'collapse':sidebarOpen}">
                 <TopMenu v-if="!ShowSidemenu" />
                 <Navbar v-if="ShowSidemenu" />
-                <TagNav />
+                <TagNav v-show="showTagNav" />
                 <AppMain />
                 <AppFooter />
             </el-container>
@@ -31,7 +31,15 @@
     export default {
         name: "Home",
         computed: {
-            ...mapGetters(["sidebarOpen", "navTheme", "layout", "tagNavList"]),
+            ...mapGetters([
+                "sidebarOpen",
+                "navTheme",
+                "layout",
+                "tagNavList",
+                "fixedHeader",
+                "showTagNav",
+                "colorWeak"
+            ]),
             classObject: function() {
                 if (this.navTheme === "dark") {
                     return {
@@ -66,11 +74,15 @@
         watch: {
             $route(newRoute) {
                 this.AddTagNav(newRoute);
-            }
+            },
         },
         mounted() {
             this.SetCacheTagNavList();
             this.AddTagNav(this.$route);
+
+            document.documentElement.style.filter = this.colorWeak
+                ? "invert(100%)"
+                : "";
         }
     };
 </script>

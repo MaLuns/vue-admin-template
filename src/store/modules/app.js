@@ -1,12 +1,36 @@
-import { sidebarOpen, navTheme, primaryColor, layout, homeName } from '@/config'
+import { sidebarOpen, navTheme, primaryColor, layout, fixedHeader, showTagNav, colorWeak, homeName } from '@/config'
 import { routeHasExist } from "@/libs/util"
 import router from '@/router'
 
+/* "sidebarOpen": true,
+"navTheme": "dark",
+"primaryColor": "#1890FF",
+"layout": "sidemenu",
+"fixedHeader": true,
+"showTagNav": true,
+"colorWeak": false,
+ */
+const getGlobalConfig = () => {
+    return {
+        sidebarOpen: localStorage.getItem("app_sidebarOpen") ? !!+localStorage.getItem("app_sidebarOpen") : sidebarOpen,
+        navTheme: localStorage.getItem("app_navTheme") || navTheme,
+        primaryColor: localStorage.getItem("app_primaryColor") || primaryColor,
+        layout: localStorage.getItem("app_layout") || layout,
+        fixedHeader: localStorage.getItem("app_fixedHeader") || fixedHeader,
+        showTagNav: localStorage.getItem("app_showTagNav") || showTagNav,
+        colorWeak: localStorage.getItem("app_colorWeak") || colorWeak
+    }
+}
+
 const state = {
-    sidebarOpen: localStorage.getItem("app_sidebarOpen") ? !!+localStorage.getItem("app_sidebarOpen") : sidebarOpen,
-    navTheme: localStorage.getItem("app_navTheme") ? localStorage.getItem("app_navTheme") : navTheme,
-    primaryColor: localStorage.getItem("app_primaryColor") ? localStorage.getItem("app_primaryColor") : primaryColor,
-    layout: localStorage.getItem("app_layout") ? localStorage.getItem("app_layout") : layout,
+    sidebarOpen: localStorage.getItem("app_sidebarOpen") ? JSON.parse(localStorage.getItem("app_sidebarOpen")) : sidebarOpen,
+    navTheme: localStorage.getItem("app_navTheme") || navTheme,
+    primaryColor: localStorage.getItem("app_primaryColor") || primaryColor,
+    layout: localStorage.getItem("app_layout") || layout,
+    fixedHeader: localStorage.getItem("app_fixedHeader") ? JSON.parse(localStorage.getItem("app_fixedHeader")) : fixedHeader,
+    showTagNav: localStorage.getItem("app_showTagNav") ? JSON.parse(localStorage.getItem("app_showTagNav")) : showTagNav,
+    colorWeak: localStorage.getItem("app_colorWeak") ? JSON.parse(localStorage.getItem("app_colorWeak")) : colorWeak,
+
     errorList: [],
     tagNavList: []
 }
@@ -15,21 +39,9 @@ const mutations = {
     AddError(state, error) {
         state.errorList.push(error)
     },
-    CHANGE_NAVTHEME(state, theme) {
-        state.navTheme = theme;
-        localStorage.setItem("app_navTheme", theme)
-    },
-    TOGGLE_SIDEBAR(state) {
-        state.sidebarOpen = !state.sidebarOpen;
-        if (state.sidebarOpen) {
-            localStorage.setItem("app_sidebarOpen", 1)
-        } else {
-            localStorage.setItem("app_sidebarOpen", 0)
-        }
-    },
-    CHANGE_LAYOUT(state, layout) {
-        state.layout = layout;
-        localStorage.setItem("app_layout", layout)
+    SetGlobalConfig(state, { key, val }) {
+        state[key] = val
+        localStorage.setItem(`app_${key}`, val)
     },
     SetCacheTagNavList(state) {
         let tagList = localStorage.tagNaveList ? JSON.parse(localStorage.tagNaveList) : []
@@ -61,12 +73,6 @@ const mutations = {
 }
 
 const actions = {
-    toggleSideBar({ commit }) {
-        commit('TOGGLE_SIDEBAR')
-    },
-    changeNavTheme({ commit }, theme) {
-        commit('CHANGE_NAVTHEME', theme)
-    },
     changeLayout({ commit }, layout) {
         commit('CHANGE_LAYOUT', layout)
     },

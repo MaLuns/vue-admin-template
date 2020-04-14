@@ -76,7 +76,16 @@
         methods: {
             SubmitLogin() {
                 this.$store.dispatch("user/setjwt_token", "admin");
-                this.$router.push({ path: "/" });
+                this.$router.push({
+                    name: "home",
+                    params: {
+                        b: 123,
+                        c: 12
+                    },
+                    query: {
+                        a: 1
+                    }
+                });
             }
         }
     };

@@ -1,5 +1,5 @@
 <template>
-    <div class="tags-nav">
+    <div class="tags-nav fixed" ref="tagsNav">
         <div class="btn-con left-btn" v-show="showLeftRightBtn">
             <el-button type="text" icon="el-icon-arrow-left" @click="handleScroll(240)"></el-button>
         </div>
@@ -38,7 +38,7 @@
             };
         },
         computed: {
-            ...mapGetters(["tagNavList"]),
+            ...mapGetters(["tagNavList", "fixedHeader"]),
             scrollNavCss() {
                 return {
                     transform: `translateX(${this.scrollBodyTranslateX}px)`
@@ -55,6 +55,12 @@
             });
         },
         methods: {
+            setLayout() {
+                let tagsNav = this.$refs.tagsNav;
+                this.fixedHeader
+                    ? tagsNav.classList.add("fixed")
+                    : tagsNav.classList.remove("fixed");
+            },
             ...mapMutations("app", ["closeTag", "SetTagNavList"]),
             setShowLeftRightBtn() {
                 this.$nextTick(() => {
@@ -176,6 +182,9 @@
         watch: {
             $route() {
                 this.findCheckedTag();
+            },
+            fixedHeader() {
+                this.setLayout();
             }
         }
     };
@@ -183,14 +192,14 @@
 
 <style lang="less" scoped>
     .tags-nav {
-        padding: 8px 0;
-        position: fixed;
-        top: 64px;
-        z-index: 9999;
+        height: 46px;
+        /* top: 64px; */
+        
         background: #f0f2f5;
         overflow: hidden;
         z-index: 989 !important;
         display: flex;
+        align-items: center;
 
         .tags-nav-scroll {
             overflow: hidden;

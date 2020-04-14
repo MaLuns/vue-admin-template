@@ -1,4 +1,5 @@
 import Layout from '@/layout'
+import CacheView from '@/components/cache-view'
 
 /**
  * meta: {
@@ -134,6 +135,46 @@ export default [
                 },
                 component: () => import('@/views/home')
             }
+        ]
+    },
+    {
+        path: '/level',
+        name: 'level',
+        component: Layout,
+        meta: {
+            title: '多级菜单',
+            icon: 'el-icon-s-operation'
+        },
+        children: [
+            {
+                path: 'level_2',
+                name: 'level_2',
+                meta: {
+                    icon: 'el-icon-s-operation',
+                    title: '二级-1'
+                },
+                component: () => import('@/views/level/level-2.vue')
+            },
+            {
+                path: 'level_2_1',
+                name: 'level_2_1',
+                meta: {
+                    icon: 'el-icon-s-operation',
+                    title: '二级-2'
+                },
+                component: CacheView,
+                children: [
+                    {
+                        path: 'level_3_1',
+                        name: 'level_3_1',
+                        meta: {
+                            icon: 'el-icon-s-operation',
+                            title: '三级-1'
+                        },
+                        component: () => import('@/views/level/level_2_1/level_3.vue')
+                    },
+                ]
+            },
         ]
     },
     {

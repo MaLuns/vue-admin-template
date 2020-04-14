@@ -3,58 +3,41 @@
     <div :class="{'config-page':true,'config-page-open':open}">
         <div class="config-mask" @click="open=false;"></div>
         <div class="config-content">
-            <div>
+            <div class="config-content-item">
                 <p class="config-title">整体风格设置</p>
                 <div class="setting-checbox">
-                    <div
-                        @click="changeNavTheme('dark')"
-                        :class="{'setting-checbox-item':true,'is-check':navTheme=='dark'}"
-                    >
+                    <div @click="SetGlobalConfig('navTheme','dark')" :class="{'setting-checbox-item':true,'is-check':navTheme=='dark'}">
                         <img :src="icon.darkIcon" alt />
                     </div>
-                    <div
-                        @click="changeNavTheme('light')"
-                        :class="{'setting-checbox-item':true,'is-check':navTheme=='light'}"
-                    >
+                    <div @click="SetGlobalConfig('navTheme','light')" :class="{'setting-checbox-item':true,'is-check':navTheme=='light'}">
                         <img :src="icon.lightIcon" alt />
                     </div>
                 </div>
             </div>
-            <div class="theme-color">
-                <p class="config-title">主题色</p>
-                <div class="theme-color-content">
-                    <div class="theme-color-block" style="background-color: rgb(245, 34, 45);"></div>
-                    <div class="theme-color-block" style="background-color: rgb(250, 84, 28);"></div>
-                    <div class="theme-color-block" style="background-color: rgb(250, 173, 20);"></div>
-                    <div class="theme-color-block" style="background-color: rgb(19, 194, 194);"></div>
-                    <div class="theme-color-block" style="background-color: rgb(82, 196, 26);"></div>
-                    <div class="theme-color-block" style="background-color: rgb(24, 144, 255);"></div>
-                    <div class="theme-color-block" style="background-color: rgb(47, 84, 235);"></div>
-                    <div class="theme-color-block" style="background-color: rgb(114, 46, 209);"></div>
-                </div>
-            </div>
-            <div class="theme-color">
+            <div class="config-content-item">
                 <p class="config-title">导航模式</p>
                 <div class="setting-checbox">
-                    <div
-                        @click="changeLayout('sidemenu')"
-                        :class="{'setting-checbox-item':true,'is-check':layout=='sidemenu'}"
-                    >
+                    <div @click="SetGlobalConfig('layout','sidemenu')" :class="{'setting-checbox-item':true,'is-check':layout=='sidemenu'}">
                         <img :src="icon.darkIcon" alt />
                     </div>
-                    <div
-                        @click="changeLayout('topmenu')"
-                        :class="{'setting-checbox-item':true,'is-check':layout=='topmenu'}"
-                    >
+                    <div @click="SetGlobalConfig('layout','topmenu')" :class="{'setting-checbox-item':true,'is-check':layout=='topmenu'}">
                         <img :src="icon.lightIcon" alt />
                     </div>
                 </div>
             </div>
-            <div>
+            <div class="config-content-item">
                 <p class="config-title">其他配置</p>
-                <div>
+                <div class="set-config-item">
+                    固定 Header
+                    <el-switch :value="fixedHeader" @change="(val)=>SetGlobalConfig('fixedHeader',val)"></el-switch>
+                </div>
+                <div class="set-config-item">
+                    开启标签页
+                    <el-switch :value="showTagNav" @change="(val)=>SetGlobalConfig('showTagNav',val)"></el-switch>
+                </div>
+                <div class="set-config-item">
                     色弱模式
-                    <el-switch v-model="value"></el-switch>
+                    <el-switch :value="colorWeak" @change="(val)=>{SetGlobalConfig('colorWeak',val);ChangeColorWeak(val)}"></el-switch>
                 </div>
             </div>
             <div class="open-btn" @click="open=!open" :style="setBtnStyle">
@@ -90,26 +73,35 @@
             };
         },
         computed: {
-            ...mapGetters(["navTheme", "layout"])
+            ...mapGetters([
+                "navTheme",
+                "layout",
+                "fixedHeader",
+                "showTagNav",
+                "colorWeak"
+            ])
         },
         watch: {
             open: function(val) {
                 if (val) {
-                    document.body.style.overflow = "hidden";
-                    if (this.hasScrollbar())
+                    if (this.hasScrollbar()) {
+                        document.body.style.overflow = "hidden";
                         document.body.style.width = "calc(100% - 17px)";
+                    }
                 } else {
-                    document.body.style.overflow = "auto";
-                    if (this.hasScrollbar()) document.body.style.width = "100%";
+                    if (this.hasScrollbar()) {
+                        document.body.style.width = "";
+                        document.body.style.overflow = "";
+                    }
                 }
             }
         },
         methods: {
-            changeNavTheme(theme) {
-                this.$store.dispatch("app/changeNavTheme", theme);
+            ChangeColorWeak(val) {
+                document.documentElement.style.filter = val ? "invert(100%)" : "";
             },
-            changeLayout(layout) {
-                this.$store.dispatch("app/changeLayout", layout);
+            SetGlobalConfig(key, val) {
+                this.$store.commit("app/SetGlobalConfig", { key, val });
             },
             hasScrollbar() {
                 return (
@@ -157,6 +149,7 @@
             color: #000000d9;
             font-size: 14px;
             line-height: 22px;
+            font-weight: 900;
         }
         .config-mask {
             height: 0;
@@ -189,7 +182,6 @@
                 top: 25%;
                 width: 48px;
                 height: 48px;
-
                 transform: translateX(-72px);
                 background: #409eff;
                 border-radius: 5px 0 0 5px;
@@ -197,6 +189,25 @@
                 font-size: 24px;
                 text-align: center;
                 line-height: 48px;
+            }
+
+            .config-content-item {
+                margin: 24px 0;
+                overflow: hidden;
+                padding-bottom: 24px;
+                border-bottom: 1px solid #e2e2e2;
+
+                .set-config-item {
+                    display: flex;
+                    justify-content: space-between;
+
+                    color: rgb(32, 32, 32);
+                    font-size: 12px;
+
+                    + .set-config-item {
+                        margin-top: 16px;
+                    }
+                }
             }
         }
 
@@ -209,25 +220,6 @@
 
             .config-content {
                 transform: translateX(0);
-            }
-        }
-
-        .theme-color {
-            margin: 24px 0;
-            overflow: hidden;
-            padding-bottom: 24px;
-            border-bottom: 1px solid #e2e2e2;
-
-            .theme-color-block {
-                float: left;
-                width: 20px;
-                height: 20px;
-                margin-right: 8px;
-                color: #fff;
-                font-weight: 700;
-                text-align: center;
-                border-radius: 2px;
-                cursor: pointer;
             }
         }
 
