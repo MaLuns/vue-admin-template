@@ -1,18 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui'
-import G2 from "@antv/g2";
+/* import G2 from "@antv/g2"; */
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/index.less'
-import locale from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale/lang/zh-CN'
 
 
 require('@/mock')
 
-Vue.use(G2)
+/* Vue.use(G2) */
 Vue.use(ElementUI, { locale })
 Vue.config.productionTip = false
 Vue.config.devtools = true
+
+Vue.config.errorHandler = function () {
+  console.log(arguments)
+}
 
 import router from './router'
 import store from './store'

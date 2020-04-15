@@ -18,7 +18,7 @@
             </a>
         </div>
         <el-scrollbar wrap-class="scrollbar-wrapper" class="scrollbar">
-            <el-menu unique-opened router :default-active="$route.path" :collapse="sidebarOpen" class="el-menu-vertical">
+            <el-menu router :default-active="$route.path" :collapse="sidebarOpen" class="el-menu-vertical">
                 <sidebar-items v-for="route in $router.options.routes" :key="route.path" :route="route" :base-path="route.path"></sidebar-items>
             </el-menu>
         </el-scrollbar>

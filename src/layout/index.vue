@@ -1,8 +1,8 @@
-<style lang="less">
+<style lang="less" scoped>
     @import "index.less";
 </style>
 <template>
-    <div>
+    <div :class="this.navTheme">
         <el-container class="app-wrapper">
             <el-aside :class="classObject" v-if="ShowSidemenu">
                 <Sidebar />
@@ -40,22 +40,22 @@
                 "showTagNav",
                 "colorWeak"
             ]),
-            classObject: function() {
-                if (this.navTheme === "dark") {
+            classObject() {
+                if (this.navTheme === "dark" || this.navTheme === "darkAll") {
                     return {
                         "sidebar-container": true,
-                        "sidebar-collapse": this.sidebarOpen,
-                        "sidebar-container-dark": true
+                        "sidebar-collapse": this.sidebarOpen
+                        /*  "sidebar-container-dark": true */
                     };
                 } else {
                     return {
                         "sidebar-container": true,
-                        "sidebar-collapse": this.sidebarOpen,
-                        "sidebar-container-light": true
+                        "sidebar-collapse": this.sidebarOpen
+                        /* "sidebar-container-light": true */
                     };
                 }
             },
-            ShowSidemenu: function() {
+            ShowSidemenu() {
                 return this.layout == "sidemenu";
             }
         },
@@ -74,7 +74,7 @@
         watch: {
             $route(newRoute) {
                 this.AddTagNav(newRoute);
-            },
+            }
         },
         mounted() {
             this.SetCacheTagNavList();

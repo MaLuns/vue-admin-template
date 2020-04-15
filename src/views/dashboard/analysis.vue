@@ -8,7 +8,7 @@
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="6">
                 <el-card shadow="never">
-                    <g2-line id="ddd" :height="200"></g2-line>
+                    <g2-line id="bbb" :height="200"></g2-line>
                 </el-card>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="6">
@@ -18,7 +18,36 @@
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="6">
                 <el-card shadow="never">
-                    <g2-line id="eee" :height="200"></g2-line>
+                    <g2-line id="ddd" :height="200"></g2-line>
+                </el-card>
+            </el-col>
+        </el-row>
+        <br />
+        <el-row :gutter="10">
+            <el-col>
+                <el-card shadow="never">
+                    <g2-line id="eee" :height="400"></g2-line>
+                </el-card>
+            </el-col>
+        </el-row>
+        <br />
+        <el-row :gutter="10">
+            <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                <el-card shadow="never">
+                    <g2-line id="fff" :height="400"></g2-line>
+                </el-card>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                <el-card shadow="never">
+                    <g2-line id="ggg" :height="400"></g2-line>
+                </el-card>
+            </el-col>
+        </el-row>
+        <br />
+        <el-row :gutter="10">
+            <el-col>
+                <el-card shadow="never">
+                    <g2-line id="hhh" :height="400"></g2-line>
                 </el-card>
             </el-col>
         </el-row>

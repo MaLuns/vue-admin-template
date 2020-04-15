@@ -49,13 +49,13 @@
                                 props: {
                                     index: urlPath,
                                     /* "popper-append-to-body": true, */
-                                    "popper-class": `wlt-menu-vertical ${this.navTheme}`
+                                    "popper-class": `sidebar-menu-vertical ${this.navTheme==='light'?'light':'dark'}`
                                 }
                             },
                             [
                                 h(
                                     "div",
-                                    { slot: "title", class: "wlt-menu-text" },
+                                    { slot: "title", class: "sidebar-menu-text" },
                                     [
                                         icon !== ""
                                             ? h("i", { attrs: { class: icon } })

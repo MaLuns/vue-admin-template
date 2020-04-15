@@ -17,8 +17,8 @@
         <el-dropdown class="tags-nav-close">
             <i class="el-icon-arrow-down"></i>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item icon="el-icon-circle-close">关闭其他</el-dropdown-item>
-                <el-dropdown-item icon="el-icon-error">全部关闭</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-circle-close" @click.native="handleCloseTags('other')">关闭其他</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-error" @click.native="handleCloseTags('all')">全部关闭</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </div>
@@ -63,7 +63,7 @@
                     ? tagsNav.classList.add("fixed")
                     : tagsNav.classList.remove("fixed");
             },
-            ...mapMutations("app", ["closeTag", "SetTagNavList"]),
+            ...mapMutations("app", ["CloseTag", "SetTagNavList"]),
             setShowLeftRightBtn() {
                 this.$nextTick(() => {
                     this.showLeftRightBtn =
@@ -145,12 +145,13 @@
             },
             handleCloseTag(route) {
                 //关闭标签
-                this.closeTag({ route, checked: route.name === this.$route.name });
+                this.CloseTag({ route, checked: route.name === this.$route.name });
             },
-
+            handleCloseTags(type) {
+                this.CloseTag({ route: this.$route, type });
+            },
             moveToView(tag) {
                 //将当前选中的标签移动到可视区域
-
                 const outerWidth = this.$refs.tagsNavScroll.offsetWidth;
                 const bodyWidth = this.$refs.scrollBody.offsetWidth;
 
@@ -195,8 +196,6 @@
 <style lang="less" scoped>
     .tags-nav {
         height: 46px;
-        /* top: 64px; */
-
         background: #f0f2f5;
         overflow: hidden;
         z-index: 989 !important;
@@ -260,6 +259,7 @@
                 font-weight: 800;
             }
         }
+
         .btn-con {
             /deep/ .el-button {
                 height: 30px;

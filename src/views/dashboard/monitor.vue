@@ -1,63 +1,56 @@
 <template>
-    <div id="editor">
-        <textarea :value="input" @input="update"></textarea>
-        <div v-html="compiledMarkdown"></div>
+    <div>
+        <el-row :gutter="10">
+            <el-col :xs="24" :sm="24" :md="18" :lg="18">
+                <el-card shadow="never">
+                    <g2-line id="aaa" :height="500"></g2-line>
+                </el-card>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="6" :lg="6">
+                <el-row :gutter="10">
+                    <el-col :xs="24" :sm="24" :md="24" :lg="24">
+                        <el-card shadow="never">
+                            <g2-line id="bbb" :height="200"></g2-line>
+                        </el-card>
+                    </el-col>
+                    <el-col :xs="24" :sm="24" :md="24" :lg="24">
+                        <el-card shadow="never">
+                            <g2-line id="ccc" :height="200"></g2-line>
+                        </el-card>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <br />
+        <el-row :gutter="10">
+            <el-col :xs="24" :sm="24" :md="12" :lg="12">
+                <el-card shadow="never">
+                    <g2-line id="ddd" :height="300"></g2-line>
+                </el-card>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="6" :lg="6">
+                <el-card shadow="never">
+                    <g2-line id="eee" :height="300"></g2-line>
+                </el-card>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="6" :lg="6">
+                <el-card shadow="never">
+                    <g2-line id="fff" :height="300"></g2-line>
+                </el-card>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
 <script>
-    import marked from "marked";
+    import G2Line from "@/components/charts/line";
     export default {
-        name:"monitor",
-        data() {
-            return {
-                input: "# hello"
-            };
-        },
-        mounted() {},
-        computed: {
-            compiledMarkdown: function() {
-                return marked(this.input, { sanitize: true });
-            }
-        },
-        methods: {
-            update(e) {
-                this.input = e.target.value;
-            }
+        name: "monitor",
+        components: {
+            G2Line
         }
     };
 </script>
 
 <style>
-    #editor {
-        margin: 0;
-        height: 100%;
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        color: #333;
-    }
-
-    textarea,
-    #editor div {
-        display: inline-block;
-        width: 49%;
-        height: 100%;
-        vertical-align: top;
-        box-sizing: border-box;
-        padding: 0 20px;
-    }
-
-    textarea {
-        border: none;
-        border-right: 1px solid #ccc;
-        resize: none;
-        outline: none;
-        background-color: #f6f6f6;
-        font-size: 14px;
-        font-family: "Monaco", courier, monospace;
-        padding: 20px;
-    }
-
-    code {
-        color: #f66;
-    }
 </style>

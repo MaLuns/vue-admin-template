@@ -6,7 +6,7 @@
     <div style="height: 100%;">
         <div class="login">
             <div class="content">
-                <div class="wlt-title">
+                <div class="login-title">
                     <div>
                         <img :src="logSvg" alt />
                         <h1>Admin Pro</h1>

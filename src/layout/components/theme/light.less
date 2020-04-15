@@ -1,0 +1,67 @@
+.light {
+    @bgColor  : #fff;
+    @fontColor: ~'#000000a6';
+
+    .sidebar-container {
+        background: @bgColor;
+        box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
+
+        /deep/ .sidebar-menu {
+            .sidebar-logo-container {
+                background   : @bgColor;
+                border-bottom: 1px #e8e8e8 solid;
+
+                h1 {
+                    color: #1890ff;
+                }
+            }
+
+            .el-menu {
+                background: @bgColor;
+
+                .el-submenu [class^="el-icon-"] {
+                    color: @fontColor;
+                }
+
+                .el-submenu .el-menu-item,
+                .el-submenu .el-submenu__title {
+                    color           : @fontColor  !important;
+                    background-color: @bgColor  !important;
+                }
+
+
+                .el-submenu .el-submenu__title:hover,
+                .el-submenu .el-menu-item:hover {
+                    color: @fontColor  !important;
+                }
+
+                .el-menu-item {
+                    &::before {
+                        position  : absolute;
+                        right     : 0;
+                        height    : 100%;
+                        width     : 5px;
+                        background: linear-gradient(#0081ff, #22ebff);
+                        transform : scaleY(0.0001);
+                        opacity   : 0;
+                        transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+                            opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+                        content: "";
+                    }
+
+                    &.is-active {
+                        background-color: #e6f7ff !important;
+
+                        &::before {
+                            transform: scaleY(1);
+                            opacity  : 1;
+                            transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+                                opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

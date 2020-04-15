@@ -1,0 +1,85 @@
+@fontColor : #e8e8e8;
+@bgColor   : #001529;
+
+.dark,
+.darkAll {
+    .sidebar-container {
+        background: @bgColor;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.57);
+
+        /deep/.sidebar-menu {
+            .sidebar-logo-container {
+                background   : @bgColor;
+                border-bottom: 1px @bgColor solid;
+
+                h1 {
+                    color: @fontColor;
+                }
+
+            }
+
+            .el-menu {
+                background: @bgColor;
+
+                .el-submenu [class^="el-icon-"] {
+                    color: @fontColor;
+                }
+
+                .el-submenu .el-submenu__title {
+                    color           : #ffffffa6 !important;
+                    background-color: @bgColor  !important;
+                }
+
+                .el-submenu .el-menu-item {
+                    color           : #ffffffa6 !important;
+                    background-color: #000c17 !important;
+
+                }
+
+                .el-submenu .el-submenu__title:hover,
+                .el-submenu .el-menu-item:hover {
+                    color: #fff !important;
+                }
+
+                .el-menu-item.is-active {
+                    background-color: #1890ff !important;
+                    color           : #fff !important;
+                }
+            }
+        }
+    }
+}
+
+.darkAll {
+    .navbar {
+        background: @bgColor;
+        color     : @fontColor;
+        box-shadow: 0 0 9px 0px #000000;
+
+        /deep/.navbar-btn {
+            &:hover {
+                background: #82828236;
+            }
+        }
+    }
+
+    .tags-nav {
+        background: #001529;
+
+        /deep/ .tag-item {
+            background: #272727a3 !important;
+
+            .tag-title,
+            i {
+                &:hover {
+                    color: #fff !important;
+                }
+            }
+        }
+
+        /deep/.tags-nav-close {
+            color     : #FFF;
+            background: #bdbdbd63;
+        }
+    }
+}

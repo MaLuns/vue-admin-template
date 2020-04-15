@@ -1,29 +1,24 @@
 <template>
     <div class="navbar fixed" ref="navbar">
-        <div style="padding: 0 15px;" @click="toggleSideBar" class="hamburger-container">
-            <svg :class="{'is-active':!sidebarOpen}" class="hamburger" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
-                <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 0 0 0-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0 0 14.4 7z" />
+        <div @click="toggleSideBar" class="navbar-btn">
+            <svg :class="{'is-active':!sidebarOpen}" class="hamburger" viewBox="64 64 896 896" focusable="false" data-icon="menu-fold" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 000 13.8z" />
             </svg>
         </div>
-
         <div class="header-index-right">
-            <div class="item">
-                <!--  <el-popover trigger="click" placement='bottom-end' width='350'> -->
-                <el-badge :value="99" slot="reference">
-                    <i class="el-icon-bell" style="padding: 2px;"></i>
+            <el-tooltip content="没有日志信息" placement="bottom" :effect="effect">
+                <div class="navbar-btn">
+                    <i class="el-icon-help"></i>
+                </div>
+            </el-tooltip>
+
+            <div class="navbar-btn">
+                <i class="el-icon-full-screen"></i>
+            </div>
+            <div class="navbar-btn">
+                <el-badge :value="5" slot="reference">
+                    <i class="el-icon-bell"></i>
                 </el-badge>
-                <!--  <el-tabs v-model="activeName">
-                        <el-tab-pane label="通知" name="notice">
-
-                        </el-tab-pane>
-                        <el-tab-pane label="消息" name="message">
-
-                        </el-tab-pane>
-                        <el-tab-pane label="待办" name="todo">
-
-                        </el-tab-pane>
-                </el-tabs>-->
-                <!-- </el-popover> -->
             </div>
             <div class="item">
                 <el-dropdown :hide-on-click="false">
@@ -57,7 +52,10 @@
             }
         },
         computed: {
-            ...mapGetters(["sidebarOpen", "fixedHeader"])
+            ...mapGetters(["sidebarOpen", "fixedHeader", "navTheme"]),
+            effect() {
+                return this.navTheme === "darkAll" ? "light" : "dark";
+            }
         },
         mounted() {
             this.setLayout();
@@ -104,29 +102,13 @@
         height: 64px;
         overflow: hidden;
         display: flex;
-        position: relative;
         background: #fff;
         box-shadow: 2px 0 8px 0 rgba(53, 54, 56, 0.18);
-
-        .hamburger-container {
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-
-        .hamburger {
-            vertical-align: middle;
-            width: 20px;
-            height: 20px;
-            &.is-active {
-                transform: rotate(180deg);
-            }
-        }
 
         .header-index-right {
             position: absolute;
             right: 0;
-            width: 200px;
+            /* width: 200px; */
             height: 100%;
             overflow: hidden;
             display: flex;
@@ -144,6 +126,28 @@
                 span {
                     margin-right: 5px;
                 }
+            }
+        }
+
+        .navbar-btn {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 11px;
+            transition: background 0.3s;
+            cursor: pointer;
+
+            .hamburger {
+                vertical-align: middle;
+                width: 20px;
+                height: 20px;
+                &.is-active {
+                    transform: rotate(180deg);
+                }
+            }
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.025);
             }
         }
     }

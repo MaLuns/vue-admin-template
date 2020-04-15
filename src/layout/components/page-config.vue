@@ -9,6 +9,9 @@
                     <div @click="SetGlobalConfig('navTheme','dark')" :class="{'setting-checbox-item':true,'is-check':navTheme=='dark'}">
                         <img :src="icon.darkIcon" alt />
                     </div>
+                    <div @click="SetGlobalConfig('navTheme','darkAll')" :class="{'setting-checbox-item':true,'is-check':navTheme=='darkAll'}">
+                        <img :src="icon.darkAllIcon" alt />
+                    </div>
                     <div @click="SetGlobalConfig('navTheme','light')" :class="{'setting-checbox-item':true,'is-check':navTheme=='light'}">
                         <img :src="icon.lightIcon" alt />
                     </div>
@@ -21,7 +24,7 @@
                         <img :src="icon.darkIcon" alt />
                     </div>
                     <div @click="SetGlobalConfig('layout','topmenu')" :class="{'setting-checbox-item':true,'is-check':layout=='topmenu'}">
-                        <img :src="icon.lightIcon" alt />
+                        <img :src="icon.topIcon" alt />
                     </div>
                 </div>
             </div>
@@ -51,6 +54,7 @@
 
 <script>
     import darkIcon from "@/assets/svg/nav-theme-dark.svg";
+    import darkAllIcon from "@/assets/svg/nav-theme-dark-all.svg";
     import lightIcon from "@/assets/svg/nav-theme-light.svg";
     import topIcon from "@/assets/svg/nav-style-top.svg";
     import { mapGetters } from "vuex";
@@ -66,6 +70,7 @@
                 icon: {
                     darkIcon,
                     lightIcon,
+                    darkAllIcon,
                     topIcon
                 },
                 open: false,

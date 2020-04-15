@@ -10,17 +10,6 @@ import router from '@/router'
 "showTagNav": true,
 "colorWeak": false,
  */
-const getGlobalConfig = () => {
-    return {
-        sidebarOpen: localStorage.getItem("app_sidebarOpen") ? !!+localStorage.getItem("app_sidebarOpen") : sidebarOpen,
-        navTheme: localStorage.getItem("app_navTheme") || navTheme,
-        primaryColor: localStorage.getItem("app_primaryColor") || primaryColor,
-        layout: localStorage.getItem("app_layout") || layout,
-        fixedHeader: localStorage.getItem("app_fixedHeader") || fixedHeader,
-        showTagNav: localStorage.getItem("app_showTagNav") || showTagNav,
-        colorWeak: localStorage.getItem("app_colorWeak") || colorWeak
-    }
-}
 
 const state = {
     sidebarOpen: localStorage.getItem("app_sidebarOpen") ? JSON.parse(localStorage.getItem("app_sidebarOpen")) : sidebarOpen,
@@ -59,15 +48,23 @@ const mutations = {
             localStorage.setItem("tagNaveList", JSON.stringify(state.tagNavList))
         }
     },
-    closeTag(state, { route, checked }) {
-        let index = state.tagNavList.findIndex(item => item.name === route.name);
-        if (checked) {
-            let nextRoute;
-            if (index === state.tagNavList.length - 1) nextRoute = state.tagNavList[state.tagNavList.length - 2]
-            else nextRoute = state.tagNavList[index + 1]
-            router.push(nextRoute);
+    CloseTag(state, { route, checked, type = '' }) {
+        if (type === 'other') {
+            state.tagNavList = state.tagNavList.filter(item => item.name === homeName || item.name === route.name);
+        } else if (type === 'all') {
+            let homeRoute = state.tagNavList.filter(item => item.name === homeName);
+            state.tagNavList = homeRoute;
+            if (route.name !== homeName) router.push({ name: homeName, ...homeRoute[0] });
+        } else {
+            let index = state.tagNavList.findIndex(item => item.name === route.name);
+            if (checked) {
+                let nextRoute;
+                if (index === state.tagNavList.length - 1) nextRoute = state.tagNavList[state.tagNavList.length - 2]
+                else nextRoute = state.tagNavList[index + 1]
+                router.push(nextRoute);
+            }
+            state.tagNavList.splice(index, 1);
         }
-        state.tagNavList.splice(index, 1);
         localStorage.setItem("tagNaveList", JSON.stringify(state.tagNavList))
     },
 }

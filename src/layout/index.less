@@ -30,7 +30,7 @@
 
         >.navbar,
         >.tags-nav {
-            transition: width 0.3s;
+            transition: width 0.3s, background 0.3s;
             position  : relative;
             width     : 100%;
             z-index   : 990;
@@ -38,7 +38,6 @@
             &.fixed {
                 width   :~'calc(100% - @{sidebarWidth})';
                 position: fixed;
-                left    : sidebarWidth;
             }
         }
 
@@ -63,7 +62,6 @@
             >.navbar.fixed,
             >.tags-nav.fixed {
                 width:~'calc(100% - @{sidebarMinWidth})';
-                left : sidebarWidth;
             }
         }
     }
@@ -75,3 +73,6 @@
         }
     }
 }
+
+@import './components/theme/dark.less';
+@import './components//theme/light.less';

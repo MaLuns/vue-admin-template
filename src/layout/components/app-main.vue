@@ -27,19 +27,7 @@
             },
             obj() {
                 let { fixedHeader, showTagNav } = this;
-                return {
-                    fixedHeader,
-                    showTagNav
-                };
-            },
-            setLayout() {
-                if (this.fixedHeader) {
-                    this.$refs.appMain.style.marginTop = this.showTagNav
-                        ? "110px"
-                        : "64px";
-                } else {
-                    this.$refs.appMain.style.marginTop = 0;
-                }
+                return { fixedHeader, showTagNav };
             }
         },
         mounted() {
@@ -49,6 +37,17 @@
             obj() {
                 this.setLayout();
             }
+        },
+        methods: {
+            setLayout() {
+                if (this.fixedHeader) {
+                    this.$refs.appMain.style.marginTop = this.showTagNav
+                        ? "110px"
+                        : "64px";
+                } else {
+                    this.$refs.appMain.style.marginTop = 0;
+                }
+            }
         }
     };
 </script>
@@ -56,10 +55,5 @@
 <style lang="less">
     .app-main {
         width: 100%;
-    }
-    .el-popup-parent--hidden {
-        .fixed-header {
-            padding-right: 15px;
-        }
     }
 </style>
