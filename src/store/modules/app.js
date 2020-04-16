@@ -1,4 +1,4 @@
-import { sidebarOpen, navTheme, primaryColor, layout, fixedHeader, showTagNav, colorWeak, homeName } from '@/config'
+import { sidebarOpen, navTheme, primaryColor, layout, contentWidth, fixedHeader, fixSiderbar, showTagNav, colorWeak, homeName } from '@/config'
 import { routeHasExist } from "@/libs/util"
 import router from '@/router'
 
@@ -16,7 +16,9 @@ const state = {
     navTheme: localStorage.getItem("app_navTheme") || navTheme,
     primaryColor: localStorage.getItem("app_primaryColor") || primaryColor,
     layout: localStorage.getItem("app_layout") || layout,
+    contentWidth: localStorage.getItem("app_contentWidth") || contentWidth,
     fixedHeader: localStorage.getItem("app_fixedHeader") ? JSON.parse(localStorage.getItem("app_fixedHeader")) : fixedHeader,
+    fixedSiderbar: localStorage.getItem("app_fixedSiderbar") ? JSON.parse(localStorage.getItem("app_fixedSiderbar")) : fixSiderbar,
     showTagNav: localStorage.getItem("app_showTagNav") ? JSON.parse(localStorage.getItem("app_showTagNav")) : showTagNav,
     colorWeak: localStorage.getItem("app_colorWeak") ? JSON.parse(localStorage.getItem("app_colorWeak")) : colorWeak,
 

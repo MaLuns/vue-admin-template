@@ -55,5 +55,6 @@
 <style lang="less">
     .app-main {
         width: 100%;
+        padding: 10px 0;
     }
 </style>

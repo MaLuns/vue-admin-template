@@ -11,7 +11,6 @@
                     <i class="el-icon-help"></i>
                 </div>
             </el-tooltip>
-
             <div class="navbar-btn">
                 <i class="el-icon-full-screen"></i>
             </div>
@@ -108,7 +107,6 @@
         .header-index-right {
             position: absolute;
             right: 0;
-            /* width: 200px; */
             height: 100%;
             overflow: hidden;
             display: flex;

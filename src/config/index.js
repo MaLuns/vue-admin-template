@@ -5,7 +5,9 @@ module.exports = {
     "navTheme": "dark",
     "primaryColor": "#1890FF",
     "layout": "sidemenu",
+    "contentWidth": "fixed",
     "fixedHeader": true,
+    "fixSiderbar": true,
     "showTagNav": true,
     "colorWeak": false,
     "homeName": "home"

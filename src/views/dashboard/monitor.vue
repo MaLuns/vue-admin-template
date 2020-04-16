@@ -43,11 +43,12 @@
 </template>
 
 <script>
-    import G2Line from "@/components/charts/line";
+    /* import AreaChart from "@/components/charts/area";
+ */
     export default {
         name: "monitor",
         components: {
-            G2Line
+            
         }
     };
 </script>

@@ -6,13 +6,13 @@
             <div class="config-content-item">
                 <p class="config-title">整体风格设置</p>
                 <div class="setting-checbox">
-                    <div @click="SetGlobalConfig('navTheme','dark')" :class="{'setting-checbox-item':true,'is-check':navTheme=='dark'}">
+                    <div @click="SetGlobalConfig('navTheme','dark')" :class="{'setting-checbox-item':true,'is-check':navTheme==='dark'}">
                         <img :src="icon.darkIcon" alt />
                     </div>
-                    <div @click="SetGlobalConfig('navTheme','darkAll')" :class="{'setting-checbox-item':true,'is-check':navTheme=='darkAll'}">
+                    <div @click="SetGlobalConfig('navTheme','darkAll')" :class="{'setting-checbox-item':true,'is-check':navTheme==='darkAll'}">
                         <img :src="icon.darkAllIcon" alt />
                     </div>
-                    <div @click="SetGlobalConfig('navTheme','light')" :class="{'setting-checbox-item':true,'is-check':navTheme=='light'}">
+                    <div @click="SetGlobalConfig('navTheme','light')" :class="{'setting-checbox-item':true,'is-check':navTheme==='light'}">
                         <img :src="icon.lightIcon" alt />
                     </div>
                 </div>
@@ -20,19 +20,30 @@
             <div class="config-content-item">
                 <p class="config-title">导航模式</p>
                 <div class="setting-checbox">
-                    <div @click="SetGlobalConfig('layout','sidemenu')" :class="{'setting-checbox-item':true,'is-check':layout=='sidemenu'}">
+                    <div @click="SetGlobalConfig('layout','sidemenu')" :class="{'setting-checbox-item':true,'is-check':layout==='sidemenu'}">
                         <img :src="icon.darkIcon" alt />
                     </div>
-                    <div @click="SetGlobalConfig('layout','topmenu')" :class="{'setting-checbox-item':true,'is-check':layout=='topmenu'}">
+                    <div @click="SetGlobalConfig('layout','topmenu')" :class="{'setting-checbox-item':true,'is-check':layout==='topmenu'}">
                         <img :src="icon.topIcon" alt />
                     </div>
                 </div>
             </div>
             <div class="config-content-item">
                 <p class="config-title">其他配置</p>
+                <div class="set-config-item" v-show="layout==='topmenu'">
+                    内容区域宽度
+                    <el-radio-group v-model="content_width" @change="(val)=>SetGlobalConfig('contentWidth',val)">
+                        <el-radio label="fluid" style="display: block;margin-bottom: 10px;">流式</el-radio>
+                        <el-radio label="fixed">定宽</el-radio>
+                    </el-radio-group>
+                </div>
                 <div class="set-config-item">
                     固定 Header
                     <el-switch :value="fixedHeader" @change="(val)=>SetGlobalConfig('fixedHeader',val)"></el-switch>
+                </div>
+                <div class="set-config-item">
+                    固定侧边菜单
+                    <el-switch :value="fixedSiderbar" @change="(val)=>SetGlobalConfig('fixedSiderbar',val)"></el-switch>
                 </div>
                 <div class="set-config-item">
                     开启标签页
@@ -74,14 +85,20 @@
                     topIcon
                 },
                 open: false,
-                value: true
+                value: true,
+                content_width: null
             };
+        },
+        created() {
+            this.content_width = this.contentWidth;
         },
         computed: {
             ...mapGetters([
                 "navTheme",
                 "layout",
+                "contentWidth",
                 "fixedHeader",
+                "fixedSiderbar",
                 "showTagNav",
                 "colorWeak"
             ])
@@ -106,6 +123,7 @@
                 document.documentElement.style.filter = val ? "invert(100%)" : "";
             },
             SetGlobalConfig(key, val) {
+                console.log(key, val);
                 this.$store.commit("app/SetGlobalConfig", { key, val });
             },
             hasScrollbar() {
@@ -205,9 +223,9 @@
                 .set-config-item {
                     display: flex;
                     justify-content: space-between;
-
                     color: rgb(32, 32, 32);
                     font-size: 12px;
+                    align-items: center;
 
                     + .set-config-item {
                         margin-top: 16px;

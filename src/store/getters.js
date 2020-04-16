@@ -1,11 +1,14 @@
 const getters = {
     sidebarOpen: state => state.app.sidebarOpen,
     jwtToken: state => state.user.jwt_token,
+    tagNavList: state => state.app.tagNavList,
+
     navTheme: state => state.app.navTheme,
     layout: state => state.app.layout,
-    tagNavList: state => state.app.tagNavList,
-    fixedHeader: state => state.app.fixedHeader, 
-    showTagNav: state => state.app.showTagNav, 
+    contentWidth: state => state.app.contentWidth,
+    fixedHeader: state => state.app.fixedHeader,
+    fixedSiderbar: state => state.app.fixedSiderbar,
+    showTagNav: state => state.app.showTagNav,
     colorWeak: state => state.app.colorWeak,
 }
 

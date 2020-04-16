@@ -4,12 +4,12 @@
 <template>
     <div :class="this.navTheme">
         <el-container class="app-wrapper">
-            <el-aside :class="classObject" v-if="ShowSidemenu">
+            <el-aside :class="sidebarContainer" v-if="showSidemenu">
                 <Sidebar />
             </el-aside>
-            <el-container :class="{'main-container':true,'collapse':sidebarOpen}">
-                <TopMenu v-if="!ShowSidemenu" />
-                <Navbar v-if="ShowSidemenu" />
+            <el-container :class="mainContainer">
+                <TopMenu v-if="!showSidemenu" />
+                <Navbar v-if="showSidemenu" />
                 <TagNav v-show="showTagNav" />
                 <AppMain />
                 <AppFooter />
@@ -29,34 +29,37 @@
     import { mapGetters, mapMutations } from "vuex";
 
     export default {
-        name: "Home",
+        name: "layout",
         computed: {
             ...mapGetters([
                 "sidebarOpen",
                 "navTheme",
                 "layout",
+                "contentWidth",
                 "tagNavList",
                 "fixedHeader",
+                "fixedSiderbar",
                 "showTagNav",
                 "colorWeak"
             ]),
-            classObject() {
-                if (this.navTheme === "dark" || this.navTheme === "darkAll") {
-                    return {
-                        "sidebar-container": true,
-                        "sidebar-collapse": this.sidebarOpen
-                        /*  "sidebar-container-dark": true */
-                    };
-                } else {
-                    return {
-                        "sidebar-container": true,
-                        "sidebar-collapse": this.sidebarOpen
-                        /* "sidebar-container-light": true */
-                    };
-                }
+            sidebarContainer() {
+                return {
+                    "sidebar-container": true,
+                    "sidebar-collapse": this.sidebarOpen,
+                    "sidebar-container-fixed": this.fixedSiderbar
+                };
             },
-            ShowSidemenu() {
-                return this.layout == "sidemenu";
+            mainContainer() {
+                return {
+                    "main-container": true,
+                    "main-collapse": this.sidebarOpen && this.showSidemenu,
+                    "sidebar-container-not-fixed":
+                        !this.fixedSiderbar || !this.showSidemenu,
+                    "main-wide": !this.showSidemenu && this.contentWidth === "fixed"
+                };
+            },
+            showSidemenu() {
+                return this.layout === "sidemenu";
             }
         },
         components: {

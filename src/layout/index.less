@@ -1,23 +1,27 @@
 @sidebarWidth   : 240px;
 @sidebarMinWidth: 64px;
+@wide_maxWidth  : 1200px;
 
 .app-wrapper {
-    position: relative;
-    height  : 100%;
-    width   : 100%;
+    position   : relative;
+    /* height  : 100%;
+    width      : 100%; */
 
     >.sidebar-container {
-        height    : 100%;
         overflow  : hidden;
         width     : @sidebarWidth  !important;
-        z-index   : 991;
-        position  : fixed;
-        left      : 0;
-        top       : 0;
         transition: all 0.3s;
+        z-index   : 991;
+        min-height: 100vh;
 
         &.sidebar-collapse {
             width: @sidebarMinWidth  !important;
+        }
+
+        &.sidebar-container-fixed {
+            position: fixed;
+            left    : 0;
+            top     : 0;
         }
     }
 
@@ -56,12 +60,26 @@
             flex  : auto
         }
 
-        &.collapse {
+        &.main-collapse {
             margin-left: @sidebarMinWidth;
 
             >.navbar.fixed,
             >.tags-nav.fixed {
                 width:~'calc(100% - @{sidebarMinWidth})';
+            }
+        }
+
+        &.sidebar-container-not-fixed {
+            margin-left: 0;
+
+        }
+
+        &.main-wide {
+            max-width: @wide_maxWidth;
+            margin   : 0 auto;
+
+            >.tags-nav {
+                max-width: @wide_maxWidth;
             }
         }
     }

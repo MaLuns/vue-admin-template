@@ -4,24 +4,22 @@
 
     .scrollbar {
         height: calc(~"100% - 120px");
-    }
 
-    .el-menu {
-        /*   transition  : background 0.3s; */
-        border-right     : none;
-    }
+        .el-scrollbar__wrap {
+            overflow-x: hidden;
 
-    .el-scrollbar__wrap {
-        overflow-x: hidden;
-    }
+            .el-menu {
+                border-right: none;
 
-    .el-scrollbar__thumb {
-        background: transparent !important;
-    }
+                &:not(.el-menu--collapse) {
+                    width: 100%;
+                }
+            }
+        }
 
-    .el-menu-vertical:not(.el-menu--collapse) {
-        width         : 100%;
-        /*  min-height: 400px; */
+        .el-scrollbar__thumb {
+            background: transparent !important;
+        }
     }
 
     .sidebar-logo-container {
@@ -52,6 +50,18 @@
         &.collapse {
             overflow: hidden;
             width   : 64px;
+        }
+    }
+
+    &.sidebar-container-not-fixed {
+        height: 100%;
+
+        .scrollbar {
+            height: 100%;
+
+            .el-scrollbar__wrap {
+                margin-bottom: 20px !important;
+            }
         }
     }
 }

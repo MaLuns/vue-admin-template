@@ -14,9 +14,9 @@ Vue.use(ElementUI, { locale })
 Vue.config.productionTip = false
 Vue.config.devtools = true
 
-Vue.config.errorHandler = function () {
+/* Vue.config.errorHandler = function () {
   console.log(arguments)
-}
+} */
 
 import router from './router'
 import store from './store'
