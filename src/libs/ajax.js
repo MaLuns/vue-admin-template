@@ -47,9 +47,8 @@ const ajax = (options) => {
     if (data !== undefined && method === undefined) {
         options.method = "post";
     }
-
     options = Object.assign(getAxiosConfig(), options);
-
+    
     interceptors(instance);
     return instance(options)
 }

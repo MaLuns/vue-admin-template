@@ -122,7 +122,7 @@
 
         <el-row :gutter="20">
             <el-col :xs="24" :sm="24" :md="12" :lg="12">
-                <el-card shadow="never" style="height: 600px;">
+                <el-card shadow="never" style="height:580px;">
                     <div slot="header">
                         <span>热门搜索</span>
                     </div>
@@ -144,7 +144,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <g2-custom :data="yearData" :option="chart4" :height="100"></g2-custom>
+                                <g2-custom :data="yearData" :option="chart4" :height="80"></g2-custom>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="12" :lg="12">
                                 <div>
@@ -162,7 +162,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <g2-custom :data="yearData" :option="chart4" :height="100"></g2-custom>
+                                <g2-custom :data="yearData" :option="chart4" :height="80"></g2-custom>
                             </el-col>
                         </el-row>
                         <el-table :data="tableData" style="width: 100%" size="mini">
@@ -194,11 +194,18 @@
                 </el-card>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12">
-                <el-card shadow="never" style="height: 600px;">
+                <el-card shadow="never" style="height:580px;">
                     <div slot="header">
                         <span>用户画像</span>
+                        <div style="float: right;margin-top: -5px;">
+                            <el-radio-group v-model="userPortrait.type" size="small">
+                                <el-radio-button label="age">年龄</el-radio-button>
+                                <el-radio-button label="sex">性别</el-radio-button>
+                                <el-radio-button label="area">区域</el-radio-button>
+                            </el-radio-group>
+                        </div>
                     </div>
-                    <g2-custom :height="200" :option="chart5"></g2-custom>
+                    <g2-custom :height="400" :data="userPortrait[userPortrait.type]" :option="chart5"></g2-custom>
                 </el-card>
             </el-col>
         </el-row>
@@ -212,11 +219,6 @@
         components: {
             g2Custom
         },
-        /* mounted() {
-            setInterval(() => {
-                this.yearData = this.createData(12);
-            }, 5000);
-        }, */
         data() {
             return {
                 yearData: this.createData(12),
@@ -235,7 +237,31 @@
                     return arr;
                 })(),
                 pageIndex: 1,
-                pageSize: 5
+                pageSize: 5,
+                userPortrait: {
+                    type: "age",
+                    age: [
+                        { item: "年龄段 0~20", count: 2500, percent: 0.25 },
+                        { item: "年龄段 20~30", count: 4000, percent: 0.4 },
+                        { item: "年龄段 30~40", count: 2000, percent: 0.2 },
+                        { item: "年龄段 40~50", count: 1000, percent: 0.1 },
+                        { item: "年龄段 50~", count: 500, percent: 0.05 }
+                    ],
+                    sex: [
+                        { item: "男", count: 5000, percent: 0.5 },
+                        { item: "女", count: 4000, percent: 0.4 },
+                        { item: "其他", count: 1000, percent: 0.1 }
+                    ],
+                    area: [
+                        { item: "华东", count: 2000, percent: 0.2 },
+                        { item: "华南", count: 2000, percent: 0.2 },
+                        { item: "中南", count: 2000, percent: 0.2 },
+                        { item: "华北", count: 1000, percent: 0.1 },
+                        { item: "东北", count: 1000, percent: 0.1 },
+                        { item: "西南", count: 1000, percent: 0.1 },
+                        { item: "西北", count: 1000, percent: 0.1 }
+                    ]
+                }
             };
         },
         computed: {
@@ -289,22 +315,15 @@
             chart2(chart, data) {
                 chart.data(data);
                 chart.scale({
-                    value: {
-                        min: 0
-                    },
-                    key: {
-                        min: 0.5,
-                        max: 12.5
-                    }
+                    value: { min: 0 },
+                    key: { min: 0.5, max: 12.5 }
                 });
                 chart.tooltip({
                     showTitle: false,
                     containerTpl: `<div class="g2-tooltip"><ul class="g2-tooltip-list"></ul></div>`,
                     itemTpl: `<div style='line-height: 30px;'>{key} 销售 {value} </div>`
                 });
-                chart.scale("value", {
-                    ticks: [0, 15]
-                });
+                chart.scale("value", { nice: true });
                 chart.axis(false);
                 chart
                     .interval()
@@ -325,15 +344,16 @@
                 chart.data(data);
                 chart.scale({
                     value: {
-                        ticks: [0, 2, 4, 6, 8, 10, 12, 14]
+                        nice: true
                     },
                     key: {
-                        ticks: Array.from(Array(30), (v, k) => k + 1)
+                        ticks: Array.from(Array(30), (v, k) => k + 1),
+                        formatter(value) {
+                            return `${value}日`;
+                        }
                     }
                 });
-                /* chart.axis("key", {
-                                                                                                                                                                                                                                                                                                                                                                                    title: "xxxx"
-                                                                                                                                                                                                                                                                                                                                                                                }); */
+
                 chart.tooltip({
                     showTitle: false,
                     containerTpl: `<div class="g2-tooltip"><ul class="g2-tooltip-list"></ul></div>`,
@@ -388,96 +408,93 @@
                     });
                 chart.render();
             },
-            chart5(chart, datas) {
-                const data = [
-                    { x: 2, y: 8, z: 1.8, name: "BE", country: "Belgium" },
-                    { x: 3, y: 4, z: 1.7, name: "DE", country: "Germany" },
-                    { x: 4, y: 9, z: 1.8, name: "FI", country: "Finland" },
-                    { x: 7, y: 6, z: 1.3, name: "NZ", country: "New Zealand" }
-                ];
-
+            chart5(chart, data) {
                 chart.data(data);
-                chart.scale({
-                    x: {
-                        tickInterval: 5, // 自定义刻度间距
-                        max: 10, // 自定义最大值
-                        min: 0 // 自定义最小是
-                    },
-                    y: {
-                        tickInterval: 50,
-                        max: 15,
-                        min: 0
+                chart.scale("percent", {
+                    formatter: val => {
+                        val = val * 100 + "%";
+                        return val;
                     }
-                    /*  z: {
-                                        alias: "Obesity(adults) %"
-                                    } */
+                });
+                chart.coordinate("theta", {
+                    radius: 0.5,
+                    innerRadius: 0.7
                 });
 
-                chart.axis(false);
-                chart.legend(false);
-                chart.tooltip({
-                    title: "country",
-                    showMarkers: false
-                });
-                chart
-                    .point()
-                    .position("x*y")
-                    .color("#1890ff")
-                    .size("z", [10, 40])
-                    .label("name*country", {
-                        offset: 0, // 文本距离图形的距离
-                        style: {
-                            fill: "#1890FF",
-                            stroke: "#fff",
-                            lineWidth: 1
-                        }
-                    })
-                    .shape("circle")
-                    .tooltip("x*y*z")
-                    .style({
-                        lineWidth: 1,
-                        stroke: "#1890ff",
-                        fillOpacity: 0.3
-                    });
-                /* chart.annotation().line({
-                                    top: true,
-                                    start: [65, "min"],
-                                    end: [65, "max"],
-                                    text: {
-                                        content: "Safe fat intake 65g/day",
-                                        position: "end",
-                                        autoRotate: false,
-                                        style: {
-                                            textAlign: "start"
-                                        }
-                                    }
-                                });
-                                chart.annotation().line({
-                                    top: true,
-                                    start: ["min", 50],
-                                    end: ["max", 50],
-                                    text: {
-                                        content: "Safe sugar intake 50g/day",
-                                        position: "end",
-                                        style: {
-                                            textAlign: "end"
-                                        }
-                                    }
-                                }); */
-                chart.annotation().region({
-                    start: ["0%", "0%"],
-                    end: ["100%", "100%"],
+                chart.annotation().text({
+                    position: ["50%", "50%"],
+                    content: `总人数 ${data.reduce(
+                        (prev, next) =>
+                            (!prev.count ? prev : prev.count) + next.count
+                    )}`,
                     style: {
-                        lineWidth: 1,
-                        fillOpacity: 0,
-                        strokeOpacity: 1,
-                        stroke: "#545454"
+                        fontSize: 14,
+                        fill: "#8c8c8c",
+                        textAlign: "center"
                     }
                 });
 
-                chart.interaction("element-active");
+                chart.tooltip({
+                    showTitle: false,
+                    showMarkers: false,
+                    itemTpl:
+                        '<li class="g2-tooltip-list-item"><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
+                });
+                chart.legend({
+                    custom: true,
+                    items: [
+                        {
+                            value: "男",
+                            name: "男",
+                            marker: {
+                                symbol: "square",
+                            }
+                        },
+                        {
+                            value: "良",
+                            name: "良",
+                            marker: {
+                                symbol: "square",
+                            }
+                        },
+                        {
+                            value: "优",
+                            name: "优",
+                            marker: {
+                                symbol: "square",
+                            }
+                        },
+                        {
+                            value: "实际值",
+                            name: "实际值",
+                            marker: {
+                                symbol: "square",
+                            }
+                        }
+                    ]
+                });
 
+                const interval = chart
+                    .interval()
+                    .adjust("stack")
+                    .position("percent")
+                    .color("item")
+                    .tooltip("item*percent", (item, percent) => {
+                        percent = percent * 100 + "%";
+                        return {
+                            name: item,
+                            value: percent
+                        };
+                    })
+                    .style({
+                        lineWidth: 4,
+                        stroke: "#fff"
+                    });
+
+                chart.interaction("element-single-selected");
                 chart.render();
+                // 默认选择
+                interval.elements[0].setState("selected", true);
             }
         }
     };
@@ -485,13 +502,9 @@
 
 <style lang="less" scoped>
     .mb-item {
-        height: 200px;
         margin-bottom: 20px;
-        /deep/.el-card__header {
-            padding: 10px 18px;
-        }
+
         /deep/.el-card__body {
-            height: 100%;
             padding: 12px;
         }
         .numeral {
@@ -513,6 +526,7 @@
     }
     .rank-card {
         margin-bottom: 20px;
+
         .rank-card-body {
             height: 300px;
             .el-row,
