@@ -107,7 +107,7 @@ export default [
         name: 'list',
         component: Layout,
         meta: {
-            title: '列表页',
+            title: '列表页面',
             icon: 'el-icon-s-management'
         },
         children: [
@@ -134,6 +134,92 @@ export default [
                     title: '卡片列表',
                 },
                 component: () => import('@/views/home')
+            }
+        ]
+    }, {
+        path: '/result',
+        name: 'result',
+        component: Layout,
+        meta: {
+            title: '结果页面',
+            icon: 'el-icon-warning'
+        },
+        children: [
+            {
+                path: 'success',
+                name: 'success',
+                meta: {
+                    title: '成功页',
+                },
+                component: () => import('@/views/result/success')
+            }, {
+                path: 'fail',
+                name: 'fail',
+                meta: {
+                    title: '失败页',
+                },
+                component: () => import('@/views/result/fail')
+            }
+        ]
+    },
+    {
+        path: '/exception',
+        name: 'exception',
+        component: Layout,
+        meta: {
+            title: '异常页面',
+            icon: 'el-icon-warning'
+        },
+        children: [
+            {
+                path: '403',
+                name: 'error-403',
+                meta: {
+                    title: '无权限页面(403)'
+                },
+                component: () => import('@/views/exception/403')
+            },
+            {
+                path: '404',
+                name: 'error-404',
+                meta: {
+                    title: '未找到页面(404)',
+                },
+                component: () => import('@/views/exception/404')
+            },
+            {
+                path: '500',
+                name: 'error-500',
+                meta: {
+                    title: '服务器异常(500)',
+                },
+                component: () => import('@/views/exception/500')
+            }
+        ]
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: Layout,
+        meta: {
+            title: '个人页面',
+            icon: 'el-icon-warning'
+        },
+        children: [
+            {
+                path: 'center',
+                name: 'center',
+                meta: {
+                    title: '个人中心',
+                },
+                component: () => import('@/views/result/success')
+            }, {
+                path: 'settings',
+                name: 'settings',
+                meta: {
+                    title: '个人设置',
+                },
+                component: () => import('@/views/result/fail')
             }
         ]
     },
@@ -175,41 +261,6 @@ export default [
                     },
                 ]
             },
-        ]
-    },
-    {
-        path: '/exception',
-        name: 'exception',
-        component: Layout,
-        meta: {
-            title: '异常页',
-            icon: 'el-icon-warning'
-        },
-        children: [
-            {
-                path: '403',
-                name: 'error-403',
-                meta: {
-                    title: '无权限页面(403)'
-                },
-                component: () => import('@/views/exception/403')
-            },
-            {
-                path: '404',
-                name: 'error-404',
-                meta: {
-                    title: '未找到页面(404)',
-                },
-                component: () => import('@/views/exception/404')
-            },
-            {
-                path: '500',
-                name: 'error-500',
-                meta: {
-                    title: '服务器异常(500)',
-                },
-                component: () => import('@/views/exception/500')
-            }
         ]
     },
     {

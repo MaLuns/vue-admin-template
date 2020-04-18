@@ -122,7 +122,7 @@
 
         <el-row :gutter="20">
             <el-col :xs="24" :sm="24" :md="12" :lg="12">
-                <el-card shadow="never" style="height:580px;">
+                <el-card shadow="never" style="min-height:580px;">
                     <div slot="header">
                         <span>热门搜索</span>
                     </div>
@@ -194,7 +194,7 @@
                 </el-card>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12">
-                <el-card shadow="never" style="height:580px;">
+                <el-card shadow="never" style="min-height:580px;">
                     <div slot="header">
                         <span>用户画像</span>
                         <div style="float: right;margin-top: -5px;">
@@ -205,7 +205,7 @@
                             </el-radio-group>
                         </div>
                     </div>
-                    <g2-custom :height="400" :data="userPortrait[userPortrait.type]" :option="chart5"></g2-custom>
+                    <g2-custom isdrawChart :height="400" :data="userPortrait[userPortrait.type]" :option="chart5"></g2-custom>
                 </el-card>
             </el-col>
         </el-row>
@@ -393,7 +393,6 @@
                     .color("#38acfa");
                 chart
                     .area()
-
                     .position("key*value")
                     .shape("smooth")
                     .color("#38acfa58")
@@ -417,7 +416,7 @@
                     }
                 });
                 chart.coordinate("theta", {
-                    radius: 0.5,
+                    radius: 0.7,
                     innerRadius: 0.7
                 });
 
@@ -440,38 +439,29 @@
                     itemTpl:
                         '<li class="g2-tooltip-list-item"><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
                 });
-                chart.legend({
+                chart.legend("item", {
                     custom: true,
-                    items: [
-                        {
-                            value: "男",
-                            name: "男",
+                    position: "right",
+                    offsetX: -20,
+                    items: data.map((obj, index) => {
+                        return {
+                            name: obj.item,
+                            value: obj.percent,
                             marker: {
                                 symbol: "square",
+                                style: {
+                                    r: 5,
+                                    fill: chart.getTheme().colors10[index]
+                                }
                             }
+                        };
+                    }),
+                    itemValue: {
+                        style: {
+                            fill: "#999"
                         },
-                        {
-                            value: "良",
-                            name: "良",
-                            marker: {
-                                symbol: "square",
-                            }
-                        },
-                        {
-                            value: "优",
-                            name: "优",
-                            marker: {
-                                symbol: "square",
-                            }
-                        },
-                        {
-                            value: "实际值",
-                            name: "实际值",
-                            marker: {
-                                symbol: "square",
-                            }
-                        }
-                    ]
+                        formatter: val => `${val * 100}%`
+                    }
                 });
 
                 const interval = chart

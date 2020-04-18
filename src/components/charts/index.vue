@@ -19,6 +19,10 @@
             data: {
                 type: Array,
                 default: () => []
+            },
+            isdrawChart: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -29,7 +33,8 @@
         watch: {
             // 监控data，当发生变化时，重新绘制图表
             data: function(val) {
-                this.chart.changeData(val);
+                if (!this.isdrawChart) this.chart.changeData(val);
+                else this.drawChart(val);
             }
         },
         methods: {
