@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import comResult from "@/components/result";
+    import comResult from "@/components/com-result";
     export default {
         name: "fail",
         components: {

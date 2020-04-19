@@ -219,7 +219,7 @@ export default [
                 meta: {
                     title: '个人设置',
                 },
-                component: () => import('@/views/result/fail')
+                component: () => import('@/views/account/settings')
             }
         ]
     },
