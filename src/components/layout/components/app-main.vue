@@ -19,11 +19,14 @@
                 return this.$route.path;
             },
             include() {
-                return this.tagNavList.length
-                    ? this.tagNavList
-                          .filter(item => !(item.meta && item.meta.notCache))
-                          .map(item => item.name)
-                    : [];
+                return [
+                    "cache-view",
+                    ...(this.tagNavList.length
+                        ? this.tagNavList
+                              .filter(item => !(item.meta && item.meta.notCache))
+                              .map(item => item.name)
+                        : [])
+                ];
             },
             obj() {
                 let { fixedHeader, showTagNav } = this;

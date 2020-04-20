@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Page-Header title="分步表单" desc="将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
-        </Page-Header>
+        <page-header title="分步表单" desc="将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
+        </page-header>
         <el-card shadow="never">
             <el-steps :active="active" align-center simple process-status='finish' finish-status='finish'>
                 <el-step title="填写转账信息"></el-step>

@@ -1,15 +1,6 @@
 import { sidebarOpen, navTheme, primaryColor, layout, contentWidth, fixedHeader, fixSiderbar, showTagNav, colorWeak, homeName } from '@/config'
-import { routeHasExist } from "@/libs/util"
+import { routeHasExist, getTime } from "@/libs/util"
 import router from '@/router'
-
-/* "sidebarOpen": true,
-"navTheme": "dark",
-"primaryColor": "#1890FF",
-"layout": "sidemenu",
-"fixedHeader": true,
-"showTagNav": true,
-"colorWeak": false,
- */
 
 const state = {
     sidebarOpen: localStorage.getItem("app_sidebarOpen") ? JSON.parse(localStorage.getItem("app_sidebarOpen")) : sidebarOpen,
@@ -27,8 +18,18 @@ const state = {
 }
 
 const mutations = {
-    AddError(state, error) {
-        state.errorList.push(error)
+    AddError(state, { message, type, meta }) {
+        state.errorList.push({
+            message,
+            time: getTime(),
+            type,
+            meta: {
+                ...meta,
+            }
+        })
+    },
+    ClearLogInfo(state) {
+        state.errorList = []
     },
     SetGlobalConfig(state, { key, val }) {
         state[key] = val

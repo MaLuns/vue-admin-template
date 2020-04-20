@@ -88,3 +88,25 @@ export const looseEqual = (a, b) => {
 export const isObject = (obj) => {
     return obj !== null && typeof obj === 'object'
 }
+
+/**
+ * 获取时间 yyyy-MM-dd hh:mm:ss
+ */
+export const getTime = () => {
+    let date = new Date();
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+}
+
+
+/**
+ * 打印log
+ * @param {*} e 
+ */
+export const logprint = function (e) {
+    window.console.group("完整日志"),
+        window.console.log("message ", e.message),
+        window.console.log("time: ", e.time),
+        window.console.log("type: ", e.type),
+        window.console.log("meta: ", e.meta),
+        window.console.groupEnd()
+}

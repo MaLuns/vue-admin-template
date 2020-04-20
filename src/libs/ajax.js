@@ -1,16 +1,17 @@
 import axios from 'axios';
 import store from '@/store'
-const baseURL = process.env.NODE_ENV === 'production' ? "" : "http://127.0.0.1:1122";
+
+const baseURL = process.env.NODE_ENV === 'production' ? "" : "";
 
 const addErrorLog = errorInfo => {
-    const { statusText, status, request: { responseURL } } = errorInfo
-    let info = {
-        type: 'ajax',
-        code: status,
-        mes: statusText,
-        url: responseURL
-    }
-    store.dispatch("app/AddError", info)
+    store.commit("app/AddError", {
+        message: '数据请求错误',
+        type: "error",
+        meta: {
+            error: errorInfo,
+            path: errorInfo.request.responseURL
+        }
+    })
 }
 
 
@@ -26,7 +27,7 @@ const interceptors = (instance) => {
         const { data, status } = res
         return { data, status }
     }, error => {
-        addErrorLog(error.response)
+        addErrorLog(error)
         return Promise.reject(error)
     })
 }
@@ -48,7 +49,7 @@ const ajax = (options) => {
         options.method = "post";
     }
     options = Object.assign(getAxiosConfig(), options);
-    
+
     interceptors(instance);
     return instance(options)
 }

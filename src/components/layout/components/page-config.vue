@@ -123,7 +123,6 @@
                 document.documentElement.style.filter = val ? "invert(100%)" : "";
             },
             SetGlobalConfig(key, val) {
-                console.log(key, val);
                 this.$store.commit("app/SetGlobalConfig", { key, val });
             },
             hasScrollbar() {

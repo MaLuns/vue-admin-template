@@ -1,25 +1,32 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui'
-/* import G2 from "@antv/g2"; */
+import locale from 'element-ui/lib/locale/lang/zh-CN'
+import log from "@/plugin/log"
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/index.less'
-import locale from 'element-ui/lib/locale/lang/zh-CN'
+import '@/mock'
 
-
-require('@/mock')
-
-/* Vue.use(G2) */
+Vue.use(log)
 Vue.use(ElementUI, { locale })
 Vue.config.productionTip = false
 Vue.config.devtools = true
 
-/* Vue.config.errorHandler = function () {
-  console.log(arguments)
-} */
+
 
 import router from './router'
 import store from './store'
+
+Vue.config.errorHandler = function (err, vm, info) {
+  store.commit("app/AddError", {
+    message: `${info}  ${err}`,
+    type: "error",
+    meta: {
+      error: err,
+      path: vm.$route.path
+    }
+  })
+}
 
 new Vue({
   el: '#app',

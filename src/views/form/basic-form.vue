@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Page-Header title="基础表单" desc=" 表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
-        </Page-Header>
+        <page-header title="基础表单" desc=" 表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
+        </page-header>
         <el-card shadow="never">
             <div class="basic-form">
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px">

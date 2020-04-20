@@ -1,4 +1,4 @@
-import Layout from '@/layout'
+import Layout from '@/components/layout'
 import CacheView from '@/components/cache-view'
 
 /**
@@ -91,14 +91,6 @@ export default [
                     title: '分步表单',
                 },
                 component: () => import('@/views/form/step-form')
-            },
-            {
-                path: 'advanced-form',
-                name: 'advanced-form',
-                meta: {
-                    title: '高级表单',
-                },
-                component: () => import('@/views/form/advanced-form')
             }
         ]
     },
@@ -142,13 +134,14 @@ export default [
         component: Layout,
         meta: {
             title: '结果页面',
-            icon: 'el-icon-warning'
+            icon: 'el-icon-circle-check'
         },
         children: [
             {
                 path: 'success',
                 name: 'success',
                 meta: {
+                    icon: 'el-icon-success',
                     title: '成功页',
                 },
                 component: () => import('@/views/result/success')
@@ -156,6 +149,7 @@ export default [
                 path: 'fail',
                 name: 'fail',
                 meta: {
+                    icon: 'el-icon-error',
                     title: '失败页',
                 },
                 component: () => import('@/views/result/fail')
@@ -203,7 +197,7 @@ export default [
         component: Layout,
         meta: {
             title: '个人页面',
-            icon: 'el-icon-warning'
+            icon: 'el-icon-s-custom'
         },
         children: [
             {
@@ -212,7 +206,7 @@ export default [
                 meta: {
                     title: '个人中心',
                 },
-                component: () => import('@/views/result/success')
+                component: () => import('@/views/account/center')
             }, {
                 path: 'settings',
                 name: 'settings',
@@ -224,40 +218,44 @@ export default [
         ]
     },
     {
-        path: '/level',
-        name: 'level',
+        path: '/tool',
+        name: 'tool',
         component: Layout,
         meta: {
-            title: '多级菜单',
-            icon: 'el-icon-s-operation'
+            title: '工具',
+            icon: 'el-icon-s-platform'
         },
         children: [
             {
-                path: 'level_2',
-                name: 'level_2',
+                path: 'log',
+                name: 'log',
                 meta: {
-                    icon: 'el-icon-s-operation',
-                    title: '二级-1'
-                },
-                component: () => import('@/views/level/level-2.vue')
-            },
-            {
-                path: 'level_2_1',
-                name: 'level_2_1',
-                meta: {
-                    icon: 'el-icon-s-operation',
-                    title: '二级-2'
+                    icon: 'el-icon-bangzhu',
+                    title: '日志'
                 },
                 component: CacheView,
                 children: [
                     {
-                        path: 'level_3_1',
-                        name: 'level_3_1',
+                        path: 'error',
+                        name: 'error',
                         meta: {
-                            icon: 'el-icon-s-operation',
-                            title: '三级-1'
+                            title: '错误捕获'
                         },
-                        component: () => import('@/views/level/level_2_1/level_3.vue')
+                        component: () => import('@/views/tool/log/error.vue')
+                    }, {
+                        path: 'console',
+                        name: 'console',
+                        meta: {
+                            title: '控制台日志'
+                        },
+                        component: () => import('@/views/tool/log/console.vue')
+                    }, {
+                        path: 'log-list',
+                        name: 'log-list',
+                        meta: {
+                            title: '日志列表'
+                        },
+                        component: () => import('@/views/tool/log/log-list.vue')
                     },
                 ]
             },

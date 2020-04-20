@@ -6,9 +6,11 @@
             </svg>
         </div>
         <div class="header-index-right">
-            <el-tooltip content="没有日志信息" placement="bottom" :effect="effect">
-                <div class="navbar-btn">
-                    <i class="el-icon-help"></i>
+            <el-tooltip :content="logTitle" placement="bottom" :effect="effect">
+                <div class="navbar-btn" @click="$router.push('log-list')">
+                    <el-badge :value="logNum" :max="99" slot="reference" :hidden="logNum==0">
+                        <i class="el-icon-aim"></i>
+                    </el-badge>
                 </div>
             </el-tooltip>
             <div class="navbar-btn">
@@ -51,9 +53,23 @@
             }
         },
         computed: {
-            ...mapGetters(["sidebarOpen", "fixedHeader", "navTheme"]),
+            ...mapGetters(["sidebarOpen", "fixedHeader", "navTheme", "errorList"]),
             effect() {
                 return this.navTheme === "darkAll" ? "light" : "dark";
+            },
+            logTitle() {
+                if (this.errorList.length > 0) {
+                    let title = `${this.errorList.length}条日志`;
+                    return (
+                        title +
+                        (this.logNum > 0 ? ` | 包含${this.logNum}条异常` : "")
+                    );
+                } else {
+                    return "没有日志信息";
+                }
+            },
+            logNum() {
+                return this.errorList.filter(item => item.type === "error").length;
             }
         },
         mounted() {

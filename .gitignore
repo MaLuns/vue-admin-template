@@ -2,7 +2,7 @@
 node_modules
 /dist
 /servers/www
-demo.html
+demo.*
 # local env files
 .env.local
 .env.*.local

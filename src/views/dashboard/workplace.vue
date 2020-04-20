@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Page-Header title="工作台">
+        <page-header title="工作台">
             <div slot="content" class="workplace-row">
                 <div class="workplace-content">
-                    <el-avatar :size="80" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);" src="https://thirdqq.qlogo.cn/g?b=oidb&k=rFwZsJfkEcl3nC9RAeo81g&s=0"></el-avatar>
+                    <el-avatar :size="80" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);" :src="avatar"></el-avatar>
                     <div class="workplace-style-content">
                         <div class="workplace-style-content-title">早安，白云苍狗，开始您一天的工作吧！</div>
                         <div>.Net | 某某某事业群－某某平台部－某某技术部</div>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-        </Page-Header>
+        </page-header>
         <div class="workplace-main">
             <el-row :gutter="10">
                 <el-col :xs="24" :sm="24" :md="24" :lg="16">
@@ -64,8 +64,7 @@
                         <ul class="list-items">
                             <li class="list-item" v-for="(item,index) in 8" :key="index">
                                 <div class="list-item-meta">
-                                    <el-avatar :size="40" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);" src="https://thirdqq.qlogo.cn/g?b=oidb&k=rFwZsJfkEcl3nC9RAeo81g&s=0">
-                                    </el-avatar>
+                                    <el-avatar :size="40" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);" :src="avatar"></el-avatar>
                                     <div class="list-item-meta-content">
                                         <p style="font-size:14px;color:#515a6e;">
                                             <strong>白云苍狗</strong> 发表文章
@@ -109,11 +108,8 @@
                             <el-row :gutter="20">
                                 <el-col :span="12" v-for="(item,index) in 9" :key="index">
                                     <div style="height:60px;display: flex;align-items: center;padding: 0 20px;">
-                                        <el-avatar :size="40" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);"
-                                            src="https://thirdqq.qlogo.cn/g?b=oidb&k=rFwZsJfkEcl3nC9RAeo81g&s=0">
-                                        </el-avatar>
-                                        <span
-                                            style="font-size:14px;color:#515a6e;margin-left: 20px;flex: 1;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;word-break: break-all;">
+                                        <el-avatar :size="40" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);" :src="avatar"></el-avatar>
+                                        <span style="font-size:14px;color:#515a6e;margin-left: 20px;flex: 1;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;word-break: break-all;">
                                             <strong>白云苍狗{{item}}</strong>
                                         </span>
                                     </div>
@@ -130,10 +126,13 @@
 <script>
     import PageHeader from "@/components/page-header";
     import itemIma from "@/assets/middle.jpg";
+    import avatar from "@/assets/avatar.jpg";
+
     export default {
         name: "workplace",
         data() {
             return {
+                avatar,
                 cardBodyStyle: {
                     padding: "0 20px"
                 },
@@ -330,7 +329,6 @@
                 padding: 4px 0 0 8px;
             }
         }
-        
 
         .list-item {
             list-style: none;

@@ -1,13 +1,17 @@
 <template>
     <ul class="list-items">
         <li class="list-item" v-for="(item,index) in data" :key="index">
-            <el-avatar v-if="item.avatarUrl!=undefined" :src="item.avatarUrl"></el-avatar>
-            <div class="list-item-meta">
-                <div class="list-item-meta-title">{{item.title}}</div>
-                <div class="list-item-meta-description">{{item.des}}</div>
-            </div>
+            <slot :data="item" :index="index">
+                <el-avatar v-if="item.icon || item.src" :icon="item.icon" :src="item.src"></el-avatar>
+                <div class="list-item-meta">
+                    <div class="list-item-meta-title">{{item.title}}</div>
+                    <div class="list-item-meta-description">{{item.des}}</div>
+                </div>
+            </slot>
             <div class="list-item-action">
-                <slot name="action" :data="item" :index="index"></slot>
+                <slot name="action" :data="item" :index="index">
+                    <el-button type="text" v-if="!!item.btnText" @click="handClick(item,index)">{{item.btnText}}</el-button>
+                </slot>
             </div>
         </li>
     </ul>
@@ -19,6 +23,11 @@
         props: {
             data: {
                 type: Array
+            }
+        },
+        methods: {
+            handClick(data, index) {
+                this.$emit("handclick", data, index);
             }
         }
     };

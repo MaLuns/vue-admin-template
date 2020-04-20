@@ -1,35 +1,45 @@
 <template>
-    <!-- <el-card shadow="never"> -->
     <el-tabs tab-position="left" class="settings-main">
         <el-tab-pane label="基本设置">
             <div class="settings-content">
                 <div class="settings-content-title">基本设置</div>
+                <div>
+                    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-position="top">
+                        <el-form-item label="邮箱" prop="email">
+                            <el-input v-model="ruleForm.email" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称" prop="name">
+                            <el-input v-model="ruleForm.name" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="联系电话" prop="phone">
+                            <el-input v-model="ruleForm.phone" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="个人简介" prop="desc">
+                            <el-input type="textarea" v-model="ruleForm.desc" :autosize="{ minRows: 3}" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="submitForm('ruleForm')">更新基本信息</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
             </div>
         </el-tab-pane>
         <el-tab-pane label="安全设置">
             <div class="settings-content">
                 <div class="settings-content-title">安全设置</div>
-                <com-list :data="test">
-                    <template slot="action" slot-scope="{data}">
-                        <el-button type="text">{{data.btnText}}</el-button>
-                    </template>
-                </com-list>
+                <com-list :data="dataArr"></com-list>
             </div>
         </el-tab-pane>
         <el-tab-pane label="账号绑定">
             <div class="settings-content">
                 <div class="settings-content-title">账号绑定</div>
-                <com-list :data="test2">
-                    <template slot="action" slot-scope="{data}">
-                        <el-button type="text">{{data.btnText}}</el-button>
-                    </template>
-                </com-list>
+                <com-list :data="dataArr2"></com-list>
             </div>
         </el-tab-pane>
         <el-tab-pane label="新消息通知">
             <div class="settings-content">
                 <div class="settings-content-title">新消息通知</div>
-                <com-list :data="test3">
+                <com-list :data="dataArr3">
                     <template slot="action" slot-scope="{data}">
                         <el-switch v-model="data.open"></el-switch>
                     </template>
@@ -37,7 +47,6 @@
             </div>
         </el-tab-pane>
     </el-tabs>
-    <!-- </el-card> -->
 </template>
 
 <script>
@@ -45,7 +54,8 @@
     import iconTwitter from "@/assets/svg/icon-twitter.svg";
     import iconWechat from "@/assets/svg/icon-wechat.svg";
     import iconFacebook from "@/assets/svg/icon-facebook.svg";
-
+    import iconZhifubao from "@/assets/svg/icon-zhifubao.svg";
+    import avatar from "@/assets/avatar.jpg";
     export default {
         name: "settings",
         components: {
@@ -53,7 +63,44 @@
         },
         data() {
             return {
-                test: [
+                avatar,
+                ruleForm: {
+                    email: "test@test.com",
+                    name: "白云苍狗",
+                    phone: "18288888888",
+                    des: ""
+                },
+                rules: {
+                    email: [
+                        {
+                            required: true,
+                            message: "请填写您的邮箱!",
+                            trigger: "blur"
+                        }
+                    ],
+                    name: [
+                        {
+                            required: true,
+                            message: "请填写您的昵称!",
+                            trigger: "blur"
+                        }
+                    ],
+                    phone: [
+                        {
+                            required: true,
+                            message: "请填写您的联系方式！",
+                            trigger: "blur"
+                        }
+                    ],
+                    desc: [
+                        {
+                            required: true,
+                            message: "请填写个人简介!",
+                            trigger: "blur"
+                        }
+                    ]
+                },
+                dataArr: [
                     {
                         title: "账户密码",
                         des: "当前密码强度：强",
@@ -80,34 +127,33 @@
                         btnText: "绑定"
                     }
                 ],
-                test2: [
+                dataArr2: [
                     {
                         title: "微信",
                         des: "当前未绑定微信账号",
-                        avatarUrl: iconWechat,
+                        src: iconWechat,
                         btnText: "绑定"
                     },
                     {
                         title: "支付宝",
                         des: "当前未绑定支付宝账号",
-                        avatarUrl:
-                            "https://file.iviewui.com/admin-pro-dist/img/icon-social-wechat.c69ec08c.svg",
+                        src: iconZhifubao,
                         btnText: "绑定"
                     },
                     {
                         title: "Facebook",
                         des: "当前未绑定 Facebook 账号",
-                        avatarUrl: iconFacebook,
+                        src: iconFacebook,
                         btnText: "绑定"
                     },
                     {
                         title: "Twitter",
                         des: "当前未绑定 Twitter 账号",
-                        avatarUrl: iconTwitter,
+                        src: iconTwitter,
                         btnText: "绑定"
                     }
                 ],
-                test3: [
+                dataArr3: [
                     {
                         title: "账户密码",
                         des: "其他用户的消息将以站内信的形式通知",
