@@ -230,6 +230,10 @@
                         margin-top: 16px;
                     }
                 }
+                
+                /deep/.el-radio {
+                    margin-right: 0;
+                }
             }
         }
 

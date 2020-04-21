@@ -1,3 +1,13 @@
+/*
+sidebar
+    sidebar-collapse 折叠侧栏
+    sidebar-container-fixed 固定
+main
+    main-wide 定宽
+    main-collapse 折叠侧栏
+    sidebar-container-not-fixed 侧栏不固定
+*/
+
 @sidebarWidth   : 256px;
 @sidebarMinWidth: 64px;
 @wide_maxWidth  : 1200px;
@@ -69,16 +79,20 @@
 
         &.sidebar-container-not-fixed {
             margin-left: 0;
-
         }
 
-        &.main-wide {
-            max-width: @wide_maxWidth;
-            margin   : 0 auto;
-
+        &.not-sidebar {
             >.tags-nav {
+                width: 100%;
+            }
+
+            &.main-wide {
                 max-width: @wide_maxWidth;
-                width    : 100%;
+                margin   : 0 auto;
+
+                >.tags-nav {
+                    max-width: @wide_maxWidth;
+                }
             }
         }
     }

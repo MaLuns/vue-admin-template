@@ -9,7 +9,7 @@
             </el-aside>
             <el-container :class="mainContainer">
                 <TopMenu v-if="!showSidemenu" />
-                <Navbar v-if="showSidemenu" />
+                <HeaderNavBar v-if="showSidemenu" />
                 <TagNav v-show="showTagNav" />
                 <AppMain />
                 <AppFooter />
@@ -19,9 +19,9 @@
     </div>
 </template>
 <script>
-    import Navbar from "./components/nav-bar";
+    import HeaderNavBar from "./components/header-nav-bar/index";
     import AppMain from "./components/app-main";
-    import AppFooter from "./components/app-footer";
+    import Footer from "./components/footer";
     import Sidebar from "./components/sidebar/side-menu/index";
     import TopMenu from "./components/sidebar/top-menu/index";
     import TagNav from "./components/tag-nav";
@@ -55,6 +55,7 @@
                     "main-collapse": this.sidebarOpen && this.showSidemenu,
                     "sidebar-container-not-fixed":
                         !this.fixedSiderbar || !this.showSidemenu,
+                    "not-sidebar": !this.showSidemenu,
                     "main-wide": !this.showSidemenu && this.contentWidth === "fixed"
                 };
             },
@@ -64,11 +65,11 @@
         },
         components: {
             AppMain,
-            Navbar,
+            HeaderNavBar,
             Sidebar,
             TopMenu,
             PageConfig,
-            AppFooter,
+            Footer,
             TagNav
         },
         methods: {

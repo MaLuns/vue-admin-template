@@ -15,7 +15,7 @@
             <el-table-column label="信息">
                 <template slot-scope="scope">{{scope.row.message}}</template>
             </el-table-column>
-            <el-table-column label="触发页面/请求地址">
+            <el-table-column label="组件名/请求地址">
                 <template slot-scope="scope">{{scope.row.meta.path}}</template>
             </el-table-column>
             <el-table-column label="类型" width="80" align="center">
@@ -45,7 +45,12 @@
                 this.$store.commit("app/ClearLogInfo");
             },
             handclick(row) {
-                this.$log({ title: "白云苍狗", type: "primary", text: "完整日志内容" });
+                this.$message("请在浏览器控制台查看完整日志");
+                this.$log({
+                    title: "白云苍狗",
+                    type: "primary",
+                    text: "完整日志内容"
+                });
                 logprint(row);
             }
         }

@@ -23,7 +23,7 @@ Vue.config.errorHandler = function (err, vm, info) {
     type: "error",
     meta: {
       error: err,
-      path: vm.$route.path
+      path: vm.$options.name
     }
   })
 }

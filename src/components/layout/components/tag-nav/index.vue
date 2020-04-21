@@ -1,5 +1,5 @@
 <template>
-    <div class="tags-nav fixed" ref="tagsNav">
+    <div :class="tagsNavClass">
         <div class="btn-con left-btn" v-show="showLeftRightBtn">
             <el-button type="text" icon="el-icon-arrow-left" @click="handleScroll(240)"></el-button>
         </div>
@@ -32,8 +32,8 @@
         name: "TagNav",
         data() {
             return {
-                scrollBodyTranslateX: 0,
                 homeName,
+                scrollBodyTranslateX: 0,
                 showLeftRightBtn: false
             };
         },
@@ -42,6 +42,12 @@
             scrollNavCss() {
                 return {
                     transform: `translateX(${this.scrollBodyTranslateX}px)`
+                };
+            },
+            tagsNavClass() {
+                return {
+                    "tags-nav": true,
+                    fixed: this.fixedHeader
                 };
             }
         },
@@ -53,16 +59,8 @@
             this.$on("hook:beforeDestroy", () => {
                 window.removeEventListener("resize", resizeFn);
             });
-
-            this.setLayout();
         },
         methods: {
-            setLayout() {
-                let tagsNav = this.$refs.tagsNav;
-                this.fixedHeader
-                    ? tagsNav.classList.add("fixed")
-                    : tagsNav.classList.remove("fixed");
-            },
             ...mapMutations("app", ["CloseTag", "SetTagNavList"]),
             setShowLeftRightBtn() {
                 this.$nextTick(() => {
@@ -71,8 +69,8 @@
                         this.$refs.scrollBody.offsetWidth;
                 });
             },
+            //监听页面变化
             resize() {
-                //监听页面变化
                 let timer = null;
                 return () => {
                     window.clearTimeout(timer);
@@ -95,16 +93,16 @@
             active(route) {
                 return this.$route.name === route.name;
             },
+            //鼠标滚动
             handlescroll({ type, wheelDelta, detail }) {
-                //鼠标滚动
                 let delta = 0;
                 if (type === "DOMMouseScroll" || type === "mousewheel") {
                     delta = wheelDelta ? wheelDelta : -(detail || 0) * 40;
                 }
                 this.handleScroll(delta);
             },
+            //偏移
             handleScroll(offset) {
-                //偏移
                 const outerWidth = this.$refs.tagsNavScroll.offsetWidth;
                 const bodyWidth = this.$refs.scrollBody.offsetWidth;
                 const stx = this.scrollBodyTranslateX;
@@ -125,8 +123,8 @@
                 }
                 return false;
             },
+            //点击标签切换页面
             handleClick(e, route) {
-                //点击标签切换页面
                 if (e.target.tagName.toLowerCase() == "i") return;
                 this.translateX += 40;
                 let { name, params, query } = {};
@@ -143,15 +141,18 @@
                     query
                 });
             },
+            //关闭标签
             handleCloseTag(route) {
-                //关闭标签
                 this.CloseTag({ route, checked: route.name === this.$route.name });
             },
+            //关闭多个
             handleCloseTags(type) {
                 this.CloseTag({ route: this.$route, type });
+                this.scrollBodyTranslateX = 0;
+                this.showLeftRightBtn = false;
             },
+            //将当前选中的标签移动到可视区域
             moveToView(tag) {
-                //将当前选中的标签移动到可视区域
                 const outerWidth = this.$refs.tagsNavScroll.offsetWidth;
                 const bodyWidth = this.$refs.scrollBody.offsetWidth;
 
@@ -169,8 +170,8 @@
                         outerWidth - tag.offsetLeft - tag.offsetWidth;
                 }
             },
+            //找到当前选中的
             findCheckedTag() {
-                //找到当前选中的
                 this.$nextTick(() => {
                     this.$refs.tagNavList.forEach(item => {
                         item.firstChild.classList.forEach(cls => {
@@ -185,9 +186,7 @@
         watch: {
             $route() {
                 this.findCheckedTag();
-            },
-            fixedHeader() {
-                this.setLayout();
+                this.setShowLeftRightBtn();
             }
         }
     };
@@ -222,11 +221,12 @@
                     border-radius: 3px;
                     cursor: pointer;
                     user-select: none;
+                    transition: background 0.3s;
 
                     .tag-title {
                         display: inline-block;
                         margin-right: 10px;
-                        transition: all 0.2s ease-in-out;
+                        transition: all 0.3s;
 
                         &:hover {
                             color: rgb(36, 36, 36);
