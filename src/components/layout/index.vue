@@ -5,24 +5,24 @@
     <div :class="this.navTheme">
         <el-container class="app-wrapper">
             <el-aside :class="sidebarContainer" v-if="showSidemenu">
-                <Sidebar />
+                <sidebar-menu></sidebar-menu>
             </el-aside>
             <el-container :class="mainContainer">
-                <TopMenu v-if="!showSidemenu" />
-                <HeaderNavBar v-if="showSidemenu" />
-                <TagNav v-show="showTagNav" />
-                <AppMain />
-                <AppFooter />
+                <top-menu v-if="!showSidemenu"></top-menu>
+                <header-nav-bar v-if="showSidemenu"></header-nav-bar>
+                <tag-nav v-if="showTagNav && showSidemenu"></tag-nav>
+                <app-main></app-main>
+                <app-footer></app-footer>
             </el-container>
         </el-container>
-        <PageConfig />
+        <page-config></page-config>
     </div>
 </template>
 <script>
     import HeaderNavBar from "./components/header-nav-bar/index";
     import AppMain from "./components/app-main";
-    import Footer from "./components/footer";
-    import Sidebar from "./components/sidebar/side-menu/index";
+    import AppFooter from "./components/app-footer";
+    import SidebarMenu from "./components/sidebar/side-menu/index";
     import TopMenu from "./components/sidebar/top-menu/index";
     import TagNav from "./components/tag-nav";
     import PageConfig from "./components/page-config";
@@ -66,10 +66,10 @@
         components: {
             AppMain,
             HeaderNavBar,
-            Sidebar,
+            SidebarMenu,
             TopMenu,
             PageConfig,
-            Footer,
+            AppFooter,
             TagNav
         },
         methods: {

@@ -48,7 +48,6 @@
                             {
                                 props: {
                                     index: urlPath,
-                                    /* "popper-append-to-body": true, */
                                     "popper-class": `sidebar-menu-vertical ${this.navTheme==='light'?'light':'dark'}`
                                 }
                             },

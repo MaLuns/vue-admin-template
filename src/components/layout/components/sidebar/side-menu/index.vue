@@ -20,11 +20,11 @@
 
 <script>
     import { mapGetters } from "vuex";
-    import SidebarItems from "../sidebar-items";
+    import SidebarItems from "./sidebar-items";
     import logo from "@/assets/log.svg";
 
     export default {
-        name: "Sidebar",
+        name: "SidebarMenu",
         data() {
             return { logo };
         },

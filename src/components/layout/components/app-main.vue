@@ -14,7 +14,7 @@
     export default {
         name: "AppMain",
         computed: {
-            ...mapGetters(["tagNavList", "fixedHeader", "showTagNav"]),
+            ...mapGetters(["tagNavList", "fixedHeader", "showTagNav", "layout"]),
             key() {
                 return this.$route.path;
             },
@@ -29,8 +29,8 @@
                 ];
             },
             obj() {
-                let { fixedHeader, showTagNav } = this;
-                return { fixedHeader, showTagNav };
+                let { fixedHeader, showTagNav, layout } = this;
+                return { fixedHeader, showTagNav, layout };
             }
         },
         mounted() {
@@ -43,7 +43,7 @@
         },
         methods: {
             setLayout() {
-                if (this.fixedHeader) {
+                if (this.fixedHeader && this.layout == "sidemenu") {
                     this.$refs.appMain.style.marginTop = this.showTagNav
                         ? "110px"
                         : "64px";

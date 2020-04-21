@@ -4,23 +4,30 @@
 </style>
 <template>
     <div class="top-menu">
-        <el-menu mode="horizontal" unique-opened router :default-active="$route.path">
-            <sidebar-items v-for="route in routes" :key="route.path" :route="route" :base-path="route.path"></sidebar-items>
-        </el-menu>
+        <div class="top-meno-content">
+            <div class="sidebar-logo-container">
+                <a>
+                    <img class="sidebar-logo" :src="logo" alt="logo" />
+                    <h1>Admin System</h1>
+                </a>
+            </div>
+            <header-right></header-right>
+        </div>
     </div>
 </template>
 
 <script>
     import { mapGetters } from "vuex";
-    import SidebarItems from "../sidebar-items";
+    import HeaderRight from "../../header-nav-bar/header-right";
+    import logo from "@/assets/log.svg";
 
     export default {
         name: "Sidebar",
         data() {
-            return {};
+            return { logo };
         },
         components: {
-            SidebarItems
+            HeaderRight
         },
         computed: {
             ...mapGetters(["sidebarOpen"]),

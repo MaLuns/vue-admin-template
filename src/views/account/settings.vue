@@ -40,7 +40,7 @@
             <div class="settings-content">
                 <div class="settings-content-title">新消息通知</div>
                 <com-list :data="dataArr3">
-                    <template slot="action" slot-scope="{data}">
+                    <template #action="{data}">
                         <el-switch v-model="data.open"></el-switch>
                     </template>
                 </com-list>

@@ -61,6 +61,7 @@
     .header-index-right {
         position: absolute;
         right: 0;
+        top: 0;
         height: 100%;
         overflow: hidden;
         display: flex;

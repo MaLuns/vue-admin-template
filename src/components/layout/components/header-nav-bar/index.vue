@@ -15,10 +15,7 @@
     export default {
         name: "HeaderNavBar",
         data() {
-            return {
-                levelList: null,
-                activeName: "notice"
-            };
+            return {};
         },
         components: {
             HeaderRight

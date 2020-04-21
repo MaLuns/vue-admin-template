@@ -4,12 +4,12 @@
         <el-card shadow="never">
             <el-alert title="用法说明" type="info" description="打开控制台，点击不同的按，可显示不同的日志打印效果。" show-icon></el-alert>
             <el-divider>胶囊型</el-divider>
-            <el-row>
-                <el-button @click="log(item)" :type="item" v-for="item in btn" :key="item">胶囊型（{{item}}）</el-button>
+            <el-row style="margin: 50px 0;">
+                <el-button @click="log(item)" style="margin: 10px" :type="item" v-for="item in btn" :key="item">胶囊型（{{item}}）</el-button>
             </el-row>
             <el-divider>普通型</el-divider>
-            <el-row>
-                <el-button @click="log(item,true)" :type="item" v-for="item in btn" :key="item">普通型（{{item}}）</el-button>
+            <el-row style="margin: 50px 0;">
+                <el-button @click="log(item,true)" style="margin: 10px" :type="item" v-for="item in btn" :key="item">普通型（{{item}}）</el-button>
             </el-row>
         </el-card>
     </div>
@@ -29,6 +29,7 @@
         },
         methods: {
             log(type, plain = false) {
+                this.$message("请在浏览器控制台查看");
                 this.$log({ type, plain, text: "xxxxxxxxxxxxxx" });
             }
         }

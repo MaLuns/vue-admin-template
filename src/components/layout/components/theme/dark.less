@@ -91,4 +91,21 @@
             background: #bdbdbd63;
         }
     }
+
+    .top-menu {
+        /deep/ .top-meno-content {
+            background: @bgColor;
+            color     : @fontColor;
+
+            .navbar-btn {
+                &:hover {
+                    background: #82828236;
+                }
+            }
+
+            .el-dropdown {
+                color: #e8e8e8;
+            }
+        }
+    }
 }
