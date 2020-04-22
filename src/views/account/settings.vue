@@ -50,16 +50,17 @@
 </template>
 
 <script>
-    import comList from "@/components/com-list";
+    import ComList from "@/components/com-list";
     import iconTwitter from "@/assets/svg/icon-twitter.svg";
     import iconWechat from "@/assets/svg/icon-wechat.svg";
     import iconFacebook from "@/assets/svg/icon-facebook.svg";
     import iconZhifubao from "@/assets/svg/icon-zhifubao.svg";
     import avatar from "@/assets/avatar.jpg";
+
     export default {
         name: "settings",
         components: {
-            comList
+            ComList
         },
         data() {
             return {
@@ -103,52 +104,52 @@
                 dataArr: [
                     {
                         title: "账户密码",
-                        des: "当前密码强度：强",
+                        description: "当前密码强度：强",
                         btnText: "修改"
                     },
                     {
                         title: "密保手机",
-                        des: "已绑定手机：138****8293",
+                        description: "已绑定手机：138****8293",
                         btnText: "修改"
                     },
                     {
                         title: "密保问题",
-                        des: "未设置密保问题，密保问题可有效保护账户安全",
+                        description: "未设置密保问题，密保问题可有效保护账户安全",
                         btnText: "设置"
                     },
                     {
                         title: "备用邮箱",
-                        des: "已绑定邮箱：ant***sign.com",
+                        description: "已绑定邮箱：ant***sign.com",
                         btnText: "修改"
                     },
                     {
                         title: "MFA 设备",
-                        des: "未绑定 MFA 设备，绑定后，可以进行二次确认",
+                        description: "未绑定 MFA 设备，绑定后，可以进行二次确认",
                         btnText: "绑定"
                     }
                 ],
                 dataArr2: [
                     {
                         title: "微信",
-                        des: "当前未绑定微信账号",
+                        description: "当前未绑定微信账号",
                         src: iconWechat,
                         btnText: "绑定"
                     },
                     {
                         title: "支付宝",
-                        des: "当前未绑定支付宝账号",
+                        description: "当前未绑定支付宝账号",
                         src: iconZhifubao,
                         btnText: "绑定"
                     },
                     {
                         title: "Facebook",
-                        des: "当前未绑定 Facebook 账号",
+                        description: "当前未绑定 Facebook 账号",
                         src: iconFacebook,
                         btnText: "绑定"
                     },
                     {
                         title: "Twitter",
-                        des: "当前未绑定 Twitter 账号",
+                        description: "当前未绑定 Twitter 账号",
                         src: iconTwitter,
                         btnText: "绑定"
                     }
@@ -156,17 +157,17 @@
                 dataArr3: [
                     {
                         title: "账户密码",
-                        des: "其他用户的消息将以站内信的形式通知",
+                        description: "其他用户的消息将以站内信的形式通知",
                         open: true
                     },
                     {
                         title: "系统消息",
-                        des: "系统消息将以站内信的形式通知",
+                        description: "系统消息将以站内信的形式通知",
                         open: true
                     },
                     {
                         title: "待办任务",
-                        des: "待办任务将以站内信的形式通知",
+                        description: "待办任务将以站内信的形式通知",
                         open: true
                     }
                 ]

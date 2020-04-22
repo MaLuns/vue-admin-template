@@ -29,7 +29,7 @@
         <el-col :xs="24" :sm="24" :md="16" :lg="16">
             <el-card shadow="never">
                 <el-tabs v-model="activeName">
-                    <el-tab-pane label="文章（8）" name="article">
+                    <el-tab-pane :label="`文章（${articleData.length}）`" name="article">
                         <com-list :data="articleData">
                             <template #default="{data}">
                                 <div class="article-item">
@@ -61,7 +61,7 @@
                             </template>
                         </com-list>
                     </el-tab-pane>
-                    <el-tab-pane label="项目（8）" name="project">
+                    <el-tab-pane :label="`项目（${projectData.length}）`" name="project">
                         <el-row :gutter="20">
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8" v-for="(item,index) in projectData" :key="index" style="margin:10px 0">
                                 <el-card :body-style="{ padding: '0px' }" shadow="hover" class="project-card">
@@ -86,8 +86,9 @@
 
 <script>
     import avatar from "@/assets/avatar.jpg";
-    import comList from "@/components/com-list";
-    import avatarList from "@/components/avatar-list";
+    import ComList from "@/components/com-list";
+    import AvatarList from "@/components/avatar-list";
+    import { GetDrticleData, GetProjectData } from "@/api/account";
 
     export default {
         name: "center",
@@ -109,85 +110,8 @@
                         "大神"
                     ]
                 },
-                articleData: (() => {
-                    let arr = [];
-                    for (let index = 0; index < 8; index++) {
-                        arr.push({
-                            title: "Prototype",
-                            tags: ["javascript", "css", "html"],
-                            time: "2020-04-21 20:20:20",
-                            user: {
-                                name: "白云苍狗",
-                                url: avatar
-                            },
-                            desc:
-                                "JavaScript 只有一种结构：对象。每个实例对象（ object ）都有一个私有属性（称之为 __proto__ ）指向它的构造函数的原型对象（ prototype ）。该原型对象也有一个自己的原型对象( __proto__ ) ，层层向上直到一个对象的原型对象为 null。",
-                            star: 190,
-                            like: 30,
-                            message: 6
-                        });
-                    }
-                    return arr;
-                })(),
-                projectData: [
-                    {
-                        img:
-                            "https://gw.alipayobjects.com/zos/rmsportal/uMfMFlvUuceEyPpotzlq.png",
-                        name: "Ant Design Pro",
-                        desc: "那是一种内在的东西， 他们到达不了，也无法触及的",
-                        time: "3 小时前"
-                    },
-                    {
-                        img:
-                            "https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png",
-                        name: "Vue",
-                        desc: "那时候我只会想自己想要什么，从不想自己拥有什么",
-                        time: "3 小时前"
-                    },
-
-                    {
-                        img:
-                            "https://gw.alipayobjects.com/zos/rmsportal/uMfMFlvUuceEyPpotzlq.png",
-                        name: "Ant Design Pro",
-                        desc: "那是一种内在的东西， 他们到达不了，也无法触及的",
-                        time: "3 小时前"
-                    },
-                    {
-                        img:
-                            "https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png",
-                        name: "Vue",
-                        desc: "那时候我只会想自己想要什么，从不想自己拥有什么",
-                        time: "3 小时前"
-                    },
-                    {
-                        img:
-                            "https://gw.alipayobjects.com/zos/rmsportal/gLaIAoVWTtLbBWZNYEMg.png",
-                        name: "Element UI",
-                        desc: "城镇中有那么多的酒馆，她却偏偏走进了我的酒馆",
-                        time: "3 小时前"
-                    },
-                    {
-                        img:
-                            "https://gw.alipayobjects.com/zos/rmsportal/uMfMFlvUuceEyPpotzlq.png",
-                        name: "Ant Design Pro",
-                        desc: "那是一种内在的东西， 他们到达不了，也无法触及的",
-                        time: "3 小时前"
-                    },
-                    {
-                        img:
-                            "https://gw.alipayobjects.com/zos/rmsportal/gLaIAoVWTtLbBWZNYEMg.png",
-                        name: "Element UI",
-                        desc: "城镇中有那么多的酒馆，她却偏偏走进了我的酒馆",
-                        time: "3 小时前"
-                    },
-                    {
-                        img:
-                            "https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png",
-                        name: "Vue",
-                        desc: "那时候我只会想自己想要什么，从不想自己拥有什么",
-                        time: "3 小时前"
-                    }
-                ],
+                articleData: [],
+                projectData: [],
                 avatarList: [
                     { text: "白", name: "白云苍狗" },
                     { icon: "el-icon-user-solid" },
@@ -196,8 +120,16 @@
             };
         },
         components: {
-            comList,
-            avatarList
+            ComList,
+            AvatarList
+        },
+        created() {
+            GetDrticleData().then(({ data: { data } }) => {
+                this.articleData = data;
+            });
+            GetProjectData().then(({ data: { data } }) => {
+                this.projectData = data;
+            });
         },
         methods: {
             handleInputConfirm() {

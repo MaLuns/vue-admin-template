@@ -185,7 +185,6 @@
             display: block !important;
         }
         .workplace-extraContent {
-            text-align: center !important;
             margin-top: 20px;
         }
     }
@@ -221,27 +220,13 @@
         }
 
         .workplace-extraContent {
-            width: auto;
-            text-align: right;
-
+            text-align: center;
+            
             .workplace-style-statItem {
                 position: relative;
                 display: inline-block;
                 padding: 0 32px;
 
-                &:after {
-                    position: absolute;
-                    top: 8px;
-                    left: 0;
-                    width: 1px;
-                    height: 40px;
-                    background-color: #e8e8e8;
-                    content: "";
-                }
-
-                &:first-child::after {
-                    width: 0px;
-                }
                 .statistic {
                     box-sizing: border-box;
                     margin: 0;
@@ -252,16 +237,20 @@
                     line-height: 1.5;
                     list-style: none;
                     font-feature-settings: "tnum";
+
+                    .statistic-title {
+                        margin-bottom: 4px;
+                        color: #00000073;
+                        font-size: 14px;
+                    }
+                    .statistic-content {
+                        color: #000000d9;
+                        font-size: 24px;
+                    }
                 }
 
-                .statistic-title {
-                    margin-bottom: 4px;
-                    color: #00000073;
-                    font-size: 14px;
-                }
-                .statistic-content {
-                    color: #000000d9;
-                    font-size: 24px;
+                + .workplace-style-statItem {
+                    border-left: 1px solid #f1f1f1;
                 }
             }
         }

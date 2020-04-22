@@ -9,7 +9,7 @@
                 <div class="login-title">
                     <div>
                         <img :src="logSvg" alt />
-                        <h1>Admin Pro</h1>
+                        <h1>Admin Template</h1>
                     </div>
                     <div class="user-layout-desc">基于 vue 和 element-ui 中后台前端模板</div>
                 </div>

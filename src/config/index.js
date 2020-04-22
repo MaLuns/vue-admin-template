@@ -1,6 +1,6 @@
 
 module.exports = {
-    "title": "Admin Temp",
+    "title": "Admin Template",
     "sidebarOpen": true,
     "navTheme": "dark",
     "primaryColor": "#1890FF",

@@ -49,15 +49,6 @@ export default [
                 component: () => import('@/views/dashboard/analysis')
             },
             {
-                path: 'monitor',
-                name: 'monitor',
-                meta: {
-                    title: '监控页',
-                    notCache: true
-                },
-                component: () => import('@/views/dashboard/monitor')
-            },
-            {
                 path: 'workplace',
                 name: 'workplace',
                 meta: {
@@ -109,7 +100,7 @@ export default [
                 meta: {
                     title: '标准列表',
                 },
-                component: () => import('@/views/home')
+                component: () => import('@/views/list/basic-list')
             },
             {
                 path: 'table-list',
@@ -117,7 +108,7 @@ export default [
                 meta: {
                     title: '查询表格',
                 },
-                component: () => import('@/views/home')
+                component: () => import('@/views/list/table-list')
             },
             {
                 path: 'card-list',
@@ -125,7 +116,7 @@ export default [
                 meta: {
                     title: '卡片列表',
                 },
-                component: () => import('@/views/home')
+                component: () => import('@/views/list/card-list')
             }
         ]
     }, {

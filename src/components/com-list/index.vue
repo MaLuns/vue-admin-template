@@ -2,12 +2,13 @@
     <ul class="list-items">
         <li class="list-item" v-for="(item,index) in data" :key="index">
             <slot :data="item" :index="index">
-                <el-avatar v-if="item.icon || item.src" :icon="item.icon" :src="item.src"></el-avatar>
+                <el-avatar :shape="shape" :size="iconSize" v-if="item.icon || item.src" :icon="item.icon" :src="item.src"></el-avatar>
                 <div class="list-item-meta">
                     <div class="list-item-meta-title">{{item.title}}</div>
-                    <div class="list-item-meta-description">{{item.des}}</div>
+                    <div class="list-item-meta-description">{{item.description}}</div>
                 </div>
             </slot>
+            <slot name="content" :data="item" :index="index"></slot>
             <div class="list-item-action">
                 <slot name="action" :data="item" :index="index">
                     <el-button type="text" v-if="!!item.btnText" @click="handClick(item,index)">{{item.btnText}}</el-button>
@@ -22,7 +23,18 @@
         name: "com-list",
         props: {
             data: {
-                type: Array
+                type: Array,
+                default() {
+                    return [];
+                }
+            },
+            shape: {
+                type: String,
+                default: "circle"
+            },
+            iconSize: {
+                type: [Number, String],
+                default: "large"
             }
         },
         methods: {
@@ -44,6 +56,9 @@
             /deep/.el-avatar {
                 margin-right: 10px;
                 background: transparent;
+                &.el-avatar--icon {
+                    background: #d3d3d3;
+                }
             }
 
             .list-item-meta {
