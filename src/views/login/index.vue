@@ -56,6 +56,7 @@
 </template>
 <script>
     import logSvg from "@/assets/log.svg";
+    import { login } from "@/api/login";
 
     export default {
         name: "Login",
@@ -75,17 +76,17 @@
         },
         methods: {
             SubmitLogin() {
-                this.$store.dispatch("user/setjwt_token", "admin");
-                this.$router.push({
-                    name: "home",
-                    params: {
-                        b: 123,
-                        c: 12
-                    },
-                    query: {
-                        a: 1
+                login(this.from.loginName, this.from.passWorld).then(
+                    ({ data: { resule, data } }) => {
+                        if (resule) {
+                            let { token, authority } = data;
+                            this.$store.commit("user/setjwt_token", token);
+                            this.$store.commit("user/set_authority", authority);
+
+                            this.$router.push({ name: "home" });
+                        }
                     }
-                });
+                );
             }
         }
     };

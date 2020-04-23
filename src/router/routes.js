@@ -4,6 +4,7 @@ import CacheView from '@/components/cache-view'
 /**
  * meta: {
  *   title:String 显示在侧边栏、面包屑和标签栏的文字
+ *                {{xxx}} 使用多语言
  *   hideInMenu: (false) 设为true后在左侧菜单不会显示该页面选项
  *   icon: 左侧菜单、面包屑和标签导航处显示的图标
  *   notCache: (false) 设为true后对页面不进行缓存, 如果需要缓存,需要设置页面组件name属性和路由配置的name一致
@@ -119,7 +120,8 @@ export default [
                 component: () => import('@/views/list/card-list')
             }
         ]
-    }, {
+    },
+    {
         path: '/result',
         name: 'result',
         component: Layout,
@@ -214,7 +216,8 @@ export default [
         component: Layout,
         meta: {
             title: '工具',
-            icon: 'el-icon-s-platform'
+            icon: 'el-icon-s-platform',
+            auth: 'tool',
         },
         children: [
             {
@@ -222,7 +225,8 @@ export default [
                 name: 'log',
                 meta: {
                     icon: 'el-icon-bangzhu',
-                    title: '日志'
+                    title: '日志',
+                    auth: 'log',
                 },
                 component: CacheView,
                 children: [
@@ -230,26 +234,39 @@ export default [
                         path: 'error',
                         name: 'error',
                         meta: {
-                            title: '错误捕获'
+                            title: '错误捕获',
+                            auth: 'error',
                         },
                         component: () => import('@/views/tool/log/error.vue')
                     }, {
                         path: 'console',
                         name: 'console',
                         meta: {
-                            title: '控制台日志'
+                            title: '控制台日志',
+                            auth: 'console',
                         },
                         component: () => import('@/views/tool/log/console.vue')
                     }, {
                         path: 'log-list',
                         name: 'log-list',
                         meta: {
-                            title: '日志列表'
+                            title: '日志列表',
+                            auth: 'loglist',
                         },
                         component: () => import('@/views/tool/log/log-list.vue')
                     },
                 ]
             },
+            {
+                path: 'i18n',
+                name: 'i18n',
+                meta: {
+                    title: '{{i18n}}',
+                    icon: 'el-icon-s-platform',
+                    auth: 'i18n',
+                },
+                component: () => import('@/views/tool/launge.vue')
+            }
         ]
     },
     {

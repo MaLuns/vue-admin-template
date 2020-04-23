@@ -1,6 +1,5 @@
 import ajax from "@/libs/ajax"
 
-
 export const GetDrticleData = () => {
     return ajax({
         url: '/account/articledata'

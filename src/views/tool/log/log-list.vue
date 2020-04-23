@@ -15,7 +15,7 @@
             <el-table-column label="信息">
                 <template slot-scope="scope">{{scope.row.message}}</template>
             </el-table-column>
-            <el-table-column label="组件名/请求地址">
+            <el-table-column label="地址">
                 <template slot-scope="scope">{{scope.row.meta.path}}</template>
             </el-table-column>
             <el-table-column label="类型" width="80" align="center">

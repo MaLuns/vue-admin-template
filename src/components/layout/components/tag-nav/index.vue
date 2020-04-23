@@ -6,7 +6,7 @@
         <div ref="tagsNavScroll" class="tags-nav-scroll" @DOMMouseScroll.prevent="handlescroll" @mousewheel.prevent="handlescroll">
             <div ref="scrollBody" class="scroll-body" :style="scrollNavCss">
                 <div ref="tagNavList" v-for="tag in tagNavList" :key="tag.name" class="tag-item" @click="handleClick($event,tag)">
-                    <div :class="{'tag-title':true,'tab-active':active(tag)}">{{ tag.meta.title }}</div>
+                    <div :class="{'tag-title':true,'tab-active':active(tag)}">{{ strToI18n(tag) }}</div>
                     <i class="el-icon-close" @click="handleCloseTag(tag)" v-if="homeName!==tag.name"></i>
                 </div>
             </div>
@@ -27,6 +27,7 @@
 <script>
     import { homeName } from "@/config";
     import { mapGetters, mapMutations } from "vuex";
+    import { strToI18n } from "@/libs/util";
 
     export default {
         name: "TagNav",
@@ -61,6 +62,10 @@
             });
         },
         methods: {
+            strToI18n(route) {
+                let { path, meta: { title } = { title: path } } = route;
+                return strToI18n(title, this);
+            },
             ...mapMutations("app", ["CloseTag", "SetTagNavList"]),
             setShowLeftRightBtn() {
                 this.$nextTick(() => {

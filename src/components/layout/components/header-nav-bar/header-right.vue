@@ -15,6 +15,14 @@
                 <i class="el-icon-bell"></i>
             </el-badge>
         </div>
+        <div class="navbar-btn">
+            <el-dropdown :hide-on-click="false" placement="bottom" @command="setLang">
+                <i class="el-icon-full-screen"></i>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item v-for="(val, key) in lang" :command="key" :key="key">{{val}}</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+        </div>
         <div class="item">
             <el-dropdown :hide-on-click="false">
                 <span class="avatar-link">
@@ -35,7 +43,7 @@
     export default {
         name: "HeaderRight",
         computed: {
-            ...mapGetters(["navTheme", "errorList"]),
+            ...mapGetters(["navTheme", "errorList", "lang"]),
             effect() {
                 return this.navTheme === "darkAll" ? "light" : "dark";
             },
@@ -52,6 +60,11 @@
             },
             logNum() {
                 return this.errorList.filter(item => item.type === "error").length;
+            }
+        },
+        methods: {
+            setLang(val) {
+                this.$i18n.locale = val;
             }
         }
     };

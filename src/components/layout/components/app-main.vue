@@ -2,7 +2,7 @@
     <section class="app-main" ref="appMain">
         <transition name="fade-transform" mode="out-in">
             <keep-alive :include="include">
-                <router-view :key="key" />
+                <router-view :key="$route.path" />
             </keep-alive>
         </transition>
     </section>
@@ -15,9 +15,6 @@
         name: "AppMain",
         computed: {
             ...mapGetters(["tagNavList", "fixedHeader", "showTagNav", "layout"]),
-            key() {
-                return this.$route.path;
-            },
             include() {
                 return [
                     "cache-view",

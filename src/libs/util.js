@@ -1,3 +1,5 @@
+import { lang } from '@/config'
+
 /**
  * @param {*} list 现有标签导航列表
  * @param {*} newRoute 新添加的路由原信息对象
@@ -110,3 +112,17 @@ export const logprint = function (e) {
         window.console.log("meta: ", e.meta),
         window.console.groupEnd()
 }
+
+/**
+ * 将字符串中 {{ xxx }} 转换成对应语言
+ * @param {*} str 
+ * @param {*} vm 
+ */
+export const strToI18n = function (str, vm) {
+    if (!str) return
+    if (lang.use && str.includes('{{') && str.includes('}}')) {
+        str = str.replace(/({{[\s\S]+?}})/, (m, str) => str.replace(/{{([\s\S]*)}}/, (m, _) => vm.$t(_.trim())))
+    }
+    return str
+}
+

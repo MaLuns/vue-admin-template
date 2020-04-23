@@ -1,9 +1,8 @@
 <script>
     import { mapGetters } from "vuex";
+    import { strToI18n } from "@/libs/util";
+
     export default {
-        data() {
-            return {};
-        },
         name: "SidebarItem",
         props: {
             route: {
@@ -36,7 +35,7 @@
                         hideInMenu: false
                     }
                 } = route;
-
+                title = strToI18n(title, this);
                 let urlPath =
                     (basePath == "/" ? "" : basePath) +
                     (path.indexOf("/") === 0 ? path : "/" + path);
@@ -48,7 +47,9 @@
                             {
                                 props: {
                                     index: urlPath,
-                                    "popper-class": `sidebar-menu-vertical ${this.navTheme==='light'?'light':'dark'}`
+                                    "popper-class": `sidebar-menu-vertical ${
+                                        this.navTheme === "light" ? "light" : "dark"
+                                    }`
                                 }
                             },
                             [

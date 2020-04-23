@@ -34,7 +34,6 @@ Mock.mock(/\/list\/tablelist/, () => {
     })
 })
 
-
 Mock.mock('/account/articledata', () => {
     return Mock.mock({
         "resule": true,
@@ -54,7 +53,6 @@ Mock.mock('/account/articledata', () => {
     })
 })
 
-
 Mock.mock('/account/projectdata', () => {
     return Mock.mock({
         "resule": true,
@@ -70,11 +68,3 @@ Mock.mock('/account/projectdata', () => {
     })
 })
 
-/*
-const creArr = (min, max, obj) => {
-    let arr = []
-    for (let index = 0; index < Random.integer(min, max); index++) {
-        arr.push(obj)
-    }
-    return arr;
-} */

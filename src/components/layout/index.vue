@@ -32,7 +32,7 @@
         name: "layout",
         computed: {
             ...mapGetters([
-                "sidebarOpen",
+                "sidebarCollapse",
                 "navTheme",
                 "layout",
                 "contentWidth",
@@ -45,14 +45,14 @@
             sidebarContainer() {
                 return {
                     "sidebar-container": true,
-                    "sidebar-collapse": this.sidebarOpen,
+                    "sidebar-collapse": this.sidebarCollapse,
                     "sidebar-container-fixed": this.fixedSiderbar
                 };
             },
             mainContainer() {
                 return {
                     "main-container": true,
-                    "main-collapse": this.sidebarOpen && this.showSidemenu,
+                    "main-collapse": this.sidebarCollapse && this.showSidemenu,
                     "sidebar-container-not-fixed":
                         !this.fixedSiderbar || !this.showSidemenu,
                     "not-sidebar": !this.showSidemenu,

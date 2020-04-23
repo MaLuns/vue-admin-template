@@ -11,7 +11,7 @@
             </a>
         </div>
         <el-scrollbar wrap-class="scrollbar-wrapper" class="scrollbar">
-            <el-menu router :default-active="$route.path" :collapse="sidebarOpen" class="el-menu-vertical">
+            <el-menu router :default-active="$route.path" :collapse="sidebarCollapse" class="el-menu-vertical">
                 <sidebar-items v-for="route in $router.options.routes" :key="route.path" :route="route" :base-path="route.path"></sidebar-items>
             </el-menu>
         </el-scrollbar>
@@ -32,7 +32,7 @@
             SidebarItems
         },
         computed: {
-            ...mapGetters(["sidebarOpen", "fixedSiderbar"]),
+            ...mapGetters(["sidebarCollapse", "fixedSiderbar"]),
             sidebarMenu() {
                 return {
                     "sidebar-menu": true,
@@ -42,7 +42,7 @@
             sidebarLogoContainer() {
                 return {
                     "sidebar-logo-container": true,
-                    collapse: this.sidebarOpen
+                    collapse: this.sidebarCollapse
                 };
             }
         }

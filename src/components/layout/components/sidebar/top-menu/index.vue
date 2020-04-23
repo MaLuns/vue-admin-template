@@ -30,7 +30,7 @@
             HeaderRight
         },
         computed: {
-            ...mapGetters(["sidebarOpen"]),
+            ...mapGetters(["sidebarCollapse"]),
             routes() {
                 return this.$router.options.routes;
             }
