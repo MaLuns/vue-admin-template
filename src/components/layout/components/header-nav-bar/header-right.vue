@@ -70,7 +70,6 @@
             }
         },
         mounted() {
-            console.log(screenfull);
             this.init();
         },
         beforeDestroy() {
