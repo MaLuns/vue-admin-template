@@ -1,7 +1,7 @@
 
 const state = {
     jwt_token: localStorage.getItem("jwt_token"),
-    authority: localStorage.getItem("authority") ? JSON.parse(localStorage.getItem("authority")) : {}
+    user: {}
 }
 
 const mutations = {
@@ -9,9 +9,11 @@ const mutations = {
         state.jwt_token = jwt_token;
         localStorage.setItem("jwt_token", jwt_token)
     },
-    set_authority(state, authority) {
-        state.authority = authority;
-        localStorage.setItem("authority", JSON.stringify(authority))
+    set_user(state, user) {
+        state.user = user;
+    },
+    update_authority(state, { key, val }) {
+        state.user.authority[key] = val
     }
 }
 

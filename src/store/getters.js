@@ -1,6 +1,5 @@
 const getters = {
     sidebarCollapse: state => state.app.sidebarCollapse,
-    jwtToken: state => state.user.jwt_token,
     tagNavList: state => state.app.tagNavList,
     errorList: state => state.app.errorList,
 
@@ -12,7 +11,10 @@ const getters = {
     showTagNav: state => state.app.showTagNav,
     colorWeak: state => state.app.colorWeak,
 
-    lang: state => state.app.lang
+    lang: state => state.app.lang,
+    
+    jwtToken: state => state.user.jwt_token,
+    user:state=>state.user.user
 }
 
 export default getters

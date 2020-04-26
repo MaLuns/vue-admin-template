@@ -76,17 +76,17 @@
         },
         methods: {
             SubmitLogin() {
-                login(this.from.loginName, this.from.passWorld).then(
-                    ({ data: { resule, data } }) => {
+                login(this.from.loginName, this.from.passWorld)
+                    .then(({ data: { resule, data } }) => {
                         if (resule) {
-                            let { token, authority } = data;
+                            let { token } = data;
                             this.$store.commit("user/setjwt_token", token);
-                            this.$store.commit("user/set_authority", authority);
-
-                            this.$router.push({ name: "home" });
+                            this.$router.push({ path: "/" });
                         }
-                    }
-                );
+                    })
+                    .catch(err => {
+                        this.$message.error(err);
+                    });
             }
         }
     };

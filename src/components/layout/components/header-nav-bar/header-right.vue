@@ -8,7 +8,7 @@
             </div>
         </el-tooltip>
         <div class="navbar-btn">
-            <i class="el-icon-full-screen"></i>
+            <i :class="[isFullscreen?'icon-tuichuquanping':'icon-quanping']" @click="click"></i>
         </div>
         <div class="navbar-btn">
             <el-badge :value="5" slot="reference">
@@ -17,7 +17,7 @@
         </div>
         <div class="navbar-btn">
             <el-dropdown :hide-on-click="false" placement="bottom" @command="setLang">
-                <i class="el-icon-full-screen"></i>
+                <i class="icon-language"></i>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item v-for="(val, key) in lang" :command="key" :key="key">{{val}}</el-dropdown-item>
                 </el-dropdown-menu>
@@ -40,8 +40,15 @@
 
 <script>
     import { mapGetters } from "vuex";
+    import screenfull from "screenfull";
+
     export default {
         name: "HeaderRight",
+        data() {
+            return {
+                isFullscreen: false
+            };
+        },
         computed: {
             ...mapGetters(["navTheme", "errorList", "lang"]),
             effect() {
@@ -62,9 +69,34 @@
                 return this.errorList.filter(item => item.type === "error").length;
             }
         },
+        mounted() {
+            console.log(screenfull);
+            this.init();
+        },
+        beforeDestroy() {
+            this.destroy();
+        },
         methods: {
             setLang(val) {
                 this.$i18n.locale = val;
+            },
+            click() {
+                if (screenfull.isEnabled) {
+                    screenfull.toggle();
+                }
+            },
+            change() {
+                this.isFullscreen = screenfull.isFullscreen;
+            },
+            init() {
+                if (screenfull.isEnabled) {
+                    screenfull.on("change", this.change);
+                }
+            },
+            destroy() {
+                if (screenfull.isEnabled) {
+                    screenfull.off("change", this.change);
+                }
             }
         }
     };
@@ -102,6 +134,10 @@
         padding: 0 11px;
         transition: background 0.3s;
         cursor: pointer;
+
+        i {
+            font-size: 18px;
+        }
 
         .hamburger {
             vertical-align: middle;

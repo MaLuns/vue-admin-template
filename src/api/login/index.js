@@ -8,3 +8,9 @@ export const login = (user, pws) => {
         }
     })
 }
+
+export const getUserInfo = () => {
+    return ajax({
+        url: '/getUserInfo'
+    })
+}

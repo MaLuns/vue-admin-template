@@ -45,7 +45,7 @@ export default [
                 path: 'analysis',
                 name: 'analysis',
                 meta: {
-                    title: '分析页',
+                    title: '分析页'
                 },
                 component: () => import('@/views/dashboard/analysis')
             },
@@ -53,7 +53,7 @@ export default [
                 path: 'workplace',
                 name: 'workplace',
                 meta: {
-                    title: '工作台',
+                    title: '工作台'
                 },
                 component: () => import('@/views/dashboard/workplace')
             }
@@ -111,14 +111,6 @@ export default [
                 },
                 component: () => import('@/views/list/table-list')
             },
-            {
-                path: 'card-list',
-                name: 'card-list',
-                meta: {
-                    title: '卡片列表',
-                },
-                component: () => import('@/views/list/card-list')
-            }
         ]
     },
     {
@@ -216,7 +208,7 @@ export default [
         component: Layout,
         meta: {
             title: '工具',
-            icon: 'el-icon-s-platform',
+            icon: 'icon-tool',
             auth: 'tool',
         },
         children: [
@@ -262,10 +254,19 @@ export default [
                 name: 'i18n',
                 meta: {
                     title: '{{i18n}}',
-                    icon: 'el-icon-s-platform',
+                    icon: 'icon-language',
                     auth: 'i18n',
                 },
                 component: () => import('@/views/tool/launge.vue')
+            },
+            {
+                path: 'authority',
+                name: 'authority',
+                meta: {
+                    title: '权限',
+                    icon: 'icon-quanxian'
+                },
+                component: () => import('@/views/tool/authority.vue')
             }
         ]
     },

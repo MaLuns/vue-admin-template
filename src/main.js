@@ -5,7 +5,9 @@ import { i18n } from '@/locale'
 import log from "@/plugin/log"
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/index.less'
-import '@/mock'
+if (process.env.NODE_ENV !== 'production') {
+  require('@/mock')
+}
 
 Vue.use(log)
 Vue.use(ElementUI)

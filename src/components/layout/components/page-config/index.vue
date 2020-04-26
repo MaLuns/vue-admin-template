@@ -23,9 +23,9 @@
                     <div @click="SetGlobalConfig('layout','sidemenu')" :class="{'setting-checbox-item':true,'is-check':layout==='sidemenu'}">
                         <img :src="icon.darkIcon" alt />
                     </div>
-                    <div @click="SetGlobalConfig('layout','topmenu')" :class="{'setting-checbox-item':true,'is-check':layout==='topmenu'}">
+                    <!-- <div @click="SetGlobalConfig('layout','topmenu')" :class="{'setting-checbox-item':true,'is-check':layout==='topmenu'}">
                         <img :src="icon.topIcon" alt />
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="config-content-item">
