@@ -18,7 +18,7 @@ Router.prototype.push = function push(location) {
 
 const router = new Router({
     routes,
-    mode: 'history'
+   /*  mode: 'history' */
 })
 
 const LOGIN_NAME = 'login';
