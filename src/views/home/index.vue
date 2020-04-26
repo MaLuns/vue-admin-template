@@ -1,75 +1,31 @@
 <template>
     <el-card shadow="never">
         <h2>Admin Template</h2>
-
-        <ul>
-            项目结构
-            <li>
-                assets
-                <span>静态资源文件</span>
-            </li>
-            <li>
-                config
-                <span>配置文件</span>
-            </li>
-            <li>
-                libs
-                <span>依赖文件</span>
-                <ul>
-                    <li>
-                        ajax.js
-                        <span>axios封装</span>
-                    </li>
-                    <li>
-                        util.js
-                        <span>公用方法</span>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                plugin
-                <span>插件</span>
-                <ul>
-                    <li>
-                        log.js
-                        <span>日志打印</span>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                router
-                <span>路由</span>
-                <ul>
-                    <li>routes.js</li>
-                    <li>index.js</li>
-                </ul>
-            </li>
-            <li>
-                store
-                <span>Vuex</span>
-                <ul>
-                    <li>modules</li>
-                    <li>getter.js</li>
-                    <li>index.js</li>
-                </ul>
-            </li>
-            <li>
-                views
-                <span>视图</span>
-            </li>
-            <li>
-                App.vue
-                <span>页面入口</span>
-            </li>
-            <li>
-                index.less
-                <span>全局样式</span>
-            </li>
-            <li>
-                main.js
-                <span>入口</span>
-            </li>
-        </ul>
+        <pre>
+    ┌── public                     
+    │   ├── index.html             // html模板
+    │   ├── favicon.ico            // favicon图标
+    │ 
+    ├── src                        // 源代码
+    │   ├── api                    // 所有请求
+    │   ├── assets                 // 静态资源
+    │   ├── components             // 全局公用组件
+    │   ├── config                 // 配置文件
+    │   ├── libs                   // 全局公用方法
+    │   ├── locale                 // 国际化 
+    │   ├── mock                   // 模拟数据
+    │   ├── plugin                 // vue插件
+    │   ├── router                 // 路由
+    │   ├── store                  // 全局 store管理
+    │   ├── views                  // view
+    │   ├── App.vue                // 入口页面
+    │   ├── index.less             // 全局样式
+    │   ├── main.js                // 入口 加载组件 初始化等
+    │ 
+    ├── vue.config.js              // vue-cli 配置
+    ├── .gitignore                 // git 忽略项
+    └── package.json               // package.json
+        </pre>
     </el-card>
 </template>
 
