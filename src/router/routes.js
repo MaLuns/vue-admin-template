@@ -8,6 +8,7 @@ import CacheView from '@/components/cache-view'
  *   hideInMenu: (false) 设为true后在左侧菜单不会显示该页面选项
  *   icon: 左侧菜单、面包屑和标签导航处显示的图标
  *   notCache: (false) 设为true后对页面不进行缓存, 如果需要缓存,需要设置页面组件name属性和路由配置的name一致
+ *   auth：设置权限
  * }
  */
 
@@ -209,9 +210,18 @@ export default [
         meta: {
             title: '工具',
             icon: 'icon-tool',
-            auth: 'tool',
         },
         children: [
+
+            {
+                path: 'authority',
+                name: 'authority',
+                meta: {
+                    title: '权限',
+                    icon: 'icon-quanxian'
+                },
+                component: () => import('@/views/tool/authority.vue')
+            },
             {
                 path: 'log',
                 name: 'log',
@@ -258,15 +268,6 @@ export default [
                     auth: 'i18n',
                 },
                 component: () => import('@/views/tool/launge.vue')
-            },
-            {
-                path: 'authority',
-                name: 'authority',
-                meta: {
-                    title: '权限',
-                    icon: 'icon-quanxian'
-                },
-                component: () => import('@/views/tool/authority.vue')
             }
         ]
     },
